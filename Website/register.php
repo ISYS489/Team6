@@ -1,14 +1,8 @@
 <html>
 <head>
-<ul class ="nav">
-<li><a href="index.html">Home</a></li>
-<li><a href="eventlist.html">Event List</a></li>
-<li><a href="search.html">Search Events</a></li>
-<li><a href="">PEP Page</a></li>
-<li><a href="login.html">Login/Register</a></li>
-<li><a href="about.html">About</a></li>
-</ul> 
-<link rel="stylesheet" type="text/css" href="mystyle.css">
+
+<?php include("header.html");?>
+
 </head> 
 <body>
 
