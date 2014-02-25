@@ -19,7 +19,7 @@
 			<br></br>
 			
 			<h2> If your a new user click register</h2>
-			<a href="register.html">Register</a>
+			<a href="register.php">Register</a>
             <span></span>
 
         </form>
