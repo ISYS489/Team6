@@ -1,27 +1,67 @@
 <html>
 
+
 <!-- link to style sheet -->
 <link rel="stylesheet" type="text/css" href="mystyle.css">
 
 <head>
-
-<?php include("header.html");?>
-
+<!--header-->
+<?php require 'header.php'; ?>
+<h1>Account Tools</h1>
 </head>
+
 <body>
 
-<h1>Register Here</h1>
-<form class ="login" id="login-register" method="post" action="index.php">
-<h2>New User Register Here</h2>
-<input type="text" placeholder="First Name" name="firstname" autofocus />
-<br></br>
-<input type="text" placeholder="Last Name" name="lastname" autofocus />
-<br></br>
-<button type="submit" >Register</button>
-<span></span>
+<p>
+<h1>Welcome to Your Account Tools</h1>
 
-</form>
+<!--link to account settings page-->
+<ul class ="accountsettings">
+<li><a href="accountsettings.php">Account Settings</a></li>
+</ul>
 
+
+<!-- student -->
+<ul class ="Student">
+<li><a href="">my posts</a></li>
+<li><a href="">class posts</a></li>
+</ul>
+
+<!-- professor-->
+<ul class ="Professor">
+<li><a href="">Add Keywords</a></li>
+<li><a href="">Create Course </a></li>
+<li><a href="">Deactivate Course </a></li>
+<li><a href="">Create User</a></li>
+<li><a href="">Deactivate User</a></li>
+<li><a href="">View Reports</a></li>
+</ul>
+
+
+<!-- university admin-->
+<ul class ="UniversityAdmin">
+<li><a href="">Add Keywords</a></li>
+<li><a href="">Create Course </a></li>
+<li><a href="">Deactivate Course </a></li>
+<li><a href="">Create User</a></li>
+<li><a href="">Deactivate User</a></li>
+<li><a href="">View Reports</a></li>
+</ul>
+
+<!-- site admin -->
+<ul class ="SiteAdmin">
+<li><a href="">Add Keywords</a></li>
+<li><a href="">Create Course </a></li>
+<li><a href="">Deactivate Course </a></li>
+<li><a href="">Create User</a></li>
+<li><a href="">Deactivate User</a></li>
+<li><a href="">View Reports</a></li>
+<li><a href="">Create University</a></li>
+<li><a href="">Deactivate University</a></li>
+</ul>
+
+
+</p>
 
 </body>
 </html> 
