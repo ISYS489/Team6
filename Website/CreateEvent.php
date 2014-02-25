@@ -35,7 +35,7 @@ if (empty($errors)) { //if there are no errors
 //connect to the DB
 require ('mysqli_connect.php');
 //make the query
-$q = "INSERT INTO universities (name, startdate, enddate) VALUES ('$un','$sd','$ed')";
+$q = "INSERT INTO events (name, startdate, enddate) VALUES ('$un','$sd','$ed')";
 $r = @mysqli_query ($dbc, $q); //run query
 if ($r) {//if it ran ok
 
