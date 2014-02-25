@@ -4,7 +4,7 @@
 <link rel="stylesheet" type="text/css" href="mystyle.css">
 
 <head>
-
+<!-- navigation bar -->
 <?php include("header.html");?>
 
 </head>
