@@ -1,26 +1,29 @@
 body
 {
-background-color:white;
+background-color:black;
 }
 
 
 h1
 {
-color:blue;
+color:white;
 text-align:center;
 }
 
 
 h2
 {
-color:red;
+color:yellow;
 }
 
 p
 {
+border-style:solid;
+border-width:5px;
 font-family:"Times New Roman";
 font-size:20px;
-color:red;
+color:white;
+text-align:center;
 }
 
 
@@ -41,7 +44,7 @@ color:red;
 }
 .nav a:link, a:visited
 {
-color:blue;
+color:yellow;
 }
 
-.login
+
