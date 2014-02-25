@@ -1,4 +1,6 @@
 <html>
+<!-- link to style sheet -->
+<link rel="stylesheet" type="text/css" href="mystyle.css">
 <head>
 
 <?php include("header.html");?>
