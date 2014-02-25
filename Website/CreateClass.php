@@ -1,7 +1,7 @@
-<?php # create an event
-//performs INSERT query to add a record to the event table 
+<?php # create a class
+//performs INSERT query to add a record to the class table 
 
-$page_title = 'CreateEvent';
+$page_title = 'CreateClass';
 
 include ('header.html');
 
@@ -10,21 +10,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 $errors = array(); //Initialize an error array.
 
-//Check for a event name
-if (empty($_POST['event_name'])) {
-$errors[] = 'You forgot to enter a event name.';
+//Check for a class name
+if (empty($_POST['class_name'])) {
+$errors[] = 'You forgot to enter a class name.';
 }else{
-$un = trim($_POST['event_name']);
+$un = trim($_POST['class_name']);
 }
 
-//Check for a event start date
+//Check for a class start date
 if (empty($_POST['start_date'])) {
 $errors[] = 'You forgot to enter a start date.';
 }else{
 $sd = trim($_POST['start_date']);
 }
 
-//Check for a event end date
+//Check for a class end date
 if (empty($_POST['end_date'])) {
 $errors[] = 'You forgot to enter a start date.';
 }else{
@@ -35,18 +35,18 @@ if (empty($errors)) { //if there are no errors
 //connect to the DB
 require ('mysqli_connect.php');
 //make the query
-$q = "INSERT INTO universities (name, startdate, enddate) VALUES ('$un','$sd','$ed')";
+$q = "INSERT INTO class (name, startdate, enddate) VALUES ('$un','$sd','$ed')";
 $r = @mysqli_query ($dbc, $q); //run query
 if ($r) {//if it ran ok
 
 //print message:
 echo '<h1>Thank You!</h1>
-<p>You have created a University.</p>';
+<p>You have created a class.</p>';
 
 }else{ //if not ok
 
 echo '<h1>Error</h1>
-<p>System error preventing University creation, university may already exist.</p>';
+<p>System error prclassing Class creation, Class may already exist.</p>';
 }
 
 mysqli_close($dbc);
@@ -63,12 +63,12 @@ echo '</p><p>Please try again.</p><p><br /></p>';
 }
 }
 ?>
-<h1>Create Event</h1>
-<form action="CreateEvent.php" method="post">
+<h1>Create Class</h1>
+<form action="CreateClass.php" method="post">
 
-<p>University Name: <input type="text" name="event_name" value="<?php if(isset($_POST['event_name'])) echo $_POST['event_name']; ?>" /></p>
+<p>Class Name: <input type="text" name="class_name" value="<?php if(isset($_POST['class_name'])) echo $_POST['class_name']; ?>" /></p>
 <p>Start Date: <input type="text" name="start_date" placeholder="YYYYMMDD" value="<?php if(isset($_POST['start_date'])) echo $_POST['start_date']; ?>" /></p>
 <p>End Date: <input type="text" name="end_date" placeholder="YYYYMMDD" value="<?php if(isset($_POST['end_date'])) echo $_POST['end_date']; ?>" /></p>
-<input type="submit" name="submit" value="Create Event"/>
+<input type="submit" name="submit" value="Create Class"/>
 <br></br>
 </form>
