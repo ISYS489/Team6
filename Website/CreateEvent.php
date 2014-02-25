@@ -41,12 +41,12 @@ if ($r) {//if it ran ok
 
 //print message:
 echo '<h1>Thank You!</h1>
-<p>You have created a University.</p>';
+<p>You have created a Event.</p>';
 
 }else{ //if not ok
 
 echo '<h1>Error</h1>
-<p>System error preventing University creation, university may already exist.</p>';
+<p>System error preventing Event creation, Event may already exist.</p>';
 }
 
 mysqli_close($dbc);
@@ -66,7 +66,7 @@ echo '</p><p>Please try again.</p><p><br /></p>';
 <h1>Create Event</h1>
 <form action="CreateEvent.php" method="post">
 
-<p>University Name: <input type="text" name="event_name" value="<?php if(isset($_POST['event_name'])) echo $_POST['event_name']; ?>" /></p>
+<p>Event Name: <input type="text" name="event_name" value="<?php if(isset($_POST['event_name'])) echo $_POST['event_name']; ?>" /></p>
 <p>Start Date: <input type="text" name="start_date" placeholder="YYYYMMDD" value="<?php if(isset($_POST['start_date'])) echo $_POST['start_date']; ?>" /></p>
 <p>End Date: <input type="text" name="end_date" placeholder="YYYYMMDD" value="<?php if(isset($_POST['end_date'])) echo $_POST['end_date']; ?>" /></p>
 <input type="submit" name="submit" value="Create Event"/>
