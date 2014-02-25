@@ -6,7 +6,7 @@
 
 <head>
 <!--header-->
-<?php require 'header.php'; ?>
+<?php include 'header.php'; ?>
 <h1>Civility In US Politics</h1>
 </head>
 
