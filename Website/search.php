@@ -2,54 +2,26 @@
 
 <!-- link to style sheet -->
 <link rel="stylesheet" type="text/css" href="mystyle.css">
+
 <head>
 
 <?php include("header.html");?>
 
-
 </head>
-
 <body>
 
-<h1>The Search Page</h1>
-
-<p>
-<form class ="search" id="search" method="post" action="index.php">
-
-<h2>Enter Search Criteria Here</h2>
-
-<input type="text" placeholder="Search" name="search" autofocus />
+<h1>Register Here</h1>
+<form class ="login" id="login-register" method="post" action="index.php">
+<h2>New User Register Here</h2>
+<input type="text" placeholder="First Name" name="firstname" autofocus />
 <br></br>
-
-<button type="submit">Login</button>
+<input type="text" placeholder="Last Name" name="lastname" autofocus />
 <br></br>
-
-<h2> Advanced Search</h2>
-
-<input type="text" placeholder="Event Name " name="eventname" autofocus />
-<br></br>
-
-<input type="text" placeholder="Rating " name="rating" autofocus />
-<br></br>
-
-<input type="text" placeholder="Media Type " name="mediatype" autofocus />
-<br></br>
-
-<input type="text" placeholder="Course # " name="coursenumber" autofocus />
-<br></br>
-
-<input type="text" placeholder="Political Party" name="politicalparty" autofocus />
-<br></br>
-
-<input type="text" placeholder="University " name="university" autofocus />
-<br></br>
-
-<button type="submit">Login</button>
-<br></br>
-
+<button type="submit" >Register</button>
+<span></span>
 
 </form>
-</p>
+
 
 </body>
 </html> 
