@@ -1,8 +1,11 @@
 <html>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 <!-- included for testing purposes -->
   
+=======
+>>>>>>> 6088d2ca7e5483f4f48a564bbd06c3d6bdc6e96c
 =======
 >>>>>>> 6088d2ca7e5483f4f48a564bbd06c3d6bdc6e96c
 
