@@ -1,5 +1,11 @@
 <html>
 
+<<<<<<< HEAD
+<!-- included for testing purposes -->
+  
+=======
+>>>>>>> 6088d2ca7e5483f4f48a564bbd06c3d6bdc6e96c
+
 <!-- link to style sheet -->
 <link rel="stylesheet" type="text/css" href="mystyle.css">
 <head>
@@ -14,14 +20,14 @@
 <h1>The Search Page</h1>
 
 <p>
-<form class ="search" id="search" method="post" action="index.php">
+<form class ="search" id="search" method="post" action="searchresults.php">
 
 <h2>Enter Search Criteria Here</h2>
 
 <input type="text" placeholder="Search" name="search" autofocus />
 <br></br>
 
-<button type="submit">Login</button>
+<button type="submit">Search</button>
 <br></br>
 
 <h2> Advanced Search</h2>
@@ -44,7 +50,7 @@
 <input type="text" placeholder="University " name="university" autofocus />
 <br></br>
 
-<button type="submit">Login</button>
+<button type="submit">Search</button>
 <br></br>
 
 
