@@ -8,6 +8,6 @@ session_destroy(); //Destroys session itself.
 setcookie ('PHPSESSID', '', time()-3600, '/', '', 0, 0); //destroy the cookie.
 
 require ('login_functions.php');
-redirect_user();
+redirect_user();                //sends user to homepage.
 
 ?>
