@@ -1,27 +1,16 @@
-<html>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<!-- included for testing purposes -->
-  
-=======
->>>>>>> 6088d2ca7e5483f4f48a564bbd06c3d6bdc6e96c
-=======
->>>>>>> 6088d2ca7e5483f4f48a564bbd06c3d6bdc6e96c
+<?php
+session_start();
+?>
+//start the session
 
-<!-- link to style sheet -->
-<link rel="stylesheet" type="text/css" href="mystyle.css">
+<html>
+
 
 <head>
 <!--header-->
-<<<<<<< HEAD
-<<<<<<< HEAD
-<?php require 'header.html'; ?>
-=======
+
 <?php require 'header.php'; ?>
->>>>>>> 6088d2ca7e5483f4f48a564bbd06c3d6bdc6e96c
-=======
-<?php require 'header.php'; ?>
->>>>>>> 6088d2ca7e5483f4f48a564bbd06c3d6bdc6e96c
+
 <h1>Terms and Conditions</h1>
 </head>
 
@@ -34,19 +23,17 @@ These are terms and conditions....
 <input type="checkbox" name="agree" value="agree">I agree<br>
 <input type="checkbox" name="disagree" value="disagree">I do not agree
 </form> 
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 
 <form class="termsandconditions" id="termsandconditions" method="post" action="registrationsubmitted.php">
 <button type="submit" >Submit</button>
 </form> 
 
-=======
+
 <button type="submit" >Submit</button>
->>>>>>> 6088d2ca7e5483f4f48a564bbd06c3d6bdc6e96c
-=======
+
 <button type="submit" >Submit</button>
->>>>>>> 6088d2ca7e5483f4f48a564bbd06c3d6bdc6e96c
+
 
 
 </p>

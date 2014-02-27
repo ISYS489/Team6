@@ -1,12 +1,13 @@
-<html>
-<!-- included for testing purposes -->
-  
+<?php
+session_start();
+?>
+//start the session
 
-<!-- link to style sheet -->
-<link rel="stylesheet" type="text/css" href="mystyle.css">
+<html>
+
 <head>
 
-<?php include("header.html");?>
+<?php include("header.php");?>
 
 </head> 
 <body>

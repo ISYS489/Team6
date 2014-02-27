@@ -15,8 +15,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		
 		//set session data:
 		session_start();
-		$_session['userid'] = $data['userid'];
-		$_session['password'] = $data['password'];
+		$_SESSION['userid'] = $data['userid'];
+		$_SESSION['password'] = $data['password'];
 		
 		//Redirect:
 		redirect_user('accounttools.php');

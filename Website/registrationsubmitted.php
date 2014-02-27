@@ -1,13 +1,14 @@
-<html>
-<!-- included for testing purposes -->
-  
+<?php
+session_start();
+?>
+//start the session
 
-<!-- link to style sheet -->
-<link rel="stylesheet" type="text/css" href="mystyle.css">
+<html>
+
 
 <head>
 <!--header-->
-<?php require 'header.html'; ?>
+<?php require 'header.php'; ?>
 <h1>Registration Submitted</h1>
 </head>
 

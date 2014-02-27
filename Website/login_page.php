@@ -1,19 +1,14 @@
-<html>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<!-- included for testing purposes -->
-  
-=======
->>>>>>> 6088d2ca7e5483f4f48a564bbd06c3d6bdc6e96c
-=======
->>>>>>> 6088d2ca7e5483f4f48a564bbd06c3d6bdc6e96c
+<?php
+session_start();
+?>
+//start the session
 
-<!-- link to style sheet -->
-<link rel="stylesheet" type="text/css" href="mystyle.css">
+<html>
+
 
 <head>
 
-<?php include("header.html");
+<?php include("header.php");
 // print any error messages
 if (isset($errors) && !empty($errors)) {
 	echo '<h1> Error! </h1>
@@ -40,16 +35,11 @@ if (isset($errors) && !empty($errors)) {
 <br></br>
 <button type="submit">Login</button>
 <br></br>
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 <a href="forgotusername.php">Forgot Username</a>
 <br>
 <a href="forgotpassword.php">Forgot Password</a>
 
-=======
->>>>>>> 6088d2ca7e5483f4f48a564bbd06c3d6bdc6e96c
-=======
->>>>>>> 6088d2ca7e5483f4f48a564bbd06c3d6bdc6e96c
 <h2> If you are a new user click register</h2>
 <ul class ="register">
 <a href="register.php">Register</a>

@@ -1,19 +1,14 @@
-<html>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<!-- included for testing purposes -->
-  
-=======
->>>>>>> 6088d2ca7e5483f4f48a564bbd06c3d6bdc6e96c
-=======
->>>>>>> 6088d2ca7e5483f4f48a564bbd06c3d6bdc6e96c
+<?php
+session_start();
+?>
+//start the session
 
-<!-- link to style sheet -->
-<link rel="stylesheet" type="text/css" href="mystyle.css">
+<html>
+
 
 <head>
 
-<?php include("header.html");?>
+<?php include("header.php");?>
 
 </head>
 <body>

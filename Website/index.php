@@ -1,20 +1,14 @@
+<?php
+session_start();
+?>
 <html>
-
-
-<!-- link to style sheet -->
-<link rel="stylesheet" type="text/css" href="mystyle.css">
 
 <head>
 <!--header-->
-<<<<<<< HEAD
-<<<<<<< HEAD
-<?php include 'header.html'; ?>
-=======
+
 <?php include 'header.php'; ?>
->>>>>>> 6088d2ca7e5483f4f48a564bbd06c3d6bdc6e96c
-=======
-<?php include 'header.php'; ?>
->>>>>>> 6088d2ca7e5483f4f48a564bbd06c3d6bdc6e96c
+
+
 <h1>Civility In US Politics</h1>
 </head>
 
