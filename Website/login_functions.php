@@ -20,7 +20,7 @@ function redirect_user ($page = 'index.php'){
 	
 }
 
-function check_login($dbc, $email = ", $pass = "){
+function check_login($dbc, $email = '', $password = ''){
 	
 	$errors = array(); //creates error array
 	

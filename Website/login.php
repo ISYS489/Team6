@@ -15,13 +15,13 @@
 
 <?php include("header.html");
 // print any error messages
-if (isset($errors)) && !empty($errors)) {
+if (isset($errors) && !empty($errors)) {
 	echo '<h1> Error! </h1>
 	<p> The follwing error(s) occurred:<br />';
 	foreach ($errors as $msg){
 		echo " - $msg<br />\n";
 	}
-	echo '</p><p>Please try again.</p>'
+	echo '</p><p>Please try again.</p>';
 }
 
 
@@ -31,7 +31,7 @@ if (isset($errors)) && !empty($errors)) {
 <body>
 ///display login form
 <h1>Login Or Register</h1>
-<form class ="login" id="login-register" method="post" action="index.php">
+<form class ="login" id="login-register" method="post" action="login_session.php">
 
 <h2>Login</h2>
 <input type="text" placeholder="your@email.com" name="email" autofocus />

@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$_session['password'] = $data['password'];
 		
 		//Redirect:
-		redirect_user(index.php);
+		redirect_user('index.php');
 		
 	}else{
 		
