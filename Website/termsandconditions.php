@@ -1,11 +1,16 @@
+<?php
+session_start();
+?>
+//start the session
+
 <html>
 
-<!-- link to style sheet -->
-<link rel="stylesheet" type="text/css" href="mystyle.css">
 
 <head>
 <!--header-->
+
 <?php require 'header.php'; ?>
+
 <h1>Terms and Conditions</h1>
 </head>
 
@@ -18,7 +23,17 @@ These are terms and conditions....
 <input type="checkbox" name="agree" value="agree">I agree<br>
 <input type="checkbox" name="disagree" value="disagree">I do not agree
 </form> 
+
+
+<form class="termsandconditions" id="termsandconditions" method="post" action="registrationsubmitted.php">
 <button type="submit" >Submit</button>
+</form> 
+
+
+<button type="submit" >Submit</button>
+
+<button type="submit" >Submit</button>
+
 
 
 </p>

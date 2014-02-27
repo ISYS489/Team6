@@ -1,17 +1,20 @@
+<?php
+session_start();
+?>
+//start the session
+
 <html>
 
-<!-- link to style sheet -->
-<link rel="stylesheet" type="text/css" href="mystyle.css">
 
 <head>
 
-<?php include("header.html");?>
+<?php include("header.php");?>
 
 </head>
 <body>
 
 <h1>Register Here</h1>
-<form class ="login" id="login-register" method="post" action="index.php">
+<form class ="login" id="login-register" method="post" action="termsandconditions.php">
 <h2>New User Register Here</h2>
 <input type="text" placeholder="First Name" name="firstname" autofocus />
 <br></br>

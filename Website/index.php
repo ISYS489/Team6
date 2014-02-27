@@ -1,12 +1,14 @@
+<?php
+session_start();
+?>
 <html>
-
-
-<!-- link to style sheet -->
-<link rel="stylesheet" type="text/css" href="mystyle.css">
 
 <head>
 <!--header-->
+
 <?php include 'header.php'; ?>
+
+
 <h1>Civility In US Politics</h1>
 </head>
 

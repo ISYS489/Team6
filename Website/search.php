@@ -1,11 +1,14 @@
+<?php
+session_start();
+?>
+//start the session
+
 <html>
 
 
-<!-- link to style sheet -->
-<link rel="stylesheet" type="text/css" href="mystyle.css">
 <head>
 
-<?php include("header.html");?>
+<?php include("header.php");?>
 
 
 </head>
@@ -15,7 +18,7 @@
 <h1>The Search Page</h1>
 
 <p>
-<form class ="search" id="search" method="post" action="index.php">
+<form class ="search" id="search" method="post" action="searchresults.php">
 
 <h2>Enter Search Criteria Here</h2>
 

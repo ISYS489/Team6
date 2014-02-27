@@ -7,17 +7,20 @@ session_start();
 
 
 <head>
-
+<!--header-->
 <?php require 'header.php'; ?>
-
-<h1>Forgot Password</h1>
+<h1>Registration Submitted</h1>
 </head>
 
 <body>
-<h2></h2>
-<p>
 
+<p>
+Submitted...
+ 
+<form class="registrationsubmitted" id="registrationsubmitted" method="post" action="index.php">
 <button type="submit" >Submit</button>
+</form> 
+
 
 
 </p>

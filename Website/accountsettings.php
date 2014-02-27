@@ -1,13 +1,16 @@
+<?php
+session_start();
+?>
+//start the session
+
 <html>
 
 
-<!-- link to style sheet -->
-<link rel="stylesheet" type="text/css" href="mystyle.css">
 
 <head>
-<!--header-->
-<?php require 'header.php'; ?>
 
+
+<?php require 'header.php'; ?>
 
 <h1>Account Settings</h1>
 </head>

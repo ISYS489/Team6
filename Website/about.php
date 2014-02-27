@@ -1,11 +1,15 @@
+<?php
+session_start();
+?>
+//start the session
+
 <html>
 
-<!-- link to style sheet -->
-<link rel="stylesheet" type="text/css" href="mystyle.css">
+
 
 <head>
 <!-- navigation bar -->
-<?php include("header.html");?>
+<?php include("header.php");?>
 
 </head>
 

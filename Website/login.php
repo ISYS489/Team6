@@ -1,34 +1,37 @@
-<html>
+<?php # login_session.php
+//processes login from submission using sessions
 
-<!-- link to style sheet -->
-<link rel="stylesheet" type="text/css" href="mystyle.css">
+//check if form has been submitted:
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+	
+	//Need two helper files
+	require ('login_functions.php');
+	require ('mysqli_connect.php');
+	
+	//check login
+	list ($check, $data) = check_login($dbc, $_POST['email'], $_POST['password']);
+	
+	if ($check) {
+		
+		//set session data:
+		session_start();
+		$_SESSION['userid'] = $data['userid'];
+		$_SESSION['password'] = $data['password'];
+		
+		//Redirect:
+		redirect_user('accounttools.php');
+		
+	}else{
+		
+		//assign $data to $errors for login_page.php:
+		$errors = $data;
+		
+	}
+	
+	mysqli_close($dbc);
+	
+}
 
-<head>
+include ('login_page.php');
 
-<?php include("header.html");?>
-
-</head>
-<body>
-
-<h1>Login Or Register</h1>
-<form class ="login" id="login-register" method="post" action="index.php">
-
-<h2>Login</h2>
-<input type="text" placeholder="your@email.com" name="email" autofocus />
-<br></br>
-<input type="text" placeholder="Password" name="password" autofocus />
-<br></br>
-<button type="submit">Login</button>
-<br></br>
-<h2> If your a new user click register</h2>
-<ul class ="register">
-<a href="register.php">Register</a>
-<span></span>
-</ul>
-</form>
-
-
-
-
-</body>
-</html> 
+?>
