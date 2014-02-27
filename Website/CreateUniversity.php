@@ -3,7 +3,7 @@
 
 $page_title = 'CreateUniversity';
 
-include ('header.html');
+include ('header.php');
 
 //check for form submission:
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
