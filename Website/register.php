@@ -17,6 +17,18 @@
 <br></br>
 <input type="text" placeholder="Last Name" name="lastname" autofocus />
 <br></br>
+<input type="text" placeholder="Middle Initial" name="middleinitial" autofocus />
+<br></br>
+<input type="text" placeholder="Username" name="username" autofocus />
+<br></br>
+<input type="text" placeholder="Password" name="password" autofocus />
+<br></br>
+<input type="text" placeholder="Retype Password" name="password2" autofocus />
+<br></br>
+<input type="text" placeholder="Email Address" name="email" autofocus />
+<br></br>
+<input type="text" placeholder="Course Number" name="coursenumber" autofocus />
+<br></br>
 <button type="submit" >Register</button>
 <span></span>
 
