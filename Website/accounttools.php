@@ -33,7 +33,7 @@ session_start();
 
 <!-- professor-->
 <ul class ="Professor">
-<li><a href="">Add Keywords</a></li>
+<li><a href="addkeyword.php">Add Keywords</a></li>
 <li><a href="CreateClass.php">Create Course </a></li>
 <li><a href="">Deactivate Course </a></li>
 <li><a href="">Create User</a></li>
@@ -44,7 +44,7 @@ session_start();
 
 <!-- university admin-->
 <ul class ="UniversityAdmin">
-<li><a href="">Add Keywords</a></li>
+<li><a href="addkeyword.php">Add Keywords</a></li>
 <li><a href="CreateClass.php">Create Course </a></li>
 <li><a href="">Deactivate Course </a></li>
 <li><a href="">Create User</a></li>
@@ -54,7 +54,7 @@ session_start();
 
 <!-- site admin -->
 <ul class ="SiteAdmin">
-<li><a href="">Add Keywords</a></li>
+<li><a href="addkeyword.php">Add Keywords</a></li>
 <li><a href="CreateClass.php">Create Course </a></li>
 <li><a href="">Deactivate Course </a></li>
 <li><a href="">Create User</a></li>
