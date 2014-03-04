@@ -35,10 +35,10 @@ session_start();
 <ul class ="Professor">
 <li><a href="addkeyword.php">Add Keywords</a></li>
 <li><a href="CreateClass.php">Create Course </a></li>
-<li><a href="">Deactivate Course </a></li>
-<li><a href="">Create User</a></li>
-<li><a href="">Deactivate User</a></li>
-<li><a href="">View Reports</a></li>
+<li><a href="deactivatecourse.php">Deactivate Course </a></li>
+<li><a href="createuser.php">Create User</a></li>
+<li><a href="deactivateuser.php">Deactivate User</a></li>
+<li><a href="reports.php">View Reports</a></li>
 </ul>
 
 
@@ -46,22 +46,22 @@ session_start();
 <ul class ="UniversityAdmin">
 <li><a href="addkeyword.php">Add Keywords</a></li>
 <li><a href="CreateClass.php">Create Course </a></li>
-<li><a href="">Deactivate Course </a></li>
-<li><a href="">Create User</a></li>
-<li><a href="">Deactivate User</a></li>
-<li><a href="">View Reports</a></li>
+<li><a href="deactivatecourse.php">Deactivate Course </a></li>
+<li><a href="createuser.php">Create User</a></li>
+<li><a href="deactivateuser.php">Deactivate User</a></li>
+<li><a href="reports.php">View Reports</a></li>
 </ul>
 
 <!-- site admin -->
 <ul class ="SiteAdmin">
 <li><a href="addkeyword.php">Add Keywords</a></li>
 <li><a href="CreateClass.php">Create Course </a></li>
-<li><a href="">Deactivate Course </a></li>
-<li><a href="">Create User</a></li>
-<li><a href="">Deactivate User</a></li>
-<li><a href="">View Reports</a></li>
+<li><a href="deactivatecourse.php">Deactivate Course </a></li>
+<li><a href="createcourse.php">Create User</a></li>
+<li><a href="deactivateuser.php">Deactivate User</a></li>
+<li><a href="reports.php">View Reports</a></li>
 <li><a href="CreateUniversity.php">Create University</a></li>
-<li><a href="">Deactivate University</a></li>
+<li><a href="deactivateuniversity.php">Deactivate University</a></li>
 </ul>
 
 
