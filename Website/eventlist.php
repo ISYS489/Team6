@@ -7,14 +7,63 @@ session_start();
 
 <head>
 
-<?php include("header.php");?>
+    <?php include("header.php");?>
 
-</head> 
+</head>
 <body>
 
-<h1>Event List</h1>
+    <h1>Event List</h1>
 
-<p>My first paragraph.</p>
+    <div style="text-align:center;">
+        <table style="margin-left:auto; margin-right:auto;">
+            <tr>
+                <th>
+                    Event Name
+                </th>
+                <th>
+                    News Outlet
+                </th>
+                <th>
+                    Media Type
+                </th>
+                <th>
+                    Important Figure Name
+                </th>
+                <th>
+                    Political Party
+                </th>
+                <th>
+                    Date of Event
+                </th>
+                <th>
+                    Date of Upload:
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    Gettysburg Address
+                </td>
+                <td>
+                    Cleveland Morning Leader
+                </td>
+                <td>
+                    Newpaper
+                </td>
+                <td>
+                    Abraham Lincoln
+                </td>
+                <td>
+                    Republican Party
+                </td>
+                <td>
+                    November 19, 1863
+                </td>
+                <td>
+                    November 23, 1863
+                </td>
+            </tr>
+        </table>
+    </div>
 
 </body>
-</html> 
+</html>

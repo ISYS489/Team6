@@ -15,10 +15,10 @@ session_start();
 <body>
 
 <p>
-Submitted...
+Registration Submitted...
  
 <form class="registrationsubmitted" id="registrationsubmitted" method="post" action="index.php">
-<button type="submit" >Submit</button>
+<button type="submit" >Return to Home Page</button>
 </form> 
 
 

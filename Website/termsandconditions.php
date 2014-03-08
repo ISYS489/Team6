@@ -17,7 +17,8 @@ session_start();
 <body>
 <h2>Please read the terms and conditions before submitting your registration </h2>
 <p>
-These are terms and conditions....
+These are the terms and conditions....
+</p>
  
 <form class="terms">
 <input type="checkbox" name="agree" value="agree">I agree<br>
@@ -27,16 +28,7 @@ These are terms and conditions....
 
 <form class="termsandconditions" id="termsandconditions" method="post" action="registrationsubmitted.php">
 <button type="submit" >Submit</button>
-</form> 
-
-
-<button type="submit" >Submit</button>
-
-<button type="submit" >Submit</button>
-
-
-
-</p>
+</form>
 
 </body>
 </html> 

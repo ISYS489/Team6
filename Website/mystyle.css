@@ -3,6 +3,10 @@ body
 background-color:black;
 }
 
+form
+{
+    color: White;
+}
 
 h1
 {
@@ -26,6 +30,13 @@ color:white;
 text-align:center;
 }
 
+table, th td
+{
+    color:White;
+    border-style: solid;
+    border-color:White;
+    border-width: medium;
+}
 
 .nav{
     border:1px solid #ccc;

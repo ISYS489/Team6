@@ -3,7 +3,7 @@
 
 $page_title = 'CreateClass';
 
-include ('header.html');
+include ('header.php');
 
 //populate university list
 require ('mysqli_connect.php');

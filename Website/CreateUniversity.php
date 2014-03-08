@@ -66,11 +66,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <h1>Create University</h1>
 <form action="CreateUniversity.php" method="post">
 
-	<p>University Name: <input type="text" name="university_name" value="<?php if(isset($_POST['university_name'])) echo $_POST['university_name']; ?>" /></p>
-	
-	<p>Start Date: <input type="text" name="start_date" placeholder="YYYYMMDD" value="<?php if(isset($_POST['start_date'])) echo $_POST['start_date']; ?>" /></p>
-	
-	<p>End Date: <input type="text" name="end_date"  placeholder="YYYYMMDD" value="<?php if(isset($_POST['end_date'])) echo $_POST['end_date']; ?>" /></p>
+	<p>University Name: <input type="text" name="university_name" value="<?php if(isset($_POST['university_name'])) echo $_POST['university_name']; ?>" /><br/>
+    Start Date: <input type="text" name="start_date" placeholder="YYYYMMDD" value="<?php if(isset($_POST['start_date'])) echo $_POST['start_date']; ?>" /><br/>
+    End Date: <input type="text" name="end_date"  placeholder="YYYYMMDD" value="<?php if(isset($_POST['end_date'])) echo $_POST['end_date']; ?>" /></p>
 	
     <input type="submit" name="submit" value="Create University"/>
 	<br></br>

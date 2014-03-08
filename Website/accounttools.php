@@ -27,8 +27,8 @@ session_start();
 
 <!-- student -->
 <ul class ="Student">
-<li><a href="">my posts</a></li>
-<li><a href="">class posts</a></li>
+<li><a href="reports.php">my posts</a></li>
+<li><a href="reports.php">class posts</a></li>
 </ul>
 
 <!-- professor-->
