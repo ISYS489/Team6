@@ -115,14 +115,13 @@ Event URL: <input type="text" name="URL" value="<?php if(isset($_POST['URL'])) e
 
 <?php require ('mysqli_connect.php');
 
-$q = "SELECT MediaTypeId FROM mediatypes";
+$q = "SELECT MediaTypeId FROM MediaTypes";
 $r = @mysqli_query ($dbc, $q); //run query
 echo "<p>";
 if ($r) {//if it ran ok
-	echo $q;
 	echo "<select name='MediaTypeId'>";
 	while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-	    echo '<option value="' . $row['MediaTypeId'] . '">' . $row['MediaType'] . '</option>';}
+	    echo '<option value=" . $row['MediaTypeId'] . ">' . $row['MediaType'] . ''</option>';}
 	    
 	echo "</select></br>";
 }
@@ -132,7 +131,6 @@ $q = "SELECT NameId FROM names";
 $r = @mysqli_query ($dbc, $q); //run query
 
 if ($r) {//if it ran ok
-	echo $q;
 	echo "<select name='NameId'>";
 	while ($row = mysql_fetch_array($result)) {
 	    echo "<option value=" . $row['NameID'] . ">" . $row['NameID'] . "</option>";}
@@ -144,9 +142,8 @@ if ($r) {//if it ran ok
 $q = "SELECT newsoutletid FROM newsoutlets";
 $r = @mysqli_query ($dbc, $q); //run query
 	
-if ($r) {//if it ran ok
-	echo $q;	
-	echo "<select name='newsoutletid'>";
+if ($r) {//if it ran ok	
+	echo "<select name='nesoutletid'>";
 	while ($row = mysql_fetch_array($result)) {
 	    echo "<option value=" . $row['NewsoutletID'] . ">" . $row['NewsOutletID'] . "</option>";}
 	    
@@ -154,11 +151,10 @@ if ($r) {//if it ran ok
 }
 
 
-$q = "SELECT politicalpartyid FROM politicalparties";
+$q = "SELECT politicalpartyid FROM politicalpartyid";
 $r = @mysqli_query ($dbc, $q); //run query
 
 if ($r) {//if it ran ok	
-	echo $q;
 	echo "<select name='politicalpartyid'>";
 	while ($row = mysql_fetch_array($result)) {
 	    echo "<option value=" . $row['politicalpartyID'] . ">" . $row['politicalpartyID'] . "</option>";}
