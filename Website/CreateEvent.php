@@ -101,6 +101,29 @@ Event URL: <input type="text" name="URL" value="<?php if(isset($_POST['URL'])) e
 
 <?php require ('mysqli_connect.php');
 
+
+/* multi query statement */
+$keywordQuery = "SELECT MediaTypeId, MediaType FROM mediatypes;SELECT NameId, Name From names;SELECT NewsOutletId, NewsOutlet FROM newsoutlets;SELECT PoliticalPartyId, PoliticalParty FROM politicalparties";
+
+/* execute multi query */
+if (mysqli_multi_query($dbc, $keywordQuery)) {
+    do {
+        /* store first result set */
+        if ($result = mysqli_store_result($dbc)) {
+            while ($row = mysqli_fetch_row($result)) {
+                printf("%s\n", $row[0] . ":" . $row[1]);
+                $idArray = array($row[0]);
+            }  
+        }
+        
+        /* print divider */
+        if (mysqli_more_results($dbc)) {
+            printf("</br>");
+            
+        }
+    } while (mysqli_next_result($dbc));
+}
+
 $qmt = "SELECT MediaTypeId, MediaType FROM mediatypes";
 $rmt = @mysqli_query ($dbc, $qmt); //run query
 echo "<p>";
