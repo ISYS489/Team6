@@ -25,8 +25,25 @@ session_start();
 <h2></h2>
 <p>
 
-<button type="submit" >Search Again</button>
 
+<table>
+
+<tr>
+	<td>Post #</td>
+	<td>Post Name</td>
+	<td>Rating </td>
+	<td>Time/Date</td>
+	<td>Media Type</td>
+	<td>Course #</td>
+	<td>Political Party</td>
+	<td>University </td>
+	<td>Person of Interest</td>
+</tr>
+</table>
+
+
+
+<button type="submit" >Search Again</button>
 
 </p>
 

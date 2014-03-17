@@ -93,20 +93,6 @@ echo '</p><p>Please try again.</p><p><br /></p>';
 ?>
 <h1>Create Event</h1>
 
-
-<!-- <form name="jump">
-<p align="center">
-<select name="menu">
-<option value="URL">Text that will appear in the choices</option>
-<option value="URL">Text that will appear in the choices</option>
-<option value="URL">Text that will appear in the choices</option>
-<option value="URL">Text that will appear in the choices</option>
-</select>
-<input type="button" onClick="location=document.jump.menu.options[document.jump.menu.selectedIndex].value;" value="GO">
-</p>
-</form> -->
-
-
 <form action="CreateEvent.php" method="post">
 
 <p>Event Name: <input type="text" name="event_name" value="<?php if(isset($_POST['event_name'])) echo $_POST['event_name']; ?>" /></br>
@@ -115,53 +101,55 @@ Event URL: <input type="text" name="URL" value="<?php if(isset($_POST['URL'])) e
 
 <?php require ('mysqli_connect.php');
 
-$q = "SELECT MediaTypeId FROM mediatypes";
-$r = @mysqli_query ($dbc, $q); //run query
+$qmt = "SELECT MediaTypeId, MediaType FROM mediatypes";
+$rmt = @mysqli_query ($dbc, $qmt); //run query
 echo "<p>";
-if ($r) {//if it ran ok
-	echo $q;
-	echo "<select name='MediaTypeId'>";
-	while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-	    echo '<option value="' . $row['MediaTypeId'] . '">' . $row['MediaType'] . '</option>';}
-	    
-	echo "</select></br>";
-}
-
-
-$q = "SELECT NameId FROM names";
-$r = @mysqli_query ($dbc, $q); //run query
-
-if ($r) {//if it ran ok
-	echo $q;
-	echo "<select name='NameId'>";
-	while ($row = mysql_fetch_array($result)) {
-	    echo "<option value=" . $row['NameID'] . ">" . $row['NameID'] . "</option>";}
-	    
-	echo "</select></br>";
-}
-
-
-$q = "SELECT newsoutletid FROM newsoutlets";
-$r = @mysqli_query ($dbc, $q); //run query
+echo "Select a Media Type: ";
+if ($rmt) {//if it ran ok
 	
-if ($r) {//if it ran ok
-	echo $q;	
-	echo "<select name='newsoutletid'>";
-	while ($row = mysql_fetch_array($result)) {
-	    echo "<option value=" . $row['NewsoutletID'] . ">" . $row['NewsOutletID'] . "</option>";}
+	echo "<select name='MediaTypeId'>";
+	while ($row = mysqli_fetch_array($rmt)) {
+	    echo "<option value='" . $row['MediaTypeID'] . "'>" . $row['MediaType'] . "</option>";}
 	    
 	echo "</select></br>";
 }
 
 
-$q = "SELECT politicalpartyid FROM politicalparties";
-$r = @mysqli_query ($dbc, $q); //run query
 
+//$qn = "SELECT NameId, Name From Names";
+//$rn = @mysqli_query ($dbc, $qn); //run query
+echo "Select a Person of Interest: ";
+if ($rmt) {//if it ran ok
+	
+	echo "<select name='NameId'>";
+	while ($row = mysql_fetch_array($rn)) {
+	    echo "<option value='" . $row['NameId'] . "'>" . $row['Name'] . "</option>";}
+	    
+	echo "</select></br>";
+}
+
+
+$q = "SELECT NewsOutletId, NewsOutlet FROM newsoutlets";
+$r = @mysqli_query ($dbc, $q); //run query
+echo "Select a News Outlet: ";	
+if ($r) {//if it ran ok
+	
+	echo "<select name='NewsOutletId'>";
+	while ($row = mysql_fetch_array($r)) {
+	    echo "<option value='" . $row['NewsOutletId'] . "'>" . $row['NewsOutlet'] . "</option>";}
+	    
+	echo "</select></br>";
+}
+
+
+$q = "SELECT PoliticalPartyId FROM politicalparties";
+$r = @mysqli_query ($dbc, $q); //run query
+echo "Select a Political Party: ";
 if ($r) {//if it ran ok	
-	echo $q;
-	echo "<select name='politicalpartyid'>";
-	while ($row = mysql_fetch_array($result)) {
-	    echo "<option value=" . $row['politicalpartyID'] . ">" . $row['politicalpartyID'] . "</option>";}
+
+	echo "<select name='PoliticalPartyId'>";
+	while ($row = mysql_fetch_array($r)) {
+	    echo "<option value='" . $row['PoliticalPartyId'] . "'>" . $row['PoliticalParty'] . "</option>";}
 	    
 	echo "</select></br>";
 }
