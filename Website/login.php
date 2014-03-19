@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	require ('mysqli_connect.php');
 	
 	//check login
-	list ($check, $data) = check_login($dbc, $_POST['email'], $_POST['password']);
+	list ($check, $data) = check_login($dbc, $_POST['username'], $_POST['password']);
 	
 	if ($check) {
 		

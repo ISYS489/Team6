@@ -29,7 +29,7 @@ if (isset($errors) && !empty($errors)) {
 <form class ="login" id="login-register" method="post" action="login.php">
 
 <h2>Login</h2>
-<input type="text" placeholder="your@email.com" name="email" autofocus />
+<input type="text" placeholder="Username" name="username" autofocus />
 <br></br>
 <input type="text" placeholder="Password" name="password" autofocus />
 <br></br>
