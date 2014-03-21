@@ -31,7 +31,7 @@ if (isset($errors) && !empty($errors)) {
 <h2>Login</h2>
 <input type="text" placeholder="Username" name="username" autofocus />
 <br></br>
-<input type="text" placeholder="Password" name="password" autofocus />
+<input type="password" placeholder="Password" name="password" autofocus />
 <br></br>
 <button type="submit">Login</button>
 <br></br>
