@@ -33,10 +33,12 @@ session_start();
             $command = @mysqli_query($dbc, $queryString); //run query
             
             if ($command) {//if it ran ok
+            
+            $universityDeactivated = @mysqli_query($dbc, "Select Name FROM universities WHERE UniversityId = $universityId")
 
                 //print message:
-                echo '<h1>Thank You!</h1>
-			<p>You have deactivated a University.</p>';
+                echo "<h1>Thank You!</h1>
+			<p>You have deactivated $universityDeactivated.</p>";
 
             }else{ //if not ok
 
@@ -69,7 +71,7 @@ session_start();
             ?>
         </select>
         <br />
-        <button type="submit" onclick="window.confirm('Are you sure you want to delete this University?')">Delete University</button>
+        <button type="submit" onclick="window.confirm('Are you sure you want to deactivate this University?')">Deactivate University</button>
     </form>
 </body>
 </html>
