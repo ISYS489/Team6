@@ -34,7 +34,7 @@ session_start();
             
             if ($command) {//if it ran ok
             
-            $universityDeactivated = @mysqli_query($dbc, "Select Name FROM universities WHERE UniversityId = $universityId")
+            $universityDeactivated = @mysqli_query($dbc, "Select Name FROM universities WHERE UniversityId = $universityId");
 
                 //print message:
                 echo "<h1>Thank You!</h1>
