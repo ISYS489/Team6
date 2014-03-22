@@ -7,7 +7,7 @@ session_start();
 
 
 <head>
-    <!--header-->
+    <!--header -->
 
     <?php require 'header.php';
           require ('mysqli_connect.php');
