@@ -24,9 +24,9 @@ session_start();
 <br></br>
 <input type="text" placeholder="Username" name="username" autofocus />
 <br></br>
-<input type="text" placeholder="Password" name="password" autofocus />
+<input type="password" placeholder="Password" name="password" autofocus />
 <br></br>
-<input type="text" placeholder="Retype Password" name="password2" autofocus />
+<input type="password" placeholder="Retype Password" name="password2" autofocus />
 <br></br>
 <input type="text" placeholder="Email Address" name="email" autofocus />
 <br></br>
