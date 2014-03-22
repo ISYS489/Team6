@@ -28,7 +28,7 @@ session_start();
         {
             $universityId = $_POST['universityId'];
             
-            $queryString = "UPDATE `universities` SET `inactive`=true WHERE `UniversityId`='$universityId';";
+            $queryString = "UPDATE `universities` SET `isActive`=false WHERE `UniversityId`='$universityId';";
             
             $command = @mysqli_query($dbc, $queryString); //run query
             
@@ -64,7 +64,7 @@ session_start();
         <select name="universityId">
             <?php
 
-            $result = mysqli_query($dbc,'SELECT UniversityId, Name FROM universities WHERE inactive <> 1 OR inactive IS NULL');
+            $result = mysqli_query($dbc,'SELECT UniversityId, Name FROM universities WHERE isActive = 0');
 
             while ($row=mysqli_fetch_array($result))
             {
