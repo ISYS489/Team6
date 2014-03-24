@@ -21,14 +21,31 @@ session_start();
 
 <font color="white">
 
-Active Course #: </br>
-University: </br>
-First Name: </br>
-Middle Initial: </br>
-Last Name: </br>
-Email Address: </br>
-Account type: </br>
+<?php require ('mysqli_connect.php');
 
+$userID = $_SESSION['userid'];
+
+$userQuery = "SELECT * FROM users WHERE userid='$userID'";
+$r = @mysqli_query ($dbc, $userQuery); //run query
+
+while($row = mysqli_fetch_array($r))
+  {
+  	//echo 'Active Course #: ' . $row['FirstName'] . '</br>';
+	//echo 'University: ' . $row['FirstName'] . '</br>';
+	echo 'First Name    : ' . $row['FirstName'] . '</br>';
+	echo 'Middle Initial: ' . $row['MiddleInitial'] . '</br>';
+	echo 'Last Name     : ' . $row['LastName'] . '</br>';
+	echo 'Email Address : ' . $row['email'] . '</br>';
+	echo 'Date Created  : ' . $row['CreationDate'] . '</br>';
+	echo 'Activity Status: ' . $row['IsActive'] . '</br>';
+  }
+	
+
+
+
+mysqli_close($dbc);
+
+?>
 </font>
 
 

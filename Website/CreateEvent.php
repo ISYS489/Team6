@@ -107,9 +107,9 @@ echo '</p><p>Please try again.</p><p><br /></p>';
 <form action="CreateEvent.php" method="post">
 
 <p>
-	   Event Name: <input type="text" name="event_name" value="<?php if(isset($_POST['event_name'])) echo $_POST['event_name']; ?>" /></br>
-Event Description: <input type="text" name="event_description" value="<?php if(isset($_POST['event_description'])) echo $_POST['event_description'];?>"/></br>
-        Event URL: <input type="text" name="URL" value="<?php if(isset($_POST['URL'])) echo $_POST['URL']; ?>" /></br>
+	   Event Name: <input type="text" size="100" name="event_name" value="<?php if(isset($_POST['event_name'])) echo $_POST['event_name']; ?>" /></br>
+Event Description: <input type="text" size="100" rows="5" name="event_description" value="<?php if(isset($_POST['event_description'])) echo $_POST['event_description'];?>"/></br>
+        Event URL: <input type="text" size="100"name="URL" value="<?php if(isset($_POST['URL'])) echo $_POST['URL']; ?>" /></br>
 
 <?php require ('mysqli_connect.php');
 
