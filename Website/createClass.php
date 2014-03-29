@@ -7,7 +7,8 @@ Author: Kyle Gottfried
 Last Date Modified: 3/28/2014
 --><?php
 session_start();
-$userID = $_SESSION['userId'];
+
+
 ?>
 
 <?php # create a class
@@ -15,12 +16,39 @@ $userID = $_SESSION['userId'];
 
 $page_title = 'CreateClass';
 
-include ('header.php');
+include 'header.php';
+require 'mysqliConnect.php';
+
+if ($_SESSION['userid'])
+{
+    $userId = $_SESSION['userid'];
+    $userRoles = array();
+    $result = mysqli_query($dbc, "SELECT RoleId FROM `users-roles` WHERE UserId = $userId");
+    while ($row = mysqli_fetch_array($result))
+    {
+        $userRoles[] = $row[0];
+    }
+    if (!(in_array(1, $userRoles) or in_array(2, $userRoles) or in_array(3, $userRoles)))
+        header("location: index.php");
+}
+else
+{
+    header("location: index.php");
+}
 
 //check for form submission:
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     
     $errors = array(); //Initialize an error array.
+    
+    //Check for university id
+    if (empty($_POST['university'])) {
+        $errors[] = 'You forgot to enter a university.';
+    }else
+    {
+    	$u = trim($_POST['university']);
+    }
+    
 
     //Check for a class name
     if (empty($_POST['class_name'])) {
@@ -45,9 +73,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if (empty($errors)) { //if there are no errors
         //connect to the DB
-        require ('mysqliConnect.php');
+        //require ('mysqliConnect.php');
         //make the query
-        $q = "INSERT INTO class (name, startdate, enddate) VALUES ('$un','$sd','$ed')";
+        $q = "INSERT INTO classes (universityId, classname, startdate, enddate) VALUES ($u,'$un','$sd','$ed')";
         $r = @mysqli_query ($dbc, $q); //run query
         if ($r) {//if it ran ok
 
@@ -79,6 +107,34 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <form action="createClass.php" method="post">
 
     <p>
+        University:
+        <select name="university">
+        <?php
+        if (in_array(1, $userRoles))
+        {
+            //Allow user to select from a selection of universities. (Site admin)
+            $result = mysqli_query($dbc,'SELECT UniversityId, Name FROM universities WHERE isActive = true');
+
+            while ($row=mysqli_fetch_array($result))
+            {
+                echo '<option value=' . htmlspecialchars($row['UniversityId']) . '>'
+                . htmlspecialchars($row['Name'])
+                . '</option>';
+            }
+        }
+        else
+        {
+            //Only provide a single university to select from that the user belongs to.
+            $result = mysqli_query($dbc, 'SELECT universities.UniversityId, Name FROM universities LEFT JOIN users ON universities.universityId = users.UniversityId WHERE users.$userId = 1');
+        	while ($row = mysqli_fetch_row($result)) {
+                echo '<option value=' . htmlspecialchars($row['UniversityId']) . '>'
+                . htmlspecialchars($row['Name'])
+                . '</option>';
+            }
+        }
+        
+        ?>
+        </select><br/>
         Class Name:
         <input type="text" name="class_name" value="<?php if(isset($_POST['class_name'])) echo $_POST['class_name']; ?>" /><br/>
         Start Date:
