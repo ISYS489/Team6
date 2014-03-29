@@ -19,10 +19,16 @@ session_start();
 
     <?php require 'header.php';
           require ('mysqliConnect.php');
-          require ('authorizationFunctions.php');
           if ($_SESSION['userid'])
           {
-              if (!IsUserAuthorized($_SESSION['userid'], array(1)))
+              $userId = $_SESSION['userid'];
+              $userRoles = array();
+              $result = mysqli_query($dbc, "SELECT RoleId FROM `users-roles` WHERE UserId = $userId");
+              while ($row = mysqli_fetch_array($result))
+              {
+                  $userRoles[] = $row[0];
+              }
+              if (!in_array(1, $userRoles))
                   header("location: index.php");
           }
           else
