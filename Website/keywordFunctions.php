@@ -65,8 +65,9 @@
 * }
 */
 
+
 function displayKeywords(){
- 
+ 	require ('mysqliConnect.php');
 		/* multi query statement */
 	$keywordQuery = "SELECT MediaTypeId, MediaType FROM mediatypes;SELECT NameId, Name From names;SELECT NewsOutletId, NewsOutlet FROM newsoutlets;SELECT PoliticalPartyId, PoliticalParty FROM politicalparties";
 	
@@ -106,3 +107,5 @@ function displayKeywords(){
 	
 	echo "</p>";
 }
+
+?>

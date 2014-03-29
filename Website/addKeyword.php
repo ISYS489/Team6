@@ -121,18 +121,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		
 	}
 }
+
+echo '<h1>Add Keyword</h1> 
+		<p>Current Keywords: </br>';
+
+require ('keywordFunctions.php');
+
+displayKeywords();
+
 ?>
-<h1>Add Keyword</h1>
+</p>
 <form action="addKeyword.php" method="post">
 
-	<p>Name of Person of Interest: <input type="text" name="name" value="<?php if(isset($_POST['name'])) echo $_POST['name']; ?>" /></p>
+	<p>Name of Person of Interest: <input type="text" name="name" value="<?php if(isset($_POST['name'])) echo $_POST['name']; ?>" /></br>
 	
-	<p>Media Type: <input type="text" name="media_type" value="<?php if(isset($_POST['media_type'])) echo $_POST['media_type']; ?>" /></p>
+	Media Type: <input type="text" name="media_type" value="<?php if(isset($_POST['media_type'])) echo $_POST['media_type']; ?>" /></br>
 	
-	<p>Political Party: <input type="text" name="political_party" value="<?php if(isset($_POST['political_party'])) echo $_POST['political_party']; ?>" /></p>
+	Political Party: <input type="text" name="political_party" value="<?php if(isset($_POST['political_party'])) echo $_POST['political_party']; ?>" /></br>
 	
-	<p>News Outlet: <input type="text" name="news_outlet" value="<?php if(isset($_POST['news_outlet'])) echo $_POST['news_outlet']; ?>" /></p>
+	News Outlet: <input type="text" name="news_outlet" value="<?php if(isset($_POST['news_outlet'])) echo $_POST['news_outlet']; ?>" /></p>
 	
     <input type="submit" name="submit" value="Add Keyword(s)"/>
 	<br></br>
 </form>
+
