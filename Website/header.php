@@ -5,7 +5,7 @@ echo'
 <li><a href="index.php">Home</a></li>
 <li><a href="eventList.php">Event List</a></li>
 <li><a href="search.php">Search Events</a></li>
-<li><a href="http://www.ferris.edu/pep/" target="_blank">PEP Page</a></li>
+<li><a href="pep.php">PEP Page</a></li>
 <li><a href="about.php">About</a></li>';
 
 
@@ -22,4 +22,5 @@ if (isset($_SESSION['userid'])){
 ?>
 
 </ul> 
-<link rel="stylesheet" type="text/css" href="mystyle.css">
+
+<link rel="stylesheet" type="text/css" href="/styles/mystyle.css">
