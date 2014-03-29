@@ -5,8 +5,8 @@
 // selects DB, sets encoding
 
 //Set the database acess info as constants:
-DEFINE ('DB_USER', 'isys489c_kuchnic');
-DEFINE ('DB_PASSWORD', 'dKmK6E9rdtHg');
+DEFINE ('DB_USER', 'root');
+DEFINE ('DB_PASSWORD', '');
 DEFINE ('DB_HOST', 'localhost');
 DEFINE ('DB_NAME', 'isys489c_brteam6');
 
