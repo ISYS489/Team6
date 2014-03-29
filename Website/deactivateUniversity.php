@@ -114,7 +114,7 @@ session_start();
         <select name="universityId">
             <?php
 
-            $result = mysqli_query($dbc,'SELECT UniversityId, Name FROM universities WHERE isActive = 1');
+            $result = mysqli_query($dbc,'SELECT UniversityId, Name FROM universities WHERE isActive = true');
 
             while ($row=mysqli_fetch_array($result))
             {
