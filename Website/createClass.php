@@ -70,9 +70,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         Class Name:
         <input type="text" name="class_name" value="<?php if(isset($_POST['class_name'])) echo $_POST['class_name']; ?>" /><br/>
         Start Date:
-        <input type="text" name="start_date" placeholder="YYYYMMDD" value="<?php if(isset($_POST['start_date'])) echo $_POST['start_date']; ?>" /><br/>
+        <input type="text" name="start_date" placeholder="YYYY/MM/DD" value="<?php if(isset($_POST['start_date'])) echo $_POST['start_date']; ?>" /><br/>
         End Date:
-        <input type="text" name="end_date" placeholder="YYYYMMDD" value="<?php if(isset($_POST['end_date'])) echo $_POST['end_date']; ?>" /><br/><br/>
+        <input type="text" name="end_date" placeholder="YYYY/MM/DD" value="<?php if(isset($_POST['end_date'])) echo $_POST['end_date']; ?>" /><br/><br/>
         <input type="submit" name="submit" value="Create Class" />
         <br />
     </p>
