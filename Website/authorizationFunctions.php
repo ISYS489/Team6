@@ -11,6 +11,7 @@ require('mysqliConnect.php');
 
 function IsUserAuthorized($userId, $authorizedUserRoles) //int, int Array
 {
+    global $dbc;
 	$userRoles = array();
     $result = mysqli_query($dbc, "SELECT RoleId FROM `users-roles` WHERE UserId = $userId"); //Get all Roles for user
     while ($row = mysqli_fetch_array($result))
@@ -18,10 +19,10 @@ function IsUserAuthorized($userId, $authorizedUserRoles) //int, int Array
         $userRoles[] = $row[0];
     }
     
-      if (!in_array($authorizedUserRoles, $userRoles)) //If user's roles are not present in $authorizedUserRoles return false.
-          return false;
+      if (!in_array($authorizedUserRoles, $userRoles)) //If user's roles are not present in $authorizedUserRoles return false. //Is always false as instead of checking each value in $authorizedUserRoles against the haystack it uses the $authorizedUserRoles array itself as the needle.
+      {return false;}
       else
-      return true;
+      {return true;}
 }
 
 ?>
