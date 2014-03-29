@@ -8,7 +8,6 @@ Last Date Modified: 3/28/2014
 -->
 <?php
 session_start();
-$userID = $_SESSION['userId'];
 ?>
 //start the session
 
@@ -20,6 +19,24 @@ $userID = $_SESSION['userId'];
 
     <?php require 'header.php';
           require ('mysqliConnect.php');
+          if ($_SESSION['userid'])
+          {
+              $userId = $_SESSION['userid'];
+              $userRoles = array();
+              $result = mysqli_query($dbc, "SELECT RoleId FROM `users-roles` WHERE UserId = $userId");
+              while ($row = mysqli_fetch_array($result))
+              {
+                  $userRoles[] = $row[0];
+              }
+              if (!in_array(1, $userRoles))
+                  header("location: index.php");
+          }
+          else
+          {
+          	header("location: index.php");
+          }
+          
+          
     ?>
 
 
