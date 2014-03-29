@@ -14,7 +14,7 @@ session_start();
 <body>
 
 <h1>Register Here</h1>
-<form class ="login" id="login-register" method="post" action="termsandconditions.php">
+<form class ="login" id="login-register" method="post" action="termsAndConditions.php">
 <h2>New User Register Here</h2>
 <input type="text" placeholder="First Name" name="firstname" autofocus />
 <br></br>

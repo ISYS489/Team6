@@ -10,7 +10,7 @@ session_start();
     <!--header -->
 
     <?php require 'header.php';
-          require ('mysqli_connect.php');
+          require ('mysqliConnect.php');
     ?>
 
 

@@ -6,7 +6,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	
 	//Need two helper files
 	require ('login_functions.php');
-	require ('mysqli_connect.php');
+	require ('mysqliConnect.php');
 	
 	//check login
 	list ($check, $data) = check_login($dbc, $_POST['username'], $_POST['password']);
@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		
 	}else{
 		
-		//assign $data to $errors for login_page.php:
+		//assign $data to $errors for loginPage.php:
 		$errors = $data;
 		
 	}
@@ -32,6 +32,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	
 }
 
-include ('login_page.php');
+include ('loginPage.php');
 
 ?>

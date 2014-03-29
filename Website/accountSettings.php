@@ -21,7 +21,7 @@ session_start();
 
 <font color="white">
 
-<?php require ('mysqli_connect.php');
+<?php require ('mysqliConnect.php');
 
 $userID = $_SESSION['userid'];
 

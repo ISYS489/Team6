@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if (empty($errors)) { //if there are no errors
         //connect to the DB
-        require ('mysqli_connect.php');
+        require ('mysqliConnect.php');
         //make the query
         $q = "INSERT INTO class (name, startdate, enddate) VALUES ('$un','$sd','$ed')";
         $r = @mysqli_query ($dbc, $q); //run query

@@ -72,7 +72,7 @@ $uid = trim($_SESSION['userid']);
 
 if (empty($errors)) { //if there are no errors
 //connect to the DB
-require ('mysqli_connect.php');
+require ('mysqliConnect.php');
 //make the query
 $q = "INSERT INTO events (eventname, eventdesc, politicalpartyid, mediatypeid, newsoutletid, nameid, url, publishdate, userid) VALUES ('$en','$ed','$pp','$mt','$no','$n','$url','$pd','$uid')";
 $r = mysqli_query ($dbc, $q); //run query
@@ -111,7 +111,7 @@ echo '</p><p>Please try again.</p><p><br /></p>';
 Event Description: <input type="text" size="100" rows="5" name="event_description" value="<?php if(isset($_POST['event_description'])) echo $_POST['event_description'];?>"/></br>
         Event URL: <input type="text" size="100"name="URL" value="<?php if(isset($_POST['URL'])) echo $_POST['URL']; ?>" /></br>
 
-<?php require ('mysqli_connect.php');
+<?php require ('mysqliConnect.php');
 
 
 /* multi query statement */

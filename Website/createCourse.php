@@ -6,7 +6,7 @@ $page_title = 'CreateClass';
 include ('header.php');
 
 //populate university list
-require ('mysqli_connect.php');
+require ('mysqliConnect.php');
 $sql = "SELECT name FROM universities";
 $result = mysqli_query($dbc, $sql);
 
@@ -46,7 +46,7 @@ mysqli_close($dbc);
 * 	
 * 	if (empty($errors)) { //if there are no errors
 * 		//connect to the DB
-* 		require ('mysqli_connect.php');
+* 		require ('mysqliConnect.php');
 * 		//make the query
 * 		$q = "INSERT INTO universities (name, startdate, enddate) VALUES ('$un','$sd','$ed')";
 * 		$r = @mysqli_query ($dbc, $q); //run query

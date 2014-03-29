@@ -18,7 +18,7 @@ session_start();
 <h1>The Search Page</h1>
 
 <p>
-<form class ="search" id="search" method="post" action="searchresults.php">
+<form class ="search" id="search" method="post" action="searchResults.php">
 
 <h2>Enter Search Criteria Here</h2>
 

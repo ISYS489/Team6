@@ -58,7 +58,7 @@ session_start();
     </form>
 
 
-    <form class="termsandconditions" id="termsandconditions" method="post" action="registrationsubmitted.php">
+    <form class="termsandconditions" id="termsandconditions" method="post" action="registrationSubmitted.php">
         <button type="submit">Submit</button>
     </form>
 

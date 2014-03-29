@@ -1,4 +1,4 @@
-<?php # mysqli_connect.php
+<?php # mysqliConnect.php
 
 // DB access info
 // established connection to DB

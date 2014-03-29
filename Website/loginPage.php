@@ -36,9 +36,9 @@ if (isset($errors) && !empty($errors)) {
 <button type="submit">Login</button>
 <br></br>
 
-<a href="forgotusername.php">Forgot Username</a>
+<a href="forgotUsername.php">Forgot Username</a>
 <br>
-<a href="forgotpassword.php">Forgot Password</a>
+<a href="forgotPassword.php">Forgot Password</a>
 
 <h2> If you are a new user click register</h2>
 <ul class ="register">
