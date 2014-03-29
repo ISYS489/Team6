@@ -35,7 +35,7 @@ while($row = mysqli_fetch_array($r))
 	echo 'First Name    : ' . $row['FirstName'] . '</br>';
 	echo 'Middle Initial: ' . $row['MiddleInitial'] . '</br>';
 	echo 'Last Name     : ' . $row['LastName'] . '</br>';
-	echo 'Email Address : ' . $row['email'] . '</br>';
+	echo 'Email Address : ' . $row['Email'] . '</br>';
 	echo 'Date Created  : ' . $row['CreationDate'] . '</br>';
 	echo 'Activity Status: ' . $row['IsActive'] . '</br>';
   }

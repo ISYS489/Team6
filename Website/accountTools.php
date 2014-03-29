@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!--
 File Name: createUniversity.php
 Purpose: Provides links to all the action pages that a user can access.
@@ -6,10 +9,8 @@ Instructor: Amy Buse
 Author: Kyle Gottfried
 Last Date Modified: 3/28/2014
 -->
-<?php
-session_start();
-?>
-//start the session
+
+<!--start the session-->
 
 <html>
 
