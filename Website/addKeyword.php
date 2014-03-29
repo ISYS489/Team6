@@ -1,6 +1,6 @@
 <?php # add a keyword
 //performs INSERT query to add a record to the university table
-
+session_start();
 $page_title = 'Add Keyword';
 
 include ('header.php');
