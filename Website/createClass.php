@@ -1,3 +1,15 @@
+<!--
+File Name: createClass.php
+Purpose: Create a new class
+Class: ISYS489
+Instructor: Amy Buse
+Author: Kyle Gottfried
+Last Date Modified: 3/28/2014
+--><?php
+session_start();
+$userID = $_SESSION['userId'];
+?>
+
 <?php # create a class
 //performs INSERT query to add a record to the class table
 
@@ -7,7 +19,7 @@ include ('header.php');
 
 //check for form submission:
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
+    
     $errors = array(); //Initialize an error array.
 
     //Check for a class name

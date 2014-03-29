@@ -1,3 +1,15 @@
+<!--
+File Name: createUniversity.php
+Purpose: Create a new university
+Class: ISYS489
+Instructor: Amy Buse
+Author: Kyle Gottfried
+Last Date Modified: 3/28/2014
+-->
+<?php
+session_start();
+$userID = $_SESSION['userId'];
+?>
 <?php # create a university
 //performs INSERT query to add a record to the university table
 

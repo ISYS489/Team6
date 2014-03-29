@@ -1,5 +1,14 @@
+<!--
+File Name: createUniversity.php
+Purpose: Confirmation page for when the user completes registation. Also page where actual database inserts are made adding user to DB.
+Class: ISYS489
+Instructor: Amy Buse
+Author: Kyle Gottfried
+Last Date Modified: 3/28/2014
+-->
 <?php
 session_start();
+$userID = $_SESSION['userId'];
 ?>
 //start the session
 

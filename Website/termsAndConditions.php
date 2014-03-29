@@ -1,6 +1,14 @@
+<!--
+File Name: createUniversity.php
+Purpose: Presents end user with terms and conditions that the user must agree to in order to register. Passes code from register to registrationSubmitted.
+Class: ISYS489
+Instructor: Amy Buse
+Author: Kyle Gottfried
+Last Date Modified: 3/28/2014
+-->
 <?php
 session_start();
-
+$userID = $_SESSION['userId'];
 //start the session
 ?>
 <html>
