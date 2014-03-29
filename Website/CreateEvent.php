@@ -104,7 +104,7 @@ echo '</p><p>Please try again.</p><p><br /></p>';
 ?>
 <h1>Create Event</h1>
 
-<form action="CreateEvent.php" method="post">
+<form action="createEvent.php" method="post">
 
 <p>
 	   Event Name: <input type="text" size="100" name="event_name" value="<?php if(isset($_POST['event_name'])) echo $_POST['event_name']; ?>" /></br>

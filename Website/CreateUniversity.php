@@ -60,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		//connect to the DB
 		require ('mysqli_connect.php');
 		//make the query
-		$q = "INSERT INTO universities (name, startdate, enddate) VALUES ('$un','$sd','$ed')";
+		$q = "INSERT INTO universities (name, startdate, enddate, IsActive) VALUES ('$un','$sd','$ed', true)";
 		$r = @mysqli_query ($dbc, $q); //run query
 		if ($r) {//if it ran ok
 
@@ -89,7 +89,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 ?>
 <h1>Create University</h1>
-<form action="CreateUniversity.php" method="post">
+<form action="createUniversity.php" method="post">
 
     <p>
         University Name:

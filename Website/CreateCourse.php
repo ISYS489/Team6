@@ -77,7 +77,7 @@ mysqli_close($dbc);
 * }
 * ?>
 * <h1>Create class</h1>
-* <form action="Createclass.php" method="post">
+* <form action="createclass.php" method="post">
 
 * 	<p>class Name: <input type="text" name="class_name" value="<?php if(isset($_POST['class_name'])) echo $_POST['class_name']; ?>" /></p>
 * 	

@@ -20,8 +20,8 @@ session_start();
 <h1>Welcome to Your Account Tools</h1>
 
 <!--link to account settings page-->
-<ul class ="accountsettings">
-<li><a href="accountsettings.php">Account Settings</a></li>
+<ul class ="accountSettings">
+<li><a href="accountSettings.php">Account Settings</a></li>
 </ul>
 
 
@@ -33,35 +33,35 @@ session_start();
 
 <!-- professor-->
 <ul class ="Professor">
-<li><a href="addkeyword.php">Add Keywords</a></li>
-<li><a href="CreateClass.php">Create Course </a></li>
-<li><a href="deactivatecourse.php">Deactivate Course </a></li>
-<li><a href="createuser.php">Create User</a></li>
-<li><a href="deactivateuser.php">Deactivate User</a></li>
+<li><a href="addKeyword.php">Add Keywords</a></li>
+<li><a href="createClass.php">Create Course </a></li>
+<li><a href="deactivateCourse.php">Deactivate Course </a></li>
+<li><a href="createUser.php">Create User</a></li>
+<li><a href="deactivateUser.php">Deactivate User</a></li>
 <li><a href="reports.php">View Reports</a></li>
 </ul>
 
 
 <!-- university admin-->
 <ul class ="UniversityAdmin">
-<li><a href="addkeyword.php">Add Keywords</a></li>
-<li><a href="CreateClass.php">Create Course </a></li>
-<li><a href="deactivatecourse.php">Deactivate Course </a></li>
-<li><a href="createuser.php">Create User</a></li>
-<li><a href="deactivateuser.php">Deactivate User</a></li>
+<li><a href="addKeyword.php">Add Keywords</a></li>
+<li><a href="createClass.php">Create Course </a></li>
+<li><a href="deactivateCourse.php">Deactivate Course </a></li>
+<li><a href="createUser.php">Create User</a></li>
+<li><a href="deactivateUser.php">Deactivate User</a></li>
 <li><a href="reports.php">View Reports</a></li>
 </ul>
 
 <!-- site admin -->
 <ul class ="SiteAdmin">
-<li><a href="addkeyword.php">Add Keywords</a></li>
-<li><a href="CreateClass.php">Create Course </a></li>
-<li><a href="deactivatecourse.php">Deactivate Course </a></li>
-<li><a href="createcourse.php">Create User</a></li>
-<li><a href="deactivateuser.php">Deactivate User</a></li>
+<li><a href="addKeyword.php">Add Keywords</a></li>
+<li><a href="createClass.php">Create Course </a></li>
+<li><a href="deactivateCourse.php">Deactivate Course </a></li>
+<li><a href="createCourse.php">Create User</a></li>
+<li><a href="deactivateUser.php">Deactivate User</a></li>
 <li><a href="reports.php">View Reports</a></li>
-<li><a href="CreateUniversity.php">Create University</a></li>
-<li><a href="deactivateuniversity.php">Deactivate University</a></li>
+<li><a href="createUniversity.php">Create University</a></li>
+<li><a href="deactivateUniversity.php">Deactivate University</a></li>
 </ul>
 
 

@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$_SESSION['password'] = $data['password'];
 		
 		//Redirect:
-		redirect_user('accounttools.php');
+		redirect_user('accountTools.php');
 		
 	}else{
 		

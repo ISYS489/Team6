@@ -53,7 +53,7 @@ mysqli_close($dbc);
 
 <h2>Edit Account Settings</h2>
 <ul class ="editaccountsettings">
-<li><a href="editaccountsettings.php">Edit Account Settings</a></li>
+<li><a href="editAccountSettings.php">Edit Account Settings</a></li>
 </ul>
 
 

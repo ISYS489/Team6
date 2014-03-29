@@ -123,7 +123,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 ?>
 <h1>Add Keyword</h1>
-<form action="addkeyword.php" method="post">
+<form action="addKeyword.php" method="post">
 
 	<p>Name of Person of Interest: <input type="text" name="name" value="<?php if(isset($_POST['name'])) echo $_POST['name']; ?>" /></p>
 	

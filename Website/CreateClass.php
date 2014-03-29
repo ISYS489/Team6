@@ -64,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 ?>
 <h1>Create Class</h1>
-<form action="CreateClass.php" method="post">
+<form action="createClass.php" method="post">
 
     <p>
         Class Name:

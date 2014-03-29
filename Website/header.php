@@ -10,7 +10,7 @@ echo'
 
 
 if (isset($_SESSION['userid'])){
-	echo '<li><a href="accounttools.php">Account Tools</a></li>';
+	echo '<li><a href="accountTools.php">Account Tools</a></li>';
 	echo '<li><a href="logout.php">Log Out</a></li>';
 
 }else{
