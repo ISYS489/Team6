@@ -27,20 +27,44 @@ session_start();
         if (!is_null($_POST['universityId']))
         {
             $universityId = $_POST['universityId'];
-            
-            $queryString = "UPDATE `universities` SET `isActive`=false WHERE `UniversityId`='$universityId';";
-            
+
+            $queryString = "UPDATE `universities` SET `IsActive`=false WHERE `UniversityId`='$universityId';"; //Set University to Inactive
+
             $command = @mysqli_query($dbc, $queryString); //run query
-            
+
+            $queryString = "UPDATE `classes` SET `IsActive`=false WHERE `UniversityId` = '$universityId';"; //Set classes that belong to University to Inactive
+
+            $command = @mysqli_query($dbc, $queryString); //run query
+
+            $queryString = "UPDATE `users-classes` SET `ClassId`=10001 WHERE `ClassId` = "; //Build inital base for Setting all users new classes as the "Default Public Class"
+
+            $result = @mysqli_query($dbc, "SELECT ClassId FROM classes WHERE UniversityId = '$universityId'"); //Fetch all classes that belong to the University being deactivated.
+            $rowCount = count($result);
+            $intRowTracker = 0;
+
+            while ($row = mysqli_fetch_array($result)) // Builds Where clause for SQL UPDATE Statement
+            {
+                if ($intRowTracker == 0){
+                    $queryString = $queryString . "$row[0]";
+                    $intRowTracker++;
+                }
+                else
+                {
+                	$queryString = $queryString . " OR `ClassId` = $row[0]";
+                }
+            }
+
+            var_dump($queryString);
+
+            $command = @mysqli_query($dbc, $queryString); //run query
+
             if ($command) {//if it ran ok
-            
-            $universityDeactivated;
-            
-            $result = @mysqli_query($dbc, "Select Name FROM universities WHERE UniversityId = '$universityId'");
-		while ($row = mysqli_fetch_row($result)) {
-		$universityDeactivated = $row[0];
-    }
-		
+                $universityDeactivated;
+                $result = @mysqli_query($dbc, "SELECT Name FROM universities WHERE UniversityId = '$universityId'");
+                while ($row = mysqli_fetch_row($result)) {
+                    $universityDeactivated = $row[0];
+                }
+
 
                 //print message:
                 echo "<h1>Thank You!</h1>
@@ -64,7 +88,7 @@ session_start();
         <select name="universityId">
             <?php
 
-            $result = mysqli_query($dbc,'SELECT UniversityId, Name FROM universities WHERE isActive = 0');
+            $result = mysqli_query($dbc,'SELECT UniversityId, Name FROM universities WHERE isActive = 1');
 
             while ($row=mysqli_fetch_array($result))
             {
