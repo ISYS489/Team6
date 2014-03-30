@@ -5,6 +5,19 @@ $page_title = 'Add Keyword';
 
 include ('header.php');
 
+
+
+///display login form
+<h1>Add Keyword</h1>
+<form class ="AddKeyword" id="Add-Keyword" method="post" action="addKeyword.php">
+
+<h2>Add Keyword here</h2>
+<input type="text" placeholder="Keyword" name="addKeyword" autofocus />
+<br></br>
+
+<button type="submit">Login</button>
+<br></br>
+
 //check for form submission:
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	
