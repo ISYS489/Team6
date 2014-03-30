@@ -13,12 +13,13 @@ include ('header.php');
 <form class ="CreateCourse" id="Create-Course" method="post" action="CreateCourse.php">
 
 <h2>Course Name</h2>
-<input type="text" placeholder="Course Name" name="Coursename" autofocus />
+<input type="text" placeholder="Course Name" name="name" autofocus />
 <br></br>
-<input type="text" placeholder="Course Id" name="courseID" autofocus />
-<br></br>
+
 <button type="submit">Login</button>
 <br></br>
+
+</form>
 
 //populate university list
 require ('mysqliConnect.php');
