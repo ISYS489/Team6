@@ -1,5 +1,11 @@
 <?php # login functions
-// this page defines two funtions used by the login/logout process
+//File Name: loginFunctions.php
+//Purpose: Contains functions needed for login.
+//Class: ISYS489
+//Instructor: Amy Buse
+//Author: Cale Kuchnick
+//Last Date Modified: 3/30/2014
+//this page defines two funtions used by the login/logout process
 
 
 //redirects user to index for any website.

@@ -1,4 +1,10 @@
 <?php # create an event
+//File Name: createEvent.php
+//Purpose: This page is used to insert an event into the DB.
+//Class: ISYS489
+//Instructor: Amy Buse
+//Author: Cale Kuchnicki
+//Last Date Modified: 3/30/2014
 //performs INSERT query to add a record to the event table 
 session_start();
 $page_title = 'CreateEvent';

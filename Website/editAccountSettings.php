@@ -1,4 +1,11 @@
 <?php
+//File Name: editAccountSettings.php
+//Purpose: This page allows a user to edit his or her account in the DB.
+//Class: ISYS489
+//Instructor: Amy Buse
+//Author: Cale Kuchnicki
+//Last Date Modified: 3/30/2014
+
 //start the session
 session_start();
 $userID = $_SESSION['userid'];

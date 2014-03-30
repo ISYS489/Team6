@@ -1,16 +1,17 @@
-<!--
-File Name: createUniversity.php
-Purpose: Page lists events.
-Class: ISYS489
-Instructor: Amy Buse
-Author: Kyle Gottfried
-Last Date Modified: 3/28/2014
--->
 <?php
+//File Name: eventList.php
+//Purpose: Page lists events.
+//Class: ISYS489
+//Instructor: Amy Buse
+//Author: Kyle Gottfried
+//Last Date Modified: 3/28/2014
+
+
+//start the session & set logged in user's ID
 session_start();
 $userID = $_SESSION['userId'];
 ?>
-//start the session
+
 
 <html>
 

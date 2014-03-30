@@ -1,4 +1,10 @@
 <?php # login_session.php
+//File Name: login.php
+//Purpose: This page uses loginFunctions.php and loginPage.php to log in a user.
+//Class: ISYS489
+//Instructor: Amy Buse
+//Author: Cale Kuchnicki
+//Last Date Modified: 3/30/2014
 //processes login from submission using sessions
 
 //check if form has been submitted:

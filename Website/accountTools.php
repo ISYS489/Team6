@@ -1,7 +1,14 @@
 <?php
-session_start();
-?> <!--start the session-->
+//File Name: accountTools.php
+//Purpose: Displays user options based on user-role DB table.
+//Class: ISYS489
+//Instructor: Amy Buse
+//Author: Cale Kuchnicki
+//Last Date Modified: 3/30/2014
 
+//start the session
+session_start();
+?> 
 <!--
 File Name: createUniversity.php
 Purpose: Provides links to all the action pages that a user can access.
