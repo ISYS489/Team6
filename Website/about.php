@@ -16,6 +16,11 @@ session_start();
 
 <body>
 
+
+<!--image-->
+<img src="civ2.gif" alt="civility2_image">
+
+<br>
 <h1>About Us</h1>
 
 <p>This site debates civility issues and provides ratings on various events in history. <br>
