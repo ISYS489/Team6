@@ -8,98 +8,101 @@ include ('header.php');
 //check for form submission:
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-$errors = array(); //Initialize an error array.
+	$errors = array(); //Initialize an error array.
+	
+	//Check for a event name
+	if (empty($_POST['event_name'])) {
+	$errors[] = 'You forgot to enter a event name.';
+	}else{
+	$en = trim($_POST['event_name']);
+	}
+	
+	//Check for a event description		
+	if (empty($_POST['event_description'])) {
+	$errors[] = 'You forgot to enter a event description.';
+	}else{
+	$ed = trim($_POST['event_description]']);
+	}
+	
+	//Check for a political party
+	if (empty($_POST['political_party'])) {
+	$errors[] = 'You forgot to enter a political party.';
+	}else{
+	$pp = trim($_POST['political_party']);
+	}
+	
+	//Check for a event media type
+	if (empty($_POST['media_type'])) {
+	$errors[] = 'You forgot to enter a media type.';
+	}else{
+	$mt = trim($_POST['media_type']);
+	}
+	
+	//Check for a event news outlet
+	if (empty($_POST['news_outlet'])) {
+	$errors[] = 'You forgot to enter a news outlet.';
+	}else{
+	$no = trim($_POST['news_outlet']);
+	}
+	
+	//Check for a event person of interest
+	if (empty($_POST['name'])) {
+	$errors[] = 'You forgot to enter a name.';
+	}else{
+	$n = trim($_POST['name']);
+	}
+	
+	//Check for an event URL
+	if (empty($_POST['URL'])) {
+	$errors[] = 'You forgot to enter a URL.';
+	}else{
+	$url = trim($_POST['URL']);
+	}
+	
+	//Create Publish Date
+	$pd = date('Y-m-d');
+	
+	//Check login for userid
+	if (empty($_SESSION['userid'])) {
+	$errors[] = 'You are not logged in.';
+	}else{
+	$uid = trim($_SESSION['userid']);
+	}
+	
+	
+	if (empty($errors)) { //if there are no errors
+		//connect to the DB
+		require ('mysqliConnect.php');
+		
+		//make the query
+		$q = "INSERT INTO events (eventname, eventdesc, politicalpartyid, mediatypeid, newsoutletid, nameid, url, publishdate, userid) VALUES ('$en','$ed','$pp','$mt','$no','$n','$url','$pd','$uid')";
+		$r = mysqli_query ($dbc, $q); //run query
+		
+		if ($r) {//if it ran ok
+		
+			//print message:
+			echo '<h1>Thank You!</h1>
+			<p>You have created a Event.</p>';
 
-//Check for a event name
-if (empty($_POST['event_name'])) {
-$errors[] = 'You forgot to enter a event name.';
-}else{
-$en = trim($_POST['event_name']);
-}
+		}else{ //if not ok
+	
+			echo '<h1>Error</h1>
+			<p>System error preventing Event creation, Event may already exist.</p>';
+		}
+		
+		mysqli_close($dbc);
+	
+	} else {
+	
+		echo '<h1>Error!</h1>
+		<p>The following error(s) occurred:<br />';
+		foreach ($errors as $msg) { //print each
+		echo " - $msg<br />\n";
+	}
 
-//Check for a event description		
-if (empty($_POST['event_description'])) {
-$errors[] = 'You forgot to enter a event description.';
-}else{
-$ed = trim($_POST['event_description]']);
-}
-
-//Check for a political party
-if (empty($_POST['political_party'])) {
-$errors[] = 'You forgot to enter a political party.';
-}else{
-$pp = trim($_POST['political_party']);
-}
-
-//Check for a event media type
-if (empty($_POST['media_type'])) {
-$errors[] = 'You forgot to enter a media type.';
-}else{
-$mt = trim($_POST['media_type']);
-}
-
-//Check for a event news outlet
-if (empty($_POST['news_outlet'])) {
-$errors[] = 'You forgot to enter a news outlet.';
-}else{
-$no = trim($_POST['news_outlet']);
-}
-
-//Check for a event person of interest
-if (empty($_POST['name'])) {
-$errors[] = 'You forgot to enter a name.';
-}else{
-$n = trim($_POST['name']);
-}
-
-//Check for an event URL
-if (empty($_POST['URL'])) {
-$errors[] = 'You forgot to enter a URL.';
-}else{
-$url = trim($_POST['URL']);
-}
-
-//Create Publish Date
-$pd = date('Y-m-d');
-
-//Check login for userid
-if (empty($_SESSION['userid'])) {
-$errors[] = 'You are not logged in.';
-}else{
-$uid = trim($_SESSION['userid']);
-}
-
-
-if (empty($errors)) { //if there are no errors
-//connect to the DB
-require ('mysqliConnect.php');
-//make the query
-$q = "INSERT INTO events (eventname, eventdesc, politicalpartyid, mediatypeid, newsoutletid, nameid, url, publishdate, userid) VALUES ('$en','$ed','$pp','$mt','$no','$n','$url','$pd','$uid')";
-$r = mysqli_query ($dbc, $q); //run query
-if ($r) {//if it ran ok
-
-//print message:
-echo '<h1>Thank You!</h1>
-<p>You have created a Event.</p>';
-
-}else{ //if not ok
-
-echo '<h1>Error</h1>
-<p>System error preventing Event creation, Event may already exist.</p>';
-}
-
-mysqli_close($dbc);
-
-} else {
-
-echo '<h1>Error!</h1>
-<p>The following error(s) occurred:<br />';
-foreach ($errors as $msg) { //print each
-echo " - $msg<br />\n";
-}
-echo '</p><p>Please try again.</p><p><br /></p>';
-
-}
+	echo '</p><p>Please try again.</p><p><br /></p>';
+	
+	}
 }
 ?>
 <h1>Create Event</h1>

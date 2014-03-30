@@ -43,7 +43,7 @@ Last Date Modified: 3/28/2014
 
 <!-- professor-->
 <ul class ="Professor">
-<li><a href="addKeyword.php">Add Keywords</a></li>
+<li><a href="addKeyword.php">View/Add Keywords</a></li>
 <li><a href="createClass.php">Create Course </a></li>
 <li><a href="deactivateCourse.php">Deactivate Course </a></li>
 <li><a href="createUser.php">Create User</a></li>
@@ -54,7 +54,7 @@ Last Date Modified: 3/28/2014
 
 <!-- university admin-->
 <ul class ="UniversityAdmin">
-<li><a href="addKeyword.php">Add Keywords</a></li>
+<li><a href="addKeyword.php">View/Add Keywords</a></li>
 <li><a href="createClass.php">Create Course </a></li>
 <li><a href="deactivateCourse.php">Deactivate Course </a></li>
 <li><a href="createUser.php">Create User</a></li>
@@ -64,7 +64,7 @@ Last Date Modified: 3/28/2014
 
 <!-- site admin -->
 <ul class ="SiteAdmin">
-<li><a href="addKeyword.php">Add Keywords</a></li>
+<li><a href="addKeyword.php">View/Add Keywords</a></li>
 <li><a href="createClass.php">Create Course </a></li>
 <li><a href="deactivateCourse.php">Deactivate Course </a></li>
 <li><a href="createCourse.php">Create User</a></li>

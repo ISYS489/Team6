@@ -1,7 +1,9 @@
 <?php
-session_start();
-?>
 //start the session
+session_start();
+$userID = $_SESSION['userid'];
+?>
+
 
 <html>
 
@@ -14,27 +16,73 @@ session_start();
 //check for form submission:
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-$errors = array(); //Initialize an error array.
+	$errors = array(); //Initialize an error array.
+	$updatedInfo=false;
+	//Check for a new first name
+	if (empty($_POST['first_name'])) {
+		$updatedInfo=true;
+	}else{
+		$fn = trim($_POST['first_name']);
+	}
+	
+	//Check for a new middle initial		
+	if (empty($_POST['middle_initial'])) {
+		$updatedInfo=true;
+	}else{
+		$mi = trim($_POST['middle_initial]']);
+	}
+	
+	//Check for a  new last name
+	if (empty($_POST['last_name'])) {
+	 	$updatedInfo=true;
+	}else{
+		$ln = trim($_POST['last_name']);
+	}
 
-//Check for a new first name
-if (empty($_POST['first_name'])) {
-$errors[] = 'You forgot to enter a first name.';
-}else{
-$fn = trim($_POST['first_name']);
-}
+	//Check for a  new email
+	if (empty($_POST['email'])) {
+	 	$updatedInfo=true;
+	}else{
+		$em = trim($_POST['email']);
+	}
 
-//Check for a event 		
-if (empty($_POST['middle_initial'])) {
-$errors[] = 'You forgot to enter a middle initial.';
-}else{
-$mi = trim($_POST['middle_initial]']);
-}
+	//Check for a change
+	if(updatedInfo) {
+		//connect to the DB
+		require ('mysqliConnect.php');
+		
+		//make the query
+		$uq = "UPDATE users SET FirstName=$fn, LastName=$ln, Email=$em WHERE UserId='$userID'";
+		$r = mysqli_query ($dbc, $uq); //run query
+		echo $uq;
+		if ($r) {//if it ran ok
+		
+			//print message:
+			echo '<h1>Thank You!</h1>
+			<p>You have updated your information.</p>';
+			// Redirect User to accountSettings:
+			header("location: http://brteam6.isys489.com/accountSettings.php");
 
-//Check for a last name
-if (empty($_POST['last_name'])) {
-$errors[] = 'You forgot to enter a last name.';
-}else{
-$pp = trim($_POST['last_name']);
+		}else{ //if not ok
+	
+			echo '<h1>Error</h1>
+			<p>System error preventing update.</p>';
+		}
+		
+		mysqli_close($dbc);
+	
+	} else {
+	
+		echo '<h1>Error!</h1>
+		<p>The following error(s) occurred:<br />';
+		foreach ($errors as $msg) { //print each
+		echo " - $msg<br />\n";
+		}
+
+		echo '</p><p>Please try again.</p><p><br /></p>';
+	
+	}
+	
 }
 
 ?>
@@ -58,10 +106,13 @@ $pp = trim($_POST['last_name']);
 
 <?php require ('mysqliConnect.php');
 
-$userID = $_SESSION['userid'];
+
+
+
 
 $userQuery = "SELECT * FROM users WHERE userid='$userID'";
-$r = @mysqli_query ($dbc, $userQuery); //run query
+//$userQuery = "SELECT u.*, uc.ClassId FROM users AS u INNER JOIN users-classes AS uc USING (UserId) WHERE uc.UserId='$userID'";
+$r = mysqli_query ($dbc, $userQuery); //run query
 
 while($row = mysqli_fetch_array($r))
   {
@@ -71,13 +122,13 @@ while($row = mysqli_fetch_array($r))
 	//<input type="text" placeholder="University " name="university" autofocus /><br></br>
 	
 	echo 'First Name    : ' . $row['FirstName'] . '</br>
-	<input type="text" placeholder="New First Name" name="firstname" autofocus /><br></br>';
+	<input type="text" placeholder="New First Name" name="first_name" autofocus /><br></br>';
 	
 	echo 'Middle Initial: ' . $row['MiddleInitial'] . '</br>
-	<input type="text" placeholder="New Middle Initial" name="middleinitial" autofocus /><br></br>';
+	<input type="text" placeholder="New Middle Initial" name="middle_initial" autofocus /><br></br>';
 	
 	echo 'Last Name     : ' . $row['LastName'] . '</br>
-	<input type="text" placeholder="New Last Name" name="lastname" autofocus /><br></br>';
+	<input type="text" placeholder="New Last Name" name="last_name" autofocus /><br></br>';
 
 	
 	echo 'Email Address : ' . $row['Email'] . '</br>
