@@ -29,6 +29,8 @@ include ('header.php');
 <br></br>
 
 </form>
+
+
 //check for form submission:
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	
