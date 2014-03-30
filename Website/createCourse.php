@@ -5,6 +5,21 @@ $page_title = 'CreateClass';
 
 include ('header.php');
 
+
+
+
+///display create course form form
+<h1>Create a Course</h1>
+<form class ="CreateCourse" id="Create-Course" method="post" action="CreateCourse.php">
+
+<h2>Course Name</h2>
+<input type="text" placeholder="Course Name" name="Coursename" autofocus />
+<br></br>
+<input type="text" placeholder="Course Id" name="courseID" autofocus />
+<br></br>
+<button type="submit">Login</button>
+<br></br>
+
 //populate university list
 require ('mysqliConnect.php');
 $sql = "SELECT name FROM universities";
