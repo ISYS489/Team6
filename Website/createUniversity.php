@@ -88,7 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 	if (empty($errors)) { //if there are no errors
 		//connect to the DB
-		require ('mysqliConnect.php');
+		//require ('mysqliConnect.php');
 		//make the query
 		$q = "INSERT INTO universities (name, startdate, enddate, IsActive) VALUES ('$un','$sd','$ed', true)";
 		$r = @mysqli_query ($dbc, $q); //run query
