@@ -4,6 +4,33 @@ session_start();
 $page_title = 'Add Keyword';
 
 include ('header.php');
+?>
+
+
+
+///display keyword form
+<h1>Add Keyword</h1>
+<form class ="AddKeyword" id="Add-Keyword" method="post" action="addKeyword.php">
+
+<h2>Add Keyword here</h2>
+<input type="text" placeholder="Name" name="name" autofocus />
+<br></br>
+
+
+<input type="text" placeholder="Media Type" name="media_type" autofocus />
+<br></br>
+
+<input type="text" placeholder="Poliitical Party" name="political_party" autofocus />
+<br></br>
+
+<input type="text" placeholder="News Outlet" name="news_outlet" autofocus />
+<br></br>
+
+<button type="submit">Login</button>
+<br></br>
+
+</form>
+
 
 //check for form submission:
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {

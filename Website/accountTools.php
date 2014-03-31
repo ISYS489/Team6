@@ -41,11 +41,11 @@ Last Date Modified: 3/28/2014
 <li><a href="accountSettings.php">Account Settings</a></li>
 </ul>
 
-
+<ul class = "accounttools">
 <!-- student -->
 <ul class ="Student">
-<li><a href="reports.php">my posts</a></li>
-<li><a href="reports.php">class posts</a></li>
+<li><a href="myPosts.php">my posts</a></li>
+<li><a href="classPosts.php">class posts</a></li>
 </ul>
 
 <!-- professor-->
@@ -74,13 +74,13 @@ Last Date Modified: 3/28/2014
 <li><a href="addKeyword.php">View/Add Keywords</a></li>
 <li><a href="createClass.php">Create Course </a></li>
 <li><a href="deactivateCourse.php">Deactivate Course </a></li>
-<li><a href="createCourse.php">Create User</a></li>
+<li><a href="createUser.php">Create User</a></li>
 <li><a href="deactivateUser.php">Deactivate User</a></li>
 <li><a href="reports.php">View Reports</a></li>
 <li><a href="createUniversity.php">Create University</a></li>
 <li><a href="deactivateUniversity.php">Deactivate University</a></li>
 </ul>
-
+</ul>
 
 </p>
 
