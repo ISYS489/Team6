@@ -4,6 +4,7 @@ session_start();
 $page_title = 'Add Keyword';
 
 include ('header.php');
+?>
 
 
 
@@ -156,10 +157,6 @@ require ('keywordFunctions.php');
 displayKeywords();
 
 ?>
-
-
-
-
 </p>
 <form action="addKeyword.php" method="post">
 
