@@ -19,38 +19,58 @@ $userID = $_SESSION['userid'];
 <!--header-->
 
 <?php require 'header.php';
- 
+
+$updateString = ""; //stores the variables to update 
+
 //check for form submission:
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 	$errors = array(); //Initialize an error array.
 	$updatedInfo=false;
+	$updateString = ""; //stores the variables to update
+	
 	//Check for a new first name
-	if (empty($_POST['first_name'])) {
+	if (!empty($_POST['first_name'])) {
+		
 		$updatedInfo=true;
-	}else{
 		$fn = trim($_POST['first_name']);
+		$updateString= $updateString . "FirstName='$fn'";
+		echo $updateString . "</br>";
 	}
 	
 	//Check for a new middle initial		
-	if (empty($_POST['middle_initial'])) {
-		$updatedInfo=true;
-	}else{
+	if (!empty($_POST['middle_initial'])) {
+		
+	 	$updatedInfo=true;
 		$mi = trim($_POST['middle_initial]']);
+		if ($updateString != ""){ ////if there is already a field entered, add a comma
+			$updateString= $updateString .", ";
+		}
+		$updateString= $updateString . "MiddleInitial='$mi'";
+		echo $updateString . "</br>";
+		echo $mi;
 	}
 	
 	//Check for a  new last name
-	if (empty($_POST['last_name'])) {
+	if (!empty($_POST['last_name'])) {
 	 	$updatedInfo=true;
-	}else{
 		$ln = trim($_POST['last_name']);
+		if ($updateString != ""){ ////if there is already a field entered, add a comma
+			$updateString= $updateString .", ";
+		}
+		$updateString= $updateString . "LastName='$ln'";
+		echo $updateString . "</br>";
 	}
 
 	//Check for a  new email
-	if (empty($_POST['email'])) {
+	if (!empty($_POST['email'])) {
 	 	$updatedInfo=true;
-	}else{
 		$em = trim($_POST['email']);
+		if ($updateString != ""){ ////if there is already a field entered, add a comma
+			$updateString= $updateString .", ";
+		}
+		$updateString= $updateString . "email='$em'";
+		echo $updateString . "</br>";
 	}
 
 	//Check for a change
@@ -59,7 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		require ('mysqliConnect.php');
 		
 		//make the query
-		$uq = "UPDATE users SET FirstName=$fn, LastName=$ln, Email=$em WHERE UserId='$userID'";
+		$uq = "UPDATE users SET " . $updateString .  " WHERE UserId='$userID'";
 		$r = mysqli_query ($dbc, $uq); //run query
 		echo $uq;
 		if ($r) {//if it ran ok
@@ -67,8 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			//print message:
 			echo '<h1>Thank You!</h1>
 			<p>You have updated your information.</p>';
-			// Redirect User to accountSettings:
-			header("location: http://brteam6.isys489.com/accountSettings.php");
+	
 
 		}else{ //if not ok
 	
