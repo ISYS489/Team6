@@ -43,7 +43,10 @@ session_start();
 
 
 
+<form class ="searchresults" id="searchresults" method="post" action="search.php">
 <button type="submit" >Search Again</button>
+</form>
+
 
 </p>
 
