@@ -156,6 +156,10 @@ require ('keywordFunctions.php');
 displayKeywords();
 
 ?>
+
+
+
+
 </p>
 <form action="addKeyword.php" method="post">
 
