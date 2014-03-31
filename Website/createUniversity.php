@@ -1,6 +1,5 @@
 <?php
 session_start();
-$userID = $_SESSION['userId'];
 ?>
 
 <!--
@@ -24,6 +23,23 @@ function isValidDateTimeString($str_dt) {//This will tell you whether or not a v
 $page_title = 'CreateUniversity';
 
 include ('header.php');
+require ('mysqliConnect.php');
+if ($_SESSION['userid'])
+{
+    $userId = $_SESSION['userid'];
+    $userRoles = array();
+    $result = mysqli_query($dbc, "SELECT RoleId FROM `users-roles` WHERE UserId = $userId");
+    while ($row = mysqli_fetch_array($result))
+    {
+        $userRoles[] = $row[0];
+    }
+    if (!in_array(1, $userRoles))
+        header("location: index.php");
+}
+else
+{
+    header("location: index.php");
+}
 
 //check for form submission:
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -66,7 +82,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	}
     else
     {
-    	$errors[] = 'Please enter a valid End Date';
+    	$errors[] = 'Please enter a valid End Date. Make sure the year is earlier than 2038.';
     }
     
 
