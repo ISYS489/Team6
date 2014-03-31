@@ -44,8 +44,8 @@ Last Date Modified: 3/28/2014
 <ul class = "accounttools">
 <!-- student -->
 <ul class ="Student">
-<li><a href="reports.php">my posts</a></li>
-<li><a href="reports.php">class posts</a></li>
+<li><a href="myPosts.php">my posts</a></li>
+<li><a href="classPosts.php">class posts</a></li>
 </ul>
 
 <!-- professor-->
