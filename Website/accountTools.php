@@ -8,7 +8,7 @@
 
 //start the session
 session_start();
-?> 
+?>
 <!--
 File Name: createUniversity.php
 Purpose: Provides links to all the action pages that a user can access.
@@ -24,53 +24,90 @@ Last Date Modified: 3/28/2014
 
 
 <head>
-<!--header-->
+    <!--header-->
 
-<?php require 'header.php'; ?>
+    <?php require 'header.php';
+          require ('mysqliConnect.php');
+          if ($_SESSION['userid'])
+          {
+              $userId = $_SESSION['userid'];
+              $userRoles = array();
+              $result = mysqli_query($dbc, "SELECT RoleId FROM `users-roles` WHERE UserId = $userId");
+              while ($row = mysqli_fetch_array($result))
+              {
+                  $userRoles[] = $row[0];
+              };
+          }
+          else
+          {
+              header("location: index.php");
+          }
+    ?>
 
-<h1>Account Tools</h1>
+
+    <h1>Account Tools</h1>
 </head>
 
 <body>
 
-<p>
-<h1>Welcome to Your Account Tools</h1>
+    <p>
+        <h1>Welcome to Your Account Tools</h1>
 
-<!--link to account settings page-->
-<ul class ="accountSettings">
-<li><a href="accountSettings.php">Account Settings</a></li>
-</ul>
+        <!--link to account settings page-->
+        <ul class="accountSettings">
+            <li>
+                <a href="accountSettings.php">Account Settings</a>
+            </li>
+        </ul>
 
-<ul class = "accounttools">
-<!-- student -->
-<ul class ="Student">
+        <ul class="accounttools">
+            <!-- student -->
+            <?php
+            if (in_array(4, $userRoles))
+            {
+                echo '<ul class ="Student">
 <li><a href="myPosts.php">my posts</a></li>
 <li><a href="classPosts.php">class posts</a></li>
-</ul>
+</ul>';
+            }
+            ?>
 
-<!-- professor-->
-<ul class ="Professor">
+            <!-- professor-->
+            <?php
+            if (in_array(3, $userRoles))
+            {
+                echo '<ul class ="Professor">
 <li><a href="addKeyword.php">View/Add Keywords</a></li>
 <li><a href="createClass.php">Create Course </a></li>
 <li><a href="deactivateCourse.php">Deactivate Course </a></li>
 <li><a href="createUser.php">Create User</a></li>
 <li><a href="deactivateUser.php">Deactivate User</a></li>
 <li><a href="reports.php">View Reports</a></li>
-</ul>
+</ul>';
+            }
+            ?>
 
 
-<!-- university admin-->
-<ul class ="UniversityAdmin">
+            <!-- university admin-->
+            <?php
+            if (in_array(2, $userRoles))
+            {
+                echo '<ul class ="UniversityAdmin">
 <li><a href="addKeyword.php">View/Add Keywords</a></li>
 <li><a href="createClass.php">Create Course </a></li>
 <li><a href="deactivateCourse.php">Deactivate Course </a></li>
 <li><a href="createUser.php">Create User</a></li>
 <li><a href="deactivateUser.php">Deactivate User</a></li>
 <li><a href="reports.php">View Reports</a></li>
-</ul>
+</ul>';
+            }
+            ?>
 
-<!-- site admin -->
-<ul class ="SiteAdmin">
+            <!-- site admin -->
+            <?php
+            if (in_array(1, $userRoles))
+            {
+                echo '<ul class ="SiteAdmin">
 <li><a href="addKeyword.php">View/Add Keywords</a></li>
 <li><a href="createClass.php">Create Course </a></li>
 <li><a href="deactivateCourse.php">Deactivate Course </a></li>
@@ -80,9 +117,13 @@ Last Date Modified: 3/28/2014
 <li><a href="createUniversity.php">Create University</a></li>
 <li><a href="deactivateUniversity.php">Deactivate University</a></li>
 </ul>
-</ul>
+</ul>';
+            }
+            ?>
 
-</p>
+
+        </ul>
+    </p>
 
 </body>
-</html> 
+</html>
