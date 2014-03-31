@@ -107,11 +107,11 @@ session_start();
     ?>
 
 
-    <h1>Deactivate a University</h1>
-    <form id="deactivateUniversityForm" method="post">
-        Select University to Deactivate:
+    <h1>Deactivate a Course</h1>
+    <form id="deactivateCourseForm" method="post">
+        Select Course to Deactivate:
         <br />
-        <select name="universityId">
+        <select name="classId">
             <?php
 
             $result = mysqli_query($dbc,'SELECT UniversityId, Name FROM universities WHERE isActive = true');
@@ -127,7 +127,7 @@ session_start();
             ?>
         </select>
         <br />
-        <button type="submit" onclick="window.confirm('Are you sure you want to deactivate this University?')">Deactivate University</button>
+        <button type="submit" onclick="window.confirm('Are you sure you want to deactivate this University?')">Deactivate Course</button>
     </form>
 </body>
 </html>
