@@ -8,7 +8,6 @@ Last Date Modified: 3/28/2014
 -->
 <?php
 session_start();
-$userID = $_SESSION['userId'];
 //start the session
 ?>
 <html>
