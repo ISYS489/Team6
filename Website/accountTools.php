@@ -41,7 +41,7 @@ Last Date Modified: 3/28/2014
 <li><a href="accountSettings.php">Account Settings</a></li>
 </ul>
 
-
+<ul class = "accounttools">
 <!-- student -->
 <ul class ="Student">
 <li><a href="reports.php">my posts</a></li>
@@ -80,7 +80,7 @@ Last Date Modified: 3/28/2014
 <li><a href="createUniversity.php">Create University</a></li>
 <li><a href="deactivateUniversity.php">Deactivate University</a></li>
 </ul>
-
+</ul>
 
 </p>
 
