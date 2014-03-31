@@ -74,7 +74,7 @@ Last Date Modified: 3/28/2014
 <li><a href="addKeyword.php">View/Add Keywords</a></li>
 <li><a href="createClass.php">Create Course </a></li>
 <li><a href="deactivateCourse.php">Deactivate Course </a></li>
-<li><a href="createCourse.php">Create User</a></li>
+<li><a href="createUser.php">Create User</a></li>
 <li><a href="deactivateUser.php">Deactivate User</a></li>
 <li><a href="reports.php">View Reports</a></li>
 <li><a href="createUniversity.php">Create University</a></li>
