@@ -16,7 +16,7 @@ session_start();
 <h1>Welcome to team 6's Site</h1>
 <p>
 <!--image-->
-<img src="civ.png" alt="civility_image">
+<img src="/img/civ.png" alt="civility_image">
 
 <br>
 <br>

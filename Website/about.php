@@ -1,7 +1,8 @@
 <?php
+//start the session
+
 session_start();
 ?>
-//start the session
 
 <html>
 
@@ -18,7 +19,7 @@ session_start();
 
 
 <!--image-->
-<img src="civ2.gif" alt="civility2_image">
+<img src="/img/civ2.gif" alt="civility2_image">
 
 <br>
 <h1>About Us</h1>
