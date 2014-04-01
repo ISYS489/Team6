@@ -35,20 +35,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$updatedInfo=true;
 		$fn = trim($_POST['first_name']);
 		$updateString= $updateString . "FirstName='$fn'";
-		echo $updateString . "</br>";
+		
 	}
 	
 	//Check for a new middle initial		
 	if (!empty($_POST['middle_initial'])) {
-		
+	 
 	 	$updatedInfo=true;
-		$mi = trim($_POST['middle_initial]']);
+		$mi = trim($_POST['middle_initial']);
+		echo $mi;
 		if ($updateString != ""){ ////if there is already a field entered, add a comma
 			$updateString= $updateString .", ";
 		}
 		$updateString= $updateString . "MiddleInitial='$mi'";
-		echo $updateString . "</br>";
-		echo $mi;
+		
 	}
 	
 	//Check for a  new last name
@@ -59,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			$updateString= $updateString .", ";
 		}
 		$updateString= $updateString . "LastName='$ln'";
-		echo $updateString . "</br>";
+		
 	}
 
 	//Check for a  new email
@@ -70,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			$updateString= $updateString .", ";
 		}
 		$updateString= $updateString . "email='$em'";
-		echo $updateString . "</br>";
+		
 	}
 
 	//Check for a change
