@@ -1,7 +1,16 @@
 <?php
+//File Name: loginPage.php
+//Purpose: This contains the form and design of the login page.
+//Class: ISYS489
+//Instructor: Amy Buse
+//Author: Cale Kuchnicki
+//Last Date Modified: 3/30/2014
+//contains form and design of login page
+
+//start the session
 session_start();
 ?>
-//start the session
+
 
 <html>
 
@@ -9,22 +18,21 @@ session_start();
 <head>
 
 <?php include("header.php");
-// print any error messages
-if (isset($errors) && !empty($errors)) {
-	echo '<h1> Error! </h1>
-	<p> The follwing error(s) occurred:<br />';
-	foreach ($errors as $msg){
-		echo " - $msg<br />\n";
+	// print any error messages
+	if (isset($errors) && !empty($errors)) {
+		echo '<h1> Error! </h1>
+		<p> The follwing error(s) occurred:<br />';
+		foreach ($errors as $msg){
+			echo " - $msg<br />\n";
+		}
+		echo '</p><p>Please try again.</p>';
 	}
-	echo '</p><p>Please try again.</p>';
-}
-
-
 ?>
 
 </head>
 <body>
-///display login form
+
+<!--display login form-->
 <h1>Login Or Register</h1>
 <form class ="login" id="login-register" method="post" action="login.php">
 
