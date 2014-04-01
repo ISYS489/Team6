@@ -81,7 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		//make the query
 		$uq = "UPDATE users SET " . $updateString .  " WHERE UserId='$userID'";
 		$r = mysqli_query ($dbc, $uq); //run query
-		echo $uq;
+	
 		if ($r) {//if it ran ok
 		
 			//print message:
