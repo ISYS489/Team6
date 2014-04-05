@@ -1,6 +1,14 @@
 <?php 
 
 echo'
+
+<h1>
+	<!--image-->
+	<img align="center" src="/img/civ.png" alt="civility_image"></br>
+	Civility In US Politics
+</h1>
+
+
 <ul class ="nav">
 <li><a href="index.php">Home</a></li>
 <li><a href="eventList.php">Event List</a></li>
