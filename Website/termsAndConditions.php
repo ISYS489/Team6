@@ -15,17 +15,14 @@ session_start();
 
 <head>
     <!--header-->
-
-    <?php require 'header.php'; ?>
-
     <h1>Terms and Conditions</h1>
 
     <!-- <script type="text/javascript">
     function checkIfDisagree()
     {
-    if(document.getElementsByName('disagree')[0].checked)
+    if(document.getElementsByName(\'disagree\')[0].checked)
     {
-    window.location.replace('index.php');
+    window.location.replace(\'index.php\');
     return false;
     }
     }
@@ -33,12 +30,32 @@ session_start();
 </head>
 
 <body>
+
+    <?php
+    require 'header.php';
+    require 'mysqliConnect.php';
+    
+    //Check if username is Unique
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $username = $_POST['username'];
+    
+    $result = mysqli_query($dbc, "SELECT Username FROM `users` WHERE Username = '$username'");
+    $usernameCount = mysqli_num_rows($result);
+    
+    
+    if ($usernameCount != 0)
+    {
+        echo "The username you entered is not unique, plese click the back button and enter a unique username";
+    }
+    else 
+    {
+    echo '
     <h2>Please read the terms and conditions before submitting your registration </h2>
     <p>
         These are the terms and conditions....
     </p>
 
-    <form class="terms">
+    <form class="termsandconditions" id="termsandconditions" method="post" action="registrationSubmitted.php">
 
         <input type="checkbox" name="agree" value="agree" />
         I agree
@@ -46,28 +63,27 @@ session_start();
         <input type="checkbox" name="disagree" value="disagree" />
         I do not agree
 
-        <input type="hidden" placeholder="First Name" name="firstname" value="<?php echo $_POST['firstname']?>" autofocus="" />
+        <input type="hidden" placeholder="First Name" name="firstname" value="'; echo $_POST['firstname']; echo '" autofocus="" />';
 
-        <input type="hidden" placeholder="Last Name" name="lastname" value="<?php echo $_POST['lastname']?>" autofocus="" />
+        echo '<input type="hidden" placeholder="Last Name" name="lastname" value="';  echo $_POST['lastname']; echo '" autofocus="" />';
 
-        <input type="hidden" placeholder="Middle Initial" name="middleinitial" value="<?php echo $_POST['middleinitial']?>" autofocus="" />
+        echo '<input type="hidden" placeholder="Middle Initial" name="middleinitial" value="'; echo $_POST['middleinitial']; echo '" autofocus="" />';
 
-        <input type="hidden" placeholder="Username" name="username" value="<?php echo $_POST['username']?>" autofocus="" />
+        echo '<input type="hidden" placeholder="Username" name="username" value="'; echo $_POST['username']; echo '" autofocus="" />';
 
-        <input type="hidden" placeholder="Password" name="password" value="<?php echo $_POST['password']?>" autofocus="" />
+        echo '<input type="hidden" placeholder="Password" name="password" value="'; echo $_POST['password']; echo '" autofocus="" />';
 
-        <input type="hidden" placeholder="Retype Password" name="password2" value="<?php echo $_POST['password2']?>" autofocus="" />
+        echo '<input type="hidden" placeholder="Retype Password" name="password2" value="'; echo $_POST['password2']; echo '" autofocus="" />';
 
-        <input type="hidden" placeholder="Email Address" name="email" value="<?php echo $_POST['email']?>" autofocus="" />
+        echo '<input type="hidden" placeholder="Email Address" name="email" value="'; echo $_POST['email']; echo '" autofocus="" />';
 
-        <input type="hidden" placeholder="Course Number" name="coursenumber" value="<?php echo $_POST['firstname']?>" autofocus="" />
+        echo '<input type="hidden" placeholder="Course Number" name="coursenumber" value="'; echo $_POST['coursenumber']; echo '" autofocus="" />';
 
-    </form>
-
-
-    <form class="termsandconditions" id="termsandconditions" method="post" action="registrationSubmitted.php">
+    echo '    
         <button type="submit">Submit</button>
-    </form>
-
-</body>
+    </form>;';
+    }
+    }
+    ?>
+    
 </html>
