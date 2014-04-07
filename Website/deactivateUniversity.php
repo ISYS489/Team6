@@ -1,15 +1,15 @@
-<!--
-File Name: createUniversity.php
-Purpose: Deactivate a University
-Class: ISYS489
-Instructor: Amy Buse
-Author: Kyle Gottfried
-Last Date Modified: 3/28/2014
--->
 <?php
+//File Name: deactivateUniversity.php
+//Purpose: Deactivate a University
+//Class: ISYS489
+//Instructor: Amy Buse
+//Author: Kyle Gottfried
+//Last Date Modified: 3/28/2014
+
+//start the session
 session_start();
 ?>
-//start the session
+
 
 <html>
 
