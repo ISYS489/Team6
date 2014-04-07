@@ -6,6 +6,8 @@
 //Author: Cale Kuchnicki
 //Last Date Modified: 3/30/2014
 //performs INSERT query to add a record to the event table 
+
+//session
 session_start();
 $page_title = 'CreateEvent';
 
@@ -27,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	if (empty($_POST['event_description'])) {
 	$errors[] = 'You forgot to enter a event description.';
 	}else{
-	$ed = trim($_POST['event_description]']);
+	$ed = trim($_POST['event_description']);
 	}
 	
 	//Check for a political party
@@ -64,9 +66,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	}else{
 	$url = trim($_POST['URL']);
 	}
+
+	//Check for an event date
+	if (empty($_POST['Date'])) {
+	$errors[] = 'You forgot to enter a Date.';
+	}else{
+	$edate = trim($_POST['Date']);
+	}
 	
 	//Create Publish Date
-	$pd = date('Y-m-d');
+	$pd = date("Y-m-d H:i:s");
 	
 	//Check login for userid
 	if (empty($_SESSION['userid'])) {
@@ -81,7 +90,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		require ('mysqliConnect.php');
 		
 		//make the query
-		$q = "INSERT INTO events (eventname, eventdesc, politicalpartyid, mediatypeid, newsoutletid, nameid, url, publishdate, userid) VALUES ('$en','$ed','$pp','$mt','$no','$n','$url','$pd','$uid')";
+		$q = "INSERT INTO events (eventname, eventdesc, politicalpartyid, mediatypeid, newsoutletid, nameid, url, publishdate, userid, dateofevent) VALUES ('$en','$ed','$pp','$mt','$no','$n','$url','$pd','$uid','$edate')";
 		$r = mysqli_query ($dbc, $q); //run query
 		
 		if ($r) {//if it ran ok
@@ -118,10 +127,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <p>
 	   Event Name: <input type="text" size="100" name="event_name" value="<?php if(isset($_POST['event_name'])) echo $_POST['event_name']; ?>" /></br>
 Event Description: <input type="text" size="100" rows="5" name="event_description" value="<?php if(isset($_POST['event_description'])) echo $_POST['event_description'];?>"/></br>
-        Event URL: <input type="text" size="100"name="URL" value="<?php if(isset($_POST['URL'])) echo $_POST['URL']; ?>" /></br>
+        Event URL: <input type="text" size="100" name="URL" value="<?php if(isset($_POST['URL'])) echo $_POST['URL']; ?>" /></br>
+        Date of Occurance: <input type="date" name="Date" value="<?php if(isset($_POST['Date'])) echo $_POST['Date']; ?>" /></br>
 
 <?php require ('mysqliConnect.php');
 	  require ('keywordFunctions.php');
+	  
+	
 
 displayKeywords();
 
