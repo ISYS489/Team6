@@ -1,4 +1,10 @@
 <?php
+//File Name: search.php
+//Purpose: This page allows standard (eventwide) and advanced (based on all or one of media type, name, political party, news outlet, date ).
+//Class: ISYS489
+//Instructor: Amy Buse
+//Author: Cale Kuchnicki
+//Last Date Modified: 4/5/2014
 
 //start the session
 session_start();
@@ -31,6 +37,14 @@ session_start();
 <br></br>
 
 <h2> Advanced Search</h2>
+
+<?php
+	
+	require ('keywordFunctions.php');
+	
+	//uses post variables 'media_type', 'name', 'politicalparty', 'news_outlet',  
+	displayKeywords();
+?>
 
 <input type="text" placeholder="Event Name " name="eventname" autofocus />
 <br></br>
