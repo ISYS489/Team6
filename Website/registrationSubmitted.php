@@ -1,15 +1,18 @@
-<!--
-File Name: createUniversity.php
-Purpose: Confirmation page for when the user completes registation. Also page where actual database inserts are made adding user to DB.
-Class: ISYS489
-Instructor: Amy Buse
-Author: Kyle Gottfried
-Last Date Modified: 3/28/2014
--->
+
+
+
 <?php
+//File Name: createUniversity.php
+//Purpose: Confirmation page for when the user completes registation. Also page where actual database inserts are made adding user to DB.
+//Class: ISYS489
+//Instructor: Amy Buse
+//Author: Kyle Gottfried
+//Last Date Modified: 3/28/2014
+
+//start the session
 session_start();
 ?>
-//start the session
+
 
 <html>
 
