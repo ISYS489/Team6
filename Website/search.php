@@ -42,7 +42,7 @@ session_start();
 	
 	require ('keywordFunctions.php');
 	
-	//uses post variables 'media_type', 'name', 'politicalparty', 'news_outlet',  
+	//uses post variables 'media_type', 'name', 'political_party', 'news_outlet',  
 	displayKeywords();
 ?>
 
