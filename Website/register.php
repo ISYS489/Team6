@@ -1,15 +1,15 @@
-<!--
-File Name: createUniversity.php
-Purpose: Page is where users register to use the site.
-Class: ISYS489
-Instructor: Amy Buse
-Author: Kyle Gottfried
-Last Date Modified: 3/28/2014
--->
 <?php
+//File Name: createUniversity.php
+//Purpose: Page is where users register to use the site.
+//Class: ISYS489
+//Instructor: Amy Buse
+//Author: Kyle Gottfried
+//Last Date Modified: 3/28/2014
+
+//start the session
 session_start();
 ?>
-//start the session
+
 
 <html>
 

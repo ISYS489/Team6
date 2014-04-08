@@ -1,6 +1,3 @@
-
-
-
 <?php
 //File Name: createUniversity.php
 //Purpose: Confirmation page for when the user completes registation. Also page where actual database inserts are made adding user to DB.
