@@ -15,7 +15,9 @@ session_start();
 <head>
 <!--header-->
 
-<?php require 'header.php'; ?>
+<?php require 'header.php';
+require 'mysqliConnect.php';
+?>
 
 <h1>Report Page</h1>
 </head>
@@ -27,17 +29,17 @@ session_start();
 </p>
 <?php
 
-DEFINE ('DB_USER', 'isys489c_thompk');
-DEFINE ('DB_PASSWORD', 'q8K[A4LJDd&]');
-DEFINE ('DB_HOST', 'localhost');
-DEFINE ('DB_NAME', 'isys489c_brteam6');
+//DEFINE ('DB_USER', 'isys489c_thompk');
+//DEFINE ('DB_PASSWORD', 'q8K[A4LJDd&]');
+//DEFINE ('DB_HOST', 'localhost');
+//DEFINE ('DB_NAME', 'isys489c_brteam6');
 
-//Make Connection   @= hide errors                                    die will terminate function of the script
-$dbc = @mysqli_connect (DB_HOST, DB_USER, DB_PASSWORD, DB_NAME) OR die ('Could not connect to MySQL: ' . mysqli_connect_error());
-if (mysqli_connect_errno())
-  {
-  echo "Failed to connect to MySQL: " . mysqli_connect_error();
-  }
+////Make Connection   @= hide errors                                    die will terminate function of the script
+//$dbc = @mysqli_connect (DB_HOST, DB_USER, DB_PASSWORD, DB_NAME) OR die ('Could not connect to MySQL: ' . mysqli_connect_error());
+//if (mysqli_connect_errno())
+//  {
+//  echo "Failed to connect to MySQL: " . mysqli_connect_error();
+//  }
 
 $result = mysqli_query($dbc,"SELECT eventid, eventname, publishdate, eventdesc, politicalpartyid, mediatypeid, newsoutletid  FROM events");
 
