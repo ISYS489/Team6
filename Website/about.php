@@ -1,6 +1,12 @@
 <?php
-//start the session
+//File Name: about.php
+//Purpose: This page displays information about the website.
+//Class: ISYS489
+//Instructor: Amy Buse
+//Author: Cale Kuchnicki
+//Last Date Modified: 4/8/2014
 
+//start the session
 session_start();
 ?>
 
