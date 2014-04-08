@@ -1,30 +1,41 @@
 <?php
-//File Name: deactivateUser.php
-//Purpose: This page sets the IsActive field of a user to false.
-//Class: ISYS489
-//Instructor: Amy Buse
-//Author: Cale Kuchnicki
-//Last Date Modified: 4/5/2014
 
-//start the session
+
 session_start();
 ?>
 
 
 <html>
 
-
 <head>
-<!--header-->
 
-<?php require 'header.php'; ?>
-
-
-</head>
-
+    <!--header -->
+<?php 	
+require 'header.php';
+require ('mysqliConnect.php');
 
 
 
+
+
+          if ($_SESSION['userid'])
+          {
+              $userId = $_SESSION['userid'];
+              $userRoles = array();
+			  $result = mysqli_query($dbc, "SELECT RoleId FROM `users-roles` WHERE UserId = $userId");
+			  while ($row = mysqli_fetch_array($result))
+              {
+                  $userRoles[] = $row[0];
+              }
+              if (!in_array(1, $userRoles))
+                  header("location: index.php");
+          }
+          else
+          {
+          	header("location: index.php");
+          }
+		 ?>
+ </head>
 <body>
 
     <?php
@@ -33,75 +44,58 @@ session_start();
     {
         $errors = array(); //Initialize an error array.
 
-        if (!is_null($_POST['userId']))
+        if (!is_null($_POST['UserId']))
         {
-            $userId = $_POST['userId'];
+            $UserIds = $_POST['UserId'];
 
-            $queryString = "UPDATE `user` SET `IsActive`=false WHERE `UserId`='$userId';"; //Set University to Inactive
+            
 
-            $command = @mysqli_query($dbc, $queryString); //run query
+            $command = @mysqli_query($dbc, "UPDATE `users` SET `IsActive`=false WHERE `UserId`='$UserIds';"); //run query
 
-            $queryString = "UPDATE `classes` SET `IsActive`=false WHERE `UniversityId` = '$universityId';"; //Set classes that belong to University to Inactive
 
-            $command = @mysqli_query($dbc, $queryString); //run query
 
-            $queryString = "UPDATE `users-classes` SET `ClassId`=10001 WHERE `ClassId` = "; //Build inital base for Setting all users new classes as the "Default Public Class"
 
-            $result = @mysqli_query($dbc, "SELECT ClassId FROM classes WHERE UniversityId = '$universityId'"); //Fetch all classes that belong to the University being deactivated.
-            $rowCount = count($result);
-            $intRowTracker = 0;
+            
 
-            while ($row = mysqli_fetch_array($result)) // Builds Where clause for SQL UPDATE Statement
-            {
-                if ($intRowTracker == 0){
-                    $queryString = $queryString . "$row[0]";
-                    $intRowTracker++;
-                }
-                else
-                {
-                	$queryString = $queryString . " OR `ClassId` = $row[0]";
-                }
-            }
 
-            var_dump($queryString);
-
-            $command = @mysqli_query($dbc, $queryString); //run query
 
             if ($command) {//if it ran ok
-                $universityDeactivated;
-                $result = @mysqli_query($dbc, "SELECT Name FROM universities WHERE UniversityId = '$universityId'");
+                $userDeactivated;
+                $result = @mysqli_query($dbc, "SELECT Username FROM users WHERE UserId = '$UserIds'");
                 while ($row = mysqli_fetch_row($result)) {
-                    $universityDeactivated = $row[0];
+                    $userDeactivated = $row[0];
                 }
+				
 
 
                 //print message:
                 echo "<h1>Thank You!</h1>
-			<p>You have deactivated $universityDeactivated.</p>";
+			<p>You have deactivated $userDeactivated.</p>";
 
             }else{ //if not ok
 
                 echo '<h1>Error</h1>
-			<p>System error preventing user deactivation.</p>';
+			<p>System error preventing User deactivation.</p>';
             }
         }
     }
 
     ?>
 
-<h1>Deactivate a Class</h1>
-    <form id="deactivateClassForm" method="post">
-        Select University to Deactivate:
+
+    <h1>Deactivate a User</h1>
+    <form id="deactivateUserForm" method="post">
+        Select User to Deactivate:
         <br />
-        <select name="UserID">
+        <select name="UserId">
             <?php
 
-            $result = mysqli_query($dbc,'SELECT UserId, username FROM user WHERE isActive = true');
+            $result = mysqli_query($dbc,'SELECT UserId, Username FROM users WHERE isActive = true');
 
             while ($row=mysqli_fetch_array($result))
             {
                 echo '<option value=' . htmlspecialchars($row['UserId']) . '>'
-                . htmlspecialchars($row['username'])
+                . htmlspecialchars($row['Username'])
                 . '</option>';
             }
 
@@ -109,7 +103,10 @@ session_start();
             ?>
         </select>
         <br />
-        <button type="submit" onclick="window.confirm('Are you sure you want to deactivate this User?')">Deactivate University</button>
+        <button type="submit" onclick="window.confirm('Are you sure you want to deactivate this User?')">Deactivate User</button>
     </form>
 </body>
-</html> 
+</html>
+		 
+          
+          
