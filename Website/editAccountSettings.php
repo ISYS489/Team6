@@ -4,7 +4,7 @@
 //Class: ISYS489
 //Instructor: Amy Buse
 //Author: Cale Kuchnicki
-//Last Date Modified: 3/30/2014
+//Last Date Modified: 4/9/2014
 
 //start the session
 session_start();
@@ -72,6 +72,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$updateString= $updateString . "email='$em'";
 		
 	}
+	
+	//Check for a  new password
+	if (!empty($_POST['password'])&&!empty($_POST['repassword'])) {
+		$pw = trim($_POST['password']);
+		$rpw = trim($_POST['repassword']);
+		//Check that passwords match
+		if ($pw == $rpw){
+		 	$updatedInfo=true;
+			if ($updateString != ""){ ////if there is already a field entered, add a comma
+			$updateString= $updateString .", ";
+			}
+			$updateString= $updateString . "password='$pw'";
+		}
+		
+		
+	}
 
 	//Check for a change
 	if(updatedInfo) {
@@ -133,11 +149,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <?php require ('mysqliConnect.php');
 
 
+//$userQuery = "SELECT * FROM users WHERE userid='$userID'";
+$userQuery = "SELECT users.*, `users-classes`.ClassId FROM users LEFT OUTER JOIN `users-classes` ON users.userid = `users-classes`.userid WHERE users.userid='$userID'";
 
 
-
-$userQuery = "SELECT * FROM users WHERE userid='$userID'";
-//$userQuery = "SELECT u.*, uc.ClassId FROM users AS u INNER JOIN users-classes AS uc USING (UserId) WHERE uc.UserId='$userID'";
 $r = mysqli_query ($dbc, $userQuery); //run query
 
 while($row = mysqli_fetch_array($r))
@@ -146,6 +161,8 @@ while($row = mysqli_fetch_array($r))
   	//<input type="text" placeholder="Course # " name="coursenumber" autofocus /><br></br>
 	//echo 'University: ' . $row['FirstName'] . '</br>';
 	//<input type="text" placeholder="University " name="university" autofocus /><br></br>
+	echo 'Current Course ID    : ' . $row['ClassId'] . '</br>
+	<input type="text" placeholder="New Course ID" name="first_name" autofocus /><br></br>';
 	
 	echo 'First Name    : ' . $row['FirstName'] . '</br>
 	<input type="text" placeholder="New First Name" name="first_name" autofocus /><br></br>';
@@ -159,6 +176,12 @@ while($row = mysqli_fetch_array($r))
 	
 	echo 'Email Address : ' . $row['Email'] . '</br>
 	<input type="text" placeholder="New Email" name="email" autofocus /><br></br>';
+	
+	echo 'New Password: <br>
+	<input type="password" placeholder="New Password" name="password" autofocus /><br></br>';
+	
+	echo 'Re-Type New Password: <br>
+	<input type="password" placeholder="New Password" name="repassword" autofocus /><br></br>';
 
 	
 	echo 'Date Created  : ' . $row['CreationDate'] . '</br>';
