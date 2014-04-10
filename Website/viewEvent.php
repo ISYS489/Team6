@@ -54,7 +54,7 @@ ON events.nameid = names.nameid
 JOIN politicalparties
 ON events.politicalpartyid = politicalparties.politicalpartyid
 JOIN mediatypes
-ON events.mediatypeid = mediatypes.mediatypeid");
+ON events.mediatypeid = mediatypes.mediatypeid where events.eventid = $whatever");
 
 echo "<table align='center'><tr><td>";
 
