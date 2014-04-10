@@ -36,8 +36,8 @@ $uN = htmlspecialchars($_POST['username']);
 $p = htmlspecialchars($_POST['password']);
 $e = htmlspecialchars($_POST['email']);
 $cN = -1;
-if (!empty($_POST['classnumber']))
-    $cN = htmlspecialchars($_POST['classnumber']);
+if (!empty($_POST['coursenumber']))
+    $cN = htmlspecialchars($_POST['coursenumber']);
 $universityId = 0;
 $isActive = 1;
 
@@ -49,9 +49,9 @@ $result = mysqli_query($dbc, "SELECT Username FROM `users` WHERE Username = '$uN
     if ($usernameCount == 0)
     {
     //Check that class number is valid
-        $q = "SELECT UniversityId FROM `classes` WHERE classId = $cN";
+        $q = "SELECT UniversityId FROM `classes` WHERE classId = $cN AND IsActive = true";
         $result = mysqli_query($dbc, $q);
-        //echo $q;
+        echo $q;
         $selectCount = mysqli_num_rows($result);
         if ($selectCount == 0)
         {
@@ -67,7 +67,7 @@ $result = mysqli_query($dbc, "SELECT Username FROM `users` WHERE Username = '$uN
                     //Insert user into users table as active
         $q = "INSERT INTO `users`(`FirstName`,`LastName`,`MiddleInitial`,`Username`,`Password`,`Email`,`UniversityId`,`IsActive`)
     VALUES('$fN', '$lN', '$mI', '$uN', '$p', '$e', $universityId, $isActive)";
-        //echo $q;
+        echo $q;
 	    $r = @mysqli_query ($dbc, $q); //run query
 	    if ($r) {
             //if it ran ok
@@ -79,13 +79,13 @@ $result = mysqli_query($dbc, "SELECT Username FROM `users` WHERE Username = '$uN
             }
             //Add user to users-roles table
             $q = "INSERT INTO `users-roles`(`userId`, `roleId`) VALUES($userID, 4)";
-            //echo $q;
+            echo $q;
             $r = @mysqli_query($dbc, $q);
             if ($r)
             {
                 //Add user to users-classes table
                 $q = "INSERT INTO `users-classes`(`userId`, `classId`) VALUES($userID, $cN)";
-                //echo $q;
+                echo $q;
                 $r = @mysqli_query($dbc, $q);
                 if ($r)
                 {
