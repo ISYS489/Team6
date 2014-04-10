@@ -70,7 +70,9 @@ echo "<table align='center'><tr><td>";
   echo "Media Type: " . $row['mediatype'] . "<br>";
   echo "News Outlet: " . $row['newsoutlet'] . "<br>";
   echo "User Name: " . $row['username'] . "<br>";
-  $url = "'" . $row['url'] . "'";
+  echo "</td><td>";
+  echo "<a href=\"".$row['url']."\" id='viewevent' ><INPUT Type='BUTTON' VALUE='View Event Website'></a>" . "</td>";
+  
   
 
   }
@@ -80,11 +82,8 @@ echo "<table align='center'><tr><td>";
 mysqli_close($dbc);
 ?>
 
-</td><td>
-<FORM>
-	<INPUT Type='BUTTON' VALUE='View Event Website' ONCLICK="window.location.href='<php? $url ?>'"> 
-	
-</FORM>
+
+
 
 	
 </td></tr></table>
