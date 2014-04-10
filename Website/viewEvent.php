@@ -41,39 +41,31 @@ require 'mysqliConnect.php';
   
   
   $whatever = $_GET['eid'];
-  $result = mysqli_query($dbc, "SELECT events.eventid, events.eventname, events.publishdate, events.eventdesc, events.politicalpartyid, events.mediatypeid, events.newsoutletid, users.username
+  $result = mysqli_query($dbc, "SELECT events.eventid, events.eventname, events.publishdate, events.eventdesc, events.politicalpartyid, events.mediatypeid, events.newsoutletid, events.url, users.username
    FROM events INNER JOIN users ON events.userid = users.userid where events.eventid = $whatever");
-  
 
-
-
-echo "<table border='1'>
-<tr>
-<th> event id</th>
-<th>event name</th>
-<th> publish date</th>
-<th> event description</th>
-<th> political party id</th>
-<th> media type id</th>
-<th> news outlet id </th>
-<th> user name  </th>
-</tr>";
-
+echo "<table align='center'><tr><td>";
 
   while($row = mysqli_fetch_array($result))
   {
-  echo "<tr>";
-  echo "<td>" . $row['eventid'] . "</td>";
-  echo "<td>" . $row['eventname'] . "</td>";
-  echo "<td>" . $row['publishdate'] . "</td>";
-  echo "<td>" . $row['eventdesc'] . "</td>";
-  echo "<td>" . $row['politicalpartyid'] . "</td>";
-  echo "<td>" . $row['mediatypeid'] . "</td>";
-  echo "<td>" . $row['newsoutletid'] . "</td>";
-  echo "<td>" . $row['username'] . "</td>";
-  echo "</tr>";
+
+  echo "event id: " . $row['eventid'] . "<br>";
+  echo "event name: " . $row['eventname'] . "<br>";
+  echo "publish date: " . $row['publishdate'] . "<br>";
+  echo "event description: " . $row['eventdesc'] . "<br>";
+  echo "news outlet id: " . $row['politicalpartyid'] . "<br>";
+  echo "media type id: " . $row['mediatypeid'] . "<br>";
+  echo "news outlet id: " . $row['newsoutletid'] . "<br>";
+  echo "user name: " . $row['username'] . "<br>";
+  $url = $row['url'];
+  echo "</td><td><FORM>
+				 <INPUT Type='BUTTON' VALUE='Home Page' ONCLICK='window.location.href='" . $url . "'> 
+                  </FORM>";
+
   }
-echo "</table>";
+
+echo "</td></tr></table>";
+
 mysqli_close($dbc);
 ?>
 
