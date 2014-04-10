@@ -39,35 +39,55 @@ require 'mysqliConnect.php';
 //  echo "Failed to connect to MySQL: " . mysqli_connect_error();
 //  }
   
+//initiate URL variable
+global $url;  
   
   $whatever = $_GET['eid'];
-  $result = mysqli_query($dbc, "SELECT events.eventid, events.eventname, events.publishdate, events.eventdesc, events.politicalpartyid, events.mediatypeid, events.newsoutletid, events.url, users.username
-   FROM events INNER JOIN users ON events.userid = users.userid where events.eventid = $whatever");
+  $result = mysqli_query($dbc, "SELECT events.eventid, events.eventname, events.publishdate, events.eventdesc, politicalparties.politicalparty, mediatypes.mediatype, newsoutlets.newsoutlet, events.url, users.username, names.name
+FROM events 
+INNER JOIN users 
+ON events.userid = users.userid 
+JOIN newsoutlets
+ON events.newsoutletid = newsoutlets.newsoutletid
+JOIN names
+ON events.nameid = names.nameid
+JOIN politicalparties
+ON events.politicalpartyid = politicalparties.politicalpartyid
+JOIN mediatypes
+ON events.mediatypeid = mediatypes.mediatypeid");
 
 echo "<table align='center'><tr><td>";
 
   while($row = mysqli_fetch_array($result))
   {
 
-  echo "event id: " . $row['eventid'] . "<br>";
-  echo "event name: " . $row['eventname'] . "<br>";
-  echo "publish date: " . $row['publishdate'] . "<br>";
-  echo "event description: " . $row['eventdesc'] . "<br>";
-  echo "news outlet id: " . $row['politicalpartyid'] . "<br>";
-  echo "media type id: " . $row['mediatypeid'] . "<br>";
-  echo "news outlet id: " . $row['newsoutletid'] . "<br>";
-  echo "user name: " . $row['username'] . "<br>";
-  $url = $row['url'];
-  echo "</td><td><FORM>
-				 <INPUT Type='BUTTON' VALUE='Home Page' ONCLICK='window.location.href='" . $url . "'> 
-                  </FORM>";
+  echo "Event ID: " . $row['eventid'] . "<br>";
+  echo "Event Name: " . $row['eventname'] . "<br>";
+  echo "Publish Date: " . $row['publishdate'] . "<br>";
+  echo "Event Description: " . $row['eventdesc'] . "<br>";
+  echo "Person of Interest: " . $row['name'] . "<br>";
+  echo "News Outlet: " . $row['politicalparty'] . "<br>";
+  echo "Media Type: " . $row['mediatype'] . "<br>";
+  echo "News Outlet: " . $row['newsoutlet'] . "<br>";
+  echo "User Name: " . $row['username'] . "<br>";
+  $url = "'" . $row['url'] . "'";
+  
 
   }
 
-echo "</td></tr></table>";
+
 
 mysqli_close($dbc);
 ?>
+
+</td><td>
+<FORM>
+	<INPUT Type='BUTTON' VALUE='View Event Website' ONCLICK="window.location.href='<php? $url ?>'"> 
+	
+</FORM>
+
+	
+</td></tr></table>
 
 </body>
 </html>

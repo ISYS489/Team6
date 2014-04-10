@@ -39,8 +39,17 @@ require 'mysqliConnect.php';
 //  echo "Failed to connect to MySQL: " . mysqli_connect_error();
 //  }
 
-$result = mysqli_query($dbc,"SELECT eventid, eventname, publishdate, eventdesc, politicalpartyid, mediatypeid, newsoutletid  FROM events");
-
+//jois necessary tables to decipher ids.
+$result = mysqli_query($dbc, "SELECT events.eventid, events.eventname, events.publishdate, events.eventdesc, politicalparties.politicalparty, mediatypes.mediatype, newsoutlets.newsoutlet, events.url, names.name
+FROM events 
+JOIN newsoutlets
+ON events.newsoutletid = newsoutlets.newsoutletid
+JOIN names
+ON events.nameid = names.nameid
+JOIN politicalparties
+ON events.politicalpartyid = politicalparties.politicalpartyid
+JOIN mediatypes
+ON events.mediatypeid = mediatypes.mediatypeid");
 
 
 
@@ -52,6 +61,7 @@ echo "<table border='1'>
 <th>event name</th>
 <th> publish date</th>
 <th> event description</th>
+<th> person of interest</th>
 <th> political party id</th>
 <th> media type id</th>
 <th> news outlet id </th>
@@ -67,9 +77,10 @@ echo "<table border='1'>
   echo "<td>" . $row['eventname'] . "</td>";
   echo "<td>" . $row['publishdate'] . "</td>";
   echo "<td>" . $row['eventdesc'] . "</td>";
-  echo "<td>" . $row['politicalpartyid'] . "</td>";
-  echo "<td>" . $row['mediatypeid'] . "</td>";
-  echo "<td>" . $row['newsoutletid'] . "</td>";
+  echo "<td>" . $row['name'] . "</td>";
+  echo "<td>" . $row['politicalparty'] . "</td>";
+  echo "<td>" . $row['mediatype'] . "</td>";
+  echo "<td>" . $row['newsoutlet'] . "</td>";
   echo "<td>" . "<a href=\"viewEvent.php?eid=".$row['eventid']."\" id='eventlist' >Click Here To View This Event</a>" . "</td>";
   echo "</tr>";
   }
