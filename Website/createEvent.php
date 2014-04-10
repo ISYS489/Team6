@@ -62,9 +62,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	
 	//Check for an event URL
 	if (empty($_POST['URL'])) {
-	$errors[] = 'You forgot to enter a URL.';
+		$errors[] = 'You forgot to enter a URL.';
 	}else{
-	$url = trim($_POST['URL']);
+		$url = trim($_POST['URL']);
+		if (strpos($url,'http') == false) {
+	    	$url = "http://" . $url;
+		}
 	}
 
 	//Check for an event date
