@@ -9,14 +9,7 @@
 //start the session
 session_start();
 ?>
-<!--
-File Name: createUniversity.php
-Purpose: Provides links to all the action pages that a user can access.
-Class: ISYS489
-Instructor: Amy Buse
-Author: Kyle Gottfried
-Last Date Modified: 3/28/2014
--->
+
 
 
 

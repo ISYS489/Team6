@@ -36,8 +36,8 @@ $uN = htmlspecialchars($_POST['username']);
 $p = htmlspecialchars($_POST['password']);
 $e = htmlspecialchars($_POST['email']);
 $cN = -1;
-if (!empty($_POST['classnumber']))
-    $cN = htmlspecialchars($_POST['classnumber']);
+if (!empty($_POST['coursenumber']))
+    $cN = htmlspecialchars($_POST['coursenumber']);
 $universityId = 0;
 $isActive = 1;
 
@@ -49,7 +49,7 @@ $result = mysqli_query($dbc, "SELECT Username FROM `users` WHERE Username = '$uN
     if ($usernameCount == 0)
     {
     //Check that class number is valid
-        $q = "SELECT UniversityId FROM `classes` WHERE classId = $cN";
+        $q = "SELECT UniversityId FROM `classes` WHERE classId = $cN AND IsActive = true";
         $result = mysqli_query($dbc, $q);
         //echo $q;
         $selectCount = mysqli_num_rows($result);
