@@ -39,22 +39,23 @@ require 'mysqliConnect.php';
 //  echo "Failed to connect to MySQL: " . mysqli_connect_error();
 //  }
 
-$result = mysqli_query($dbc,"SELECT eventid, eventname, publishdate, eventdesc, politicalpartyid, mediatypeid, newsoutletid  FROM events");
+$result = mysqli_query($dbc,"SELECT e.EventId, e.EventName, date(e.PublishDate) AS PublishDate, e.DateOfEvent, p.PoliticalParty, nO.NewsOutlet, m.MediaType, n.Name
+FROM events AS e
+LEFT OUTER JOIN politicalparties AS p ON e.PoliticalPartyId = p.PoliticalPartyId
+LEFT OUTER JOIN newsoutlets AS nO ON e.NewsOutletId = nO.NewsOutletId
+LEFT OUTER JOIN names AS n ON e.NameId = n.NameId
+LEFT OUTER JOIN mediatypes AS m ON e.MediaTypeId = m.MediaTypeId");
 
 
 
-
-
-
-echo "<table border='1'>
+echo "<table border='1' class='eventlist'>
 <tr>
-<th> event id</th>
-<th>event name</th>
-<th> publish date</th>
-<th> event description</th>
-<th> political party id</th>
-<th> media type id</th>
-<th> news outlet id </th>
+<th>Event Name</th>
+<th> Publish Date</th>
+<th> Date of Event</th>
+<th> Political Party</th>
+<th> Media Type</th>
+<th> News Outlet</th>
 <th> click below to view event </th>
 </tr>";
 
@@ -63,14 +64,13 @@ echo "<table border='1'>
   
   {
   echo "<tr>";
-  echo "<td>" . $row['eventid'] .  "</td>";
-  echo "<td>" . $row['eventname'] . "</td>";
-  echo "<td>" . $row['publishdate'] . "</td>";
-  echo "<td>" . $row['eventdesc'] . "</td>";
-  echo "<td>" . $row['politicalpartyid'] . "</td>";
-  echo "<td>" . $row['mediatypeid'] . "</td>";
-  echo "<td>" . $row['newsoutletid'] . "</td>";
-  echo "<td>" . "<a href=\"viewEvent.php?eid=".$row['eventid']."\" id='eventlist' >Click Here To View This Event</a>" . "</td>";
+  echo "<td>" . $row['EventName'] . "</td>";
+  echo "<td>" . $row['PublishDate'] . "</td>";
+  echo "<td>" . $row['DateOfEvent'] . "</td>";
+  echo "<td>" . $row['PoliticalParty'] . "</td>";
+  echo "<td>" . $row['MediaType'] . "</td>";
+  echo "<td>" . $row['NewsOutlet'] . "</td>";
+  echo "<td>" . "<a href=\"viewEvent.php?eid=".$row['EventId']."\" id='eventlist' >Click Here To View This Event</a>" . "</td>";
   echo "</tr>";
   }
   
