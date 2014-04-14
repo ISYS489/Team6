@@ -3,8 +3,8 @@
 //Purpose: Displays information for a specific event, allows event ratings.
 //Class: ISYS489
 //Instructor: Amy Buse
-//Author: Kyle Thompson
-//Last Date Modified: 3/28/2014
+//Author: Kyle Thompson, Cale Kuchnicki
+//Last Date Modified: 4/13/2014
 
 
 	//start the session & set logged in user's ID
@@ -12,14 +12,14 @@
 	 
 	require 'mysqliConnect.php';
 	
-	//check to see what role(s) user has.
+	//check to see what role(s) user has. 1 is site admin; 2 is university admin; 3 is professor; 4 is student
 	if ($_SESSION['userid']){
 	 
 	    $userId = $_SESSION['userid'];
 	    $userRoles = array();
 	    $result = mysqli_query($dbc, "SELECT RoleId FROM `users-roles` WHERE UserId = $userId");
 	    while ($row = mysqli_fetch_array($result)){
-	    	$userRoles[] = $row[0];
+	    	$userRoles[] = $row[0]; 
 	   	};
 	}
 	require 'header.php';
@@ -28,6 +28,13 @@
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	
 	$errors = array(); //Initialize an error array.
+	
+	//Check for a comment
+	if (empty($_POST['comment'])) {
+	$errors[] = 'You forgot to enter a comment.';
+	}else{
+	$ec = trim($_POST['comment']);
+	}
 	
 	//Check for a comment
 	if (empty($_POST['comment'])) {
@@ -50,9 +57,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$uid = trim($_SESSION['userid']);
 	}
 	
+	
 	if (empty($errors)) { //if there are no errors
 		//connect to the DB
-		require ('mysqliConnect.php');
+		require ('../mysqli_connect.php');
+		
+		
 		
 		//make the query
 		$q = "INSERT INTO ratings (eventid, userid, rating, comment) VALUES ('" . $_GET['eid'] . "','$uid','$er','$ec')";
@@ -73,12 +83,30 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		mysqli_close($dbc);
 	
 	} else {
+	 	
+	 	if ($_SESSION['deactivate_event'] == 'deactivate'){
+			//make the query
+			$dq = "UPDATE events SET isvisible=false WHERE eventid='" .$_GET['eid'] . "'";
+			$dr = mysqli_query ($dbc, $dq); //run query
+			if ($r) {//if it ran ok
+		
+			//print message:
+			echo '<h1>Thank You!</h1>
+			<p>You have deactivated the event.</p>';
+
+			}else{ //if not ok
 	
-		echo '<h1>Error!</h1>
-		<p>The following error(s) occurred:<br />';
-		foreach ($errors as $msg) { //print each
-		echo " - $msg<br />\n";
-	}
+			echo '<h1>Error</h1>
+			<p>System error preventing deactivation creation.</p>';
+			}
+		} else {
+	
+			echo '<h1>Error!</h1>
+			<p>The following error(s) occurred:<br />';
+			foreach ($errors as $msg) { //print each
+			echo " - $msg<br />\n";
+			}
+		}
 
 	echo '</p><p>Please try again.</p><p><br /></p>';
 	
@@ -96,6 +124,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <body>
 
     <h1>View Event</h1>
+
 
   <?php
 	///Display event information
@@ -126,7 +155,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		  echo "News Outlet: " . $row['newsoutlet'] . "<br>";
 		  echo "User Name: " . $row['username'] . "<br>";
 		  echo "</td><td>";
-		  echo "<a href=\"".$row['url']."\" id='viewevent' target='_blank' ><INPUT Type='BUTTON' VALUE='View Event Website'></a>" . "</td>";
+		  echo "<a href=\"".$row['url']."\" id='viewevent' target='_blank' ><INPUT Type='BUTTON' VALUE='View Event Website'></a></br>";
+		  if (in_array(1, $userRoles) || in_array(2, $userRoles) || in_array(3, $userRoles)){
+			echo '<form class="deactivate" id="deactivate_event" method="post" action="viewEvent.php?eid='.$event_id.'">
+				<input type="checkbox" name="deactivate_event" value="deactivate">Deactivate 
+				<button type="submit" action="viewEvent.php?eid='.$event_id.'">Submit Change</button>
+		   	</form></td>';
+		  }
+		  
 	}
 
 mysqli_close($dbc);
@@ -141,8 +177,9 @@ mysqli_close($dbc);
 </td></tr></table>
 <h1> Ratings: </h1>
 
-///Displays Ratings that match event ID
+
 <?php
+///Displays Ratings that match event ID
 require 'mysqliConnect.php';
 
 	$result = mysqli_query($dbc,"SELECT ratings.rating, ratings.comment, users.username from ratings JOIN users ON ratings.userid = users.userid
@@ -185,7 +222,7 @@ if (!empty($userId)){
 if ($activeUser){
 	echo "
 	<br><br>
-	<form class ='search' id='add_comment' method='post' action='viewEvent.php?eid=$event_id'>
+	<form class='search' id='add_comment' method='post' action='viewEvent.php?eid=$event_id'>
 		<table align='center' border='1'>
 			<tr>
 				<th> Submit </th>

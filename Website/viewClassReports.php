@@ -1,5 +1,5 @@
 <?php
-//File Name: viewUsers.php
+//File Name: viewClassReports.php
 //Purpose: Displays reports pertaining to user information.
 //Class: ISYS489
 //Instructor: Amy Buse
