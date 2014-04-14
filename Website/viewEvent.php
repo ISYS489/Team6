@@ -1,6 +1,6 @@
 <?php
-//File Name: myPosts.php
-//Purpose: Page lists events.
+//File Name: viewEvent.php
+//Purpose: Displays information for a specific event, allows event ratings.
 //Class: ISYS489
 //Instructor: Amy Buse
 //Author: Kyle Thompson
