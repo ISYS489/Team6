@@ -4,7 +4,7 @@
 //Class: ISYS489
 //Instructor: Amy Buse
 //Author: Cale Kuchnicki
-//Last Date Modified: 4/9/2014
+//Last Date Modified: 4/14/2014
 
 //start the session
 session_start();
@@ -34,8 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		
 		$updatedInfo=true;
 		$fn = trim($_POST['first_name']);
-		$updateString= $updateString . "FirstName='$fn'";
-		
+		$updateString= $updateString . "u.FirstName='$fn'";	
 	}
 	
 	//Check for a new middle initial		
@@ -47,8 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		if ($updateString != ""){ ////if there is already a field entered, add a comma
 			$updateString= $updateString .", ";
 		}
-		$updateString= $updateString . "MiddleInitial='$mi'";
-		
+		$updateString= $updateString . "u.MiddleInitial='$mi'";
 	}
 	
 	//Check for a  new last name
@@ -58,8 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		if ($updateString != ""){ ////if there is already a field entered, add a comma
 			$updateString= $updateString .", ";
 		}
-		$updateString= $updateString . "LastName='$ln'";
-		
+		$updateString= $updateString . "u.LastName='$ln'";	
 	}
 
 	//Check for a  new email
@@ -69,8 +66,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		if ($updateString != ""){ ////if there is already a field entered, add a comma
 			$updateString= $updateString .", ";
 		}
-		$updateString= $updateString . "email='$em'";
-		
+		$updateString= $updateString . "u.email='$em'";	
+	}
+	
+	//Check for a new class ID
+	if (!empty($_POST['class_id'])) {
+	 	$updatedInfo=true;
+		$ci = trim($_POST['class_id']);
+		if ($updateString != ""){ ////if there is already a field entered, add a comma
+			$updateString= $updateString .", ";
+		}
+		$updateString= $updateString . "uc.classid='$ci'";	
 	}
 	
 	//Check for a  new password
@@ -83,8 +89,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			if ($updateString != ""){ ////if there is already a field entered, add a comma
 			$updateString= $updateString .", ";
 			}
-			$updateString= $updateString . "password='$pw'";
+			$updateString= $updateString . "u.password='$pw'";
 		}
+		
+		
 		
 		
 	}
@@ -94,8 +102,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		//connect to the DB
 		require ('mysqliConnect.php');
 		
+		
+		
+		
 		//make the query
-		$uq = "UPDATE users SET " . $updateString .  " WHERE UserId='$userID'";
+		
+		$uq = "UPDATE users u, `users-classes` uc  SET " . $updateString .  " WHERE u.UserId=uc.userid AND u.userid='$userID'";
 		$r = mysqli_query ($dbc, $uq); //run query
 	
 		if ($r) {//if it ran ok
@@ -157,12 +169,9 @@ $r = mysqli_query ($dbc, $userQuery); //run query
 
 while($row = mysqli_fetch_array($r))
   {
-  	//echo 'Active Course #: ' . $row['FirstName'] . '</br>';
-  	//<input type="text" placeholder="Course # " name="coursenumber" autofocus /><br></br>
-	//echo 'University: ' . $row['FirstName'] . '</br>';
-	//<input type="text" placeholder="University " name="university" autofocus /><br></br>
+   
 	echo 'Current Course ID    : ' . $row['ClassId'] . '</br>
-	<input type="text" placeholder="New Course ID" name="first_name" autofocus /><br></br>';
+	<input type="text" placeholder="New Course ID" name="class_id" autofocus /><br></br>';
 	
 	echo 'First Name    : ' . $row['FirstName'] . '</br>
 	<input type="text" placeholder="New First Name" name="first_name" autofocus /><br></br>';
@@ -196,7 +205,6 @@ while($row = mysqli_fetch_array($r))
 	}
 	echo'</br>';
 
-	
   }
 	
 
