@@ -12,11 +12,12 @@
 	 
 	require 'mysqliConnect.php';
 	
+	$userRoles = array();
 	//check to see what role(s) user has. 1 is site admin; 2 is university admin; 3 is professor; 4 is student
 	if ($_SESSION['userid']){
 	 
 	    $userId = $_SESSION['userid'];
-	    $userRoles = array();
+	    
 	    $result = mysqli_query($dbc, "SELECT RoleId FROM `users-roles` WHERE UserId = $userId");
 	    while ($row = mysqli_fetch_array($result)){
 	    	$userRoles[] = $row[0]; 
