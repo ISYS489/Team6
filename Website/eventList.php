@@ -44,11 +44,12 @@ FROM events AS e
 LEFT OUTER JOIN politicalparties AS p ON e.PoliticalPartyId = p.PoliticalPartyId
 LEFT OUTER JOIN newsoutlets AS nO ON e.NewsOutletId = nO.NewsOutletId
 LEFT OUTER JOIN names AS n ON e.NameId = n.NameId
-LEFT OUTER JOIN mediatypes AS m ON e.MediaTypeId = m.MediaTypeId");
+LEFT OUTER JOIN mediatypes AS m ON e.MediaTypeId = m.MediaTypeId
+WHERE e.isvisible=true");
 
 
 
-echo "<table border='1' class='eventlist'>
+echo "<table border='1' class='eventlist' align='center'>
 <tr>
 <th>Event Name</th>
 <th> Publish Date</th>
