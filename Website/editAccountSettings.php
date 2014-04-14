@@ -188,7 +188,13 @@ while($row = mysqli_fetch_array($r))
 	
 
 	
-	echo 'Activity Status: ' . $row['IsActive'] . '</br>';
+	echo 'Activity Status: ';
+	if ($row['IsActive']){
+		echo 'Active';
+	} else {
+		echo 'Inactive';
+	}
+	echo'</br>';
 
 	
   }

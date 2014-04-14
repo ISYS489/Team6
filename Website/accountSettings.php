@@ -40,7 +40,13 @@ session_start();
 				echo 'Last Name     : ' . $row['LastName'] . '</br>';
 				echo 'Email Address : ' . $row['Email'] . '</br>';
 				echo 'Date Created  : ' . $row['CreationDate'] . '</br>';
-				echo 'Activity Status: ' . $row['IsActive'] . '</br>';
+				echo 'Activity Status: ';
+				if ($row['IsActive']){
+					echo 'Active';
+				} else {
+					echo 'Inactive';
+				}
+				echo'</br>';
 			  }
 				
 			mysqli_close($dbc);
