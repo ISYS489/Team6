@@ -76,6 +76,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		if ($updateString != ""){ ////if there is already a field entered, add a comma
 			$updateString= $updateString .", ";
 		}
+		//check to see if new user
+		require ('mysqliConnect.php');		
+		//make the query		
+		$uq = "UPDATE users u, `users-classes` uc  SET " . $updateString .  " WHERE u.UserId=uc.userid AND u.userid='$userID'";
+		$r = mysqli_query ($dbc, $uq); //run query
+		
 		$updateString= $updateString . "uc.classid='$ci'";	
 	}
 	
@@ -161,7 +167,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <?php require ('mysqliConnect.php');
 
 
-//$userQuery = "SELECT * FROM users WHERE userid='$userID'";
+
 $userQuery = "SELECT users.*, `users-classes`.ClassId FROM users LEFT OUTER JOIN `users-classes` ON users.userid = `users-classes`.userid WHERE users.userid='$userID'";
 
 
