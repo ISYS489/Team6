@@ -85,11 +85,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	
 	} else {
 	 	
-	 	if ($_SESSION['deactivate_event'] == 'deactivate'){
+	 	if ($_POST['deactivate_event'] == 'deactivate'){
 			//make the query
 			$dq = "UPDATE events SET isvisible=false WHERE eventid='" .$_GET['eid'] . "'";
 			$dr = mysqli_query ($dbc, $dq); //run query
-			if ($r) {//if it ran ok
+			if ($dr) {//if it ran ok
 		
 			//print message:
 			echo '<h1>Thank You!</h1>
@@ -98,7 +98,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			}else{ //if not ok
 	
 			echo '<h1>Error</h1>
-			<p>System error preventing deactivation creation.</p>';
+			<p>System error preventing deactivation.</p>';
 			}
 		} else {
 	
@@ -106,10 +106,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			<p>The following error(s) occurred:<br />';
 			foreach ($errors as $msg) { //print each
 			echo " - $msg<br />\n";
+			echo 'session variable: ' . $_POST['deactivate_event']. ': valuee';
 			}
+			echo '</p><p>Please try again.</p><p><br /></p>';
 		}
 
-	echo '</p><p>Please try again.</p><p><br /></p>';
+	
 	
 	}
 }
