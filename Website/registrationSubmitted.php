@@ -102,7 +102,7 @@ $result = mysqli_query($dbc, "SELECT Username FROM `users` WHERE Username = '$uN
 			            $body = wordwrap($body, 70);
 			
 			            // Send the email:
-			            mail('spitfirex@charter.net', 'User requesting permission to post', $body, "From: civility@civility.com");
+			            mail('example@example.net', 'User requesting permission to post', $body, "From: civility@civility.com");
                     }
                     
 		        }

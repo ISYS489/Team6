@@ -21,6 +21,7 @@ session_start();
 
     <?php require 'header.php';
           require ('mysqliConnect.php');
+          //Authorization check
           if ($_SESSION['userid'])
           {
               $userId = $_SESSION['userid'];

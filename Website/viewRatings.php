@@ -15,13 +15,196 @@ session_start();
 <head>
 <!-- navigation bar -->
 <?php
-include("header.php");
-require("mysqliConnect.php");
+    include("header.php");
+    require("mysqliConnect.php");
+    $userId = 0;
+    //Authorization check
+    if ($_SESSION['userid'])
+    {
+        $userId = $_SESSION['userid'];
+        $userRoles = array();
+        $result = mysqli_query($dbc, "SELECT RoleId FROM `users-roles` WHERE UserId = $userId");
+        while ($row = mysqli_fetch_array($result))
+        {
+            $userRoles[] = $row[0];
+        };
+    }
+    else
+    {
+        header("location: index.php");
+    }
 ?>
 
 </head>
 <body>
-    <h1>Event List</h1>
-<table>
-</table>
+    <h1>Ratings</h1>
+    <br/><br/>
+    
+    <!--Select element that contains available courses to choose from-->
+    <form id="courseSelectionForm" method="get">
+    <select name="ClassId">
+        <!-- student&professor -->
+        <?php
+        if (in_array(4, $userRoles) OR in_array(3, $userRoles))
+        {
+            $query = "SELECT `classes`.ClassId, `classes`.ClassName
+            FROM `classes`
+            LEFT OUTER JOIN `users-classes` ON `classes`.ClassId = `users-classes`.ClassId
+            WHERE `users-classes`.UserId = $userId AND `classes`.IsActive = true";
+            $result = mysqli_query($dbc, $query);
+                
+            while($row = mysqli_fetch_array($result))
+            {
+                if ($_GET['ClassId'] != $row['ClassId'])
+                {
+                    
+                    echo '<option value=' . htmlspecialchars($row['ClassId']) . '>'
+                    . htmlspecialchars($row['ClassName'])
+                    . '</option>';
+                }
+                else
+                {
+                    echo '<option value=' . htmlspecialchars($row['ClassId']) . ' selected=selected>'
+                    . htmlspecialchars($row['ClassName'])
+                    . '</option>';
+                }
+            }
+        }
+        ?>
+        
+        <!-- university admin -->
+        <?php
+        if (in_array(2, $userRoles))
+        {
+            //Find UniversityId of current user
+            
+            $query = "SELECT UniversityId
+            FROM Users
+            WHERE UserId = $userId";
+            $result = mysqli_query($dbc, $query);
+            
+            $universityId;
+            while ($row = mysqli_fetch_row($result)) {
+                    $universityId = $row[0];
+                }
+            
+            //Now grab call classes that belong to selected university
+            
+            $query = "SELECT ClassId, ClassName
+            FROM classes
+            WHERE UniversityId = $universityId AND IsActive = true";
+            $result = mysqli_query($dbc, $query);
+            
+            while($row = mysqli_fetch_array($result))
+            {
+                if ($_GET['ClassId'] != $row['ClassId'])
+                {
+                    echo '<option value=' . htmlspecialchars($row['ClassId']) . '>'
+                    . htmlspecialchars($row['ClassName'])
+                    . '</option>';
+                }
+                else
+                {
+                    echo '<option value=' . htmlspecialchars($row['ClassId']) . ' selected=selected>'
+                    . htmlspecialchars($row['ClassName'])
+                    . '</option>';
+                }
+            }
+        }
+        ?>
+        
+        <!-- site admin -->
+        <?php
+        if (in_array(1, $userRoles))
+        {
+            $query = "Select ClassId, ClassName
+            FROM classes
+            WHERE IsActive = true";
+            $result = mysqli_query($dbc, $query);
+            
+            while($row = mysqli_fetch_array($result))
+            {
+                if ($_GET['ClassId'] != $row['ClassId'])
+                {
+                    echo '<option value=' . htmlspecialchars($row['ClassId']) . '>'
+                    . htmlspecialchars($row['ClassName'])
+                    . '</option>';
+                }
+                else
+                {
+                    echo '<option value=' . htmlspecialchars($row['ClassId']) . ' selected=selected>'
+                    . htmlspecialchars($row['ClassName'])
+                    . '</option>';
+                }
+            }
+        }
+        ?>        
+    </select>
+    <button type="submit">Grab Ratings for this Course</button>
+    </form>
+    
+    <table>
+        <tr>
+            <th>Event Name</th>
+            <th>Comment</th>
+            <th>Rating</th>
+            <?php /* If the user is a Proffesor, University Administrator or Site Admin delete row needs to exist. */
+            if (in_array(1, $userRoles) OR in_array(2, $userRoles) OR in_array(3, $userRoles))
+            {
+                //echo '<th>Delete Rating</th>';
+            }
+            ?>
+        </tr>
+            <!-- student -->
+            <?php
+            if ($_GET['ClassId'])
+            {
+                $classId = $_GET['ClassId'];
+                if (in_array(4, $userRoles))
+                {
+                    $query = "SELECT e.EventName, r.Comment, r.Rating
+                    FROM `ratings` AS r
+                    LEFT OUTER JOIN `events` AS e ON r.EventId = e.EventId
+                    LEFT OUTER JOIN `users-classes` AS uC ON r.UserId = uC.UserId
+                    LEFT OUTER JOIN `users` AS u On uC.UserId = u.UserId
+                    WHERE r.UserId = $userId AND uC.ClassId = $classId";
+                    $result = mysqli_query($dbc, $query);
+                
+                    while($row = mysqli_fetch_array($result))
+                    {
+                          echo "<tr>";
+                      
+                          echo "<td>" . $row['EventName'] . "</td>";
+                          echo "<td>" . $row['Comment'] . "</td>";
+                          echo "<td>" . $row['Rating'] . "</td>";
+                      
+                          echo "</tr>";
+                    }
+                }
+                else
+                {
+                    $query = "SELECT e.EventName, r.Comment, r.Rating
+                    FROM `ratings` AS r
+                    LEFT OUTER JOIN `events` AS e ON r.EventId = e.EventId
+                    LEFT OUTER JOIN `users-classes` AS uC ON r.UserId = uC.UserId
+                    WHERE uC.ClassId = $classId";
+                    $result = mysqli_query($dbc, $query);
+                
+                    while($row = mysqli_fetch_array($result))
+                    {
+                          echo "<tr>";
+                      
+                          echo "<td>" . $row['EventName'] . "</td>";
+                          echo "<td>" . $row['Comment'] . "</td>";
+                          echo "<td>" . $row['Rating'] . "</td>";
+                      
+                          echo "</tr>";
+                    }
+                }
+            }
+            
+            ?>
+            
+            
+            </table>
 </body>
