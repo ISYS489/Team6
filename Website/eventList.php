@@ -39,13 +39,17 @@ require 'mysqliConnect.php';
 //  echo "Failed to connect to MySQL: " . mysqli_connect_error();
 //  }
 
-$result = mysqli_query($dbc,"SELECT e.EventId, e.EventName, date(e.PublishDate) AS PublishDate, e.DateOfEvent, p.PoliticalParty, nO.NewsOutlet, m.MediaType, n.Name
+$result = mysqli_query($dbc,"SELECT e.EventName, e.EventId, e.userid, date(e.PublishDate) AS PublishDate, e.DateOfEvent, p.PoliticalParty, nO.NewsOutlet, m.MediaType, n.Name, avg(z.rating) as rating, x.name
 FROM events AS e
 LEFT OUTER JOIN politicalparties AS p ON e.PoliticalPartyId = p.PoliticalPartyId
 LEFT OUTER JOIN newsoutlets AS nO ON e.NewsOutletId = nO.NewsOutletId
 LEFT OUTER JOIN names AS n ON e.NameId = n.NameId
 LEFT OUTER JOIN mediatypes AS m ON e.MediaTypeId = m.MediaTypeId
-WHERE e.isvisible=true");
+left outer join ratings as z on e.eventid = z.eventid
+left outer join users as q on e.UserId = q.UserId
+left outer join universities as x on q.universityid = x.universityid
+where e.isVisible=true
+group by e.EventName");
 
 
 
@@ -57,6 +61,8 @@ echo "<table border='1' class='eventlist' align='center'>
 <th> Political Party</th>
 <th> Media Type</th>
 <th> News Outlet</th>
+<th>rating</th>
+<th>University</th>
 <th> click below to view event </th>
 </tr>";
 
@@ -71,11 +77,13 @@ echo "<table border='1' class='eventlist' align='center'>
   echo "<td>" . $row['PoliticalParty'] . "</td>";
   echo "<td>" . $row['MediaType'] . "</td>";
   echo "<td>" . $row['NewsOutlet'] . "</td>";
+  echo "<td>" . $row['rating'] . "</td>";
+  echo "<td>" . $row['name'] . "</td>";
   echo "<td>" . "<a href=\"viewEvent.php?eid=".$row['EventId']."\" id='eventlist' >Click Here To View This Event</a>" . "</td>";
   echo "</tr>";
   }
   
-  
+ 
 echo "</table>";
 
 
