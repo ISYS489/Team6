@@ -49,22 +49,21 @@ require ('mysqliConnect.php');
             $ClassId = $_POST['ClassId'];
 
             
-
+			//Set Class to InActive
             $command = @mysqli_query($dbc, "UPDATE `classes` SET `IsActive`=false WHERE `ClassId`='$ClassId';"); //run query
-
-
-
-
-            
-
-
-
             if ($command) {//if it ran ok
-                $courseDeactivated;
-                $result = @mysqli_query($dbc, "SELECT ClassName FROM classes WHERE ClassId = '$ClassId'");
-                while ($row = mysqli_fetch_row($result)) {
-                    $courseDeactivated = $row[0];
-                }
+				
+				//Migrate all users in course to new course
+				$command = @mysqli_query($dbc, "UPDATE `users-classes` SET `ClassId`=10001 WHERE `ClassId`='$ClassId';");
+				
+				if ($command)
+				{//if it ran ok
+					$courseDeactivated;
+					$result = @mysqli_query($dbc, "SELECT ClassName FROM classes WHERE ClassId = '$ClassId'");
+					while ($row = mysqli_fetch_row($result)) {
+						$courseDeactivated = $row[0];
+					}
+				}
 				
 
 
@@ -90,7 +89,7 @@ require ('mysqliConnect.php');
         <select name="ClassId">
             <?php
 
-            $result = mysqli_query($dbc,'SELECT ClassId, ClassName FROM classes WHERE isActive = true');
+            $result = mysqli_query($dbc,'SELECT ClassId, ClassName FROM classes WHERE isActive = true AND ClassId <> 10001');
 
             while ($row=mysqli_fetch_array($result))
             {
