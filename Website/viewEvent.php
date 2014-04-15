@@ -138,19 +138,34 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			echo '<h1>Error</h1>
 			<p>System error preventing deactivation.</p>';
 			}
+		} else if (!empty($_POST['deactivate_rating'])){
+			//make the query
+			foreach($_POST['deactivate_rating'] as $ratingID){
+						
+				$dq = "UPDATE ratings SET isactive=false WHERE ratingid='" . $ratingID . "'";
+				$dr = mysqli_query ($dbc, $dq); //run query
+				if ($dr) {//if it ran ok
+			
+					//print message:
+					echo '<h1>Thank You!</h1>
+					<p>You have deactivated the rating.</p>';
+	
+				}else{ //if not ok
+		
+					echo '<h1>Error</h1>
+					<p>System error preventing deactivation.</p>';
+				}			
+			}
+			
 		} else {
 	
 			echo '<h1>Error!</h1>
 			<p>The following error(s) occurred:<br />';
 			foreach ($errors as $msg) { //print each
 			echo " - $msg<br />\n";
-			echo 'session variable: ' . $_POST['deactivate_event']. ': valuee';
 			}
 			echo '</p><p>Please try again.</p><p><br /></p>';
-		}
-
-	
-	
+		}	
 	}
 }
 ?>
@@ -224,8 +239,8 @@ mysqli_close($dbc);
 ///Displays Ratings that match event ID
 require 'mysqliConnect.php';
 
-	$result = mysqli_query($dbc,"SELECT ratings.ratingid, ratings.rating, ratings.comment, users.username from ratings JOIN users ON ratings.userid = users.userid
-	where ratings.eventid = $event_id");
+	$result = mysqli_query($dbc,"SELECT r.ratingid, r.rating, r.comment, u.username from ratings r JOIN users u ON r.userid = u.userid
+	where r.eventid = $event_id AND r.isactive=true" );
 	
 	echo '<form class="deactivate" id="deactivate_event" method="post" action="viewEvent.php?eid='.$event_id.'">';
 	echo '<table align="center" border="1">
@@ -243,7 +258,7 @@ require 'mysqliConnect.php';
 	  echo "<td>" . $row['username'] . "</td>";
 	  echo "<td>" . $row['rating'] . "</td>";
 	  echo "<td>" . $row['comment'] . "</td>";
-	  echo '<td><input type="checkbox" name="deactivate_rating" value="' . $row['rating']. '">Deactivate';
+	  echo '<td><input type="checkbox" name="deactivate_rating[]" value="' . $row['ratingid']. '">Deactivate';
 	  echo "</tr>";
 	  }
 	
