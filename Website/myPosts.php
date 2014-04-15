@@ -1,5 +1,5 @@
 <?php
-//File Name: classPosts.php
+//File Name: myPosts.php
 //Purpose: Page lists events.
 //Class: ISYS489
 //Instructor: Amy Buse
@@ -9,13 +9,14 @@
 
 //start the session & set logged in user's ID
 session_start();
-$userID = $_SESSION['userId'];
+$userID = $_SESSION['userid'];
 ?>
 
 
 <html>
 
 <head>
+
 
 <?php
   require 'header.php';
@@ -24,22 +25,22 @@ $userID = $_SESSION['userId'];
 ?>	
 	
 
+
 </head>
 <body>
 
-    <h1>Class Posts</h1>
-  <?php
+    <h1>My Posts</h1>
 
+<?php
 
   
-  $result = mysqli_query($dbc, "SELECT events.eventid, events.eventname, events.publishdate, events.eventdesc, events.politicalpartyid, events.mediatypeid, events.newsoutletid, classes.classid, classes.classname
-   FROM events 
-   JOIN users ON events.userid = users.userid  
-   join classes on users.universityid = classes.universityid
-   where ");
+  
+  $result = mysqli_query($dbc, "SELECT events.eventid, events.eventname, events.publishdate, events.eventdesc, events.politicalpartyid, events.mediatypeid, events.newsoutletid, users.userid
+   FROM events JOIN users ON events.userid = users.userid
+   where events.userid = $userID");
   
 
-
+echo $userID;
 
 echo "<table border='1'>
 <tr>
@@ -50,8 +51,7 @@ echo "<table border='1'>
 <th> political party id</th>
 <th> media type id</th>
 <th> news outlet id </th>
-<th> course id   </th>
-<th> course name   </th>
+<th> user id  </th>
 <th> click below to view event</th>
 </tr>";
 
@@ -66,15 +66,15 @@ echo "<table border='1'>
   echo "<td>" . $row['politicalpartyid'] . "</td>";
   echo "<td>" . $row['mediatypeid'] . "</td>";
   echo "<td>" . $row['newsoutletid'] . "</td>";
-  echo "<td>" . $row['classid'] . "</td>";
-  echo "<td>" . $row['classname'] . "</td>";
+  echo "<td>" . $row['userid'] . "</td>";
   echo "<td>" . "<a href=\"viewEvent.php?eid=".$row['eventid']."\" id='eventlist'>Click Here To View This Event</a>" . "</td>";
   echo "</tr>";
   }
 echo "</table>";
-mysqli_close($dbc);
-?>
 
+
+
+?>
 
 </body>
 </html>
