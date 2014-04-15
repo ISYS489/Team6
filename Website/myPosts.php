@@ -1,5 +1,5 @@
 <?php
-//File Name: myPosts.php
+//File Name: classPosts.php
 //Purpose: Page lists events.
 //Class: ISYS489
 //Instructor: Amy Buse
@@ -17,29 +17,26 @@ $userID = $_SESSION['userId'];
 
 <head>
 
-    <?php include("header.php");?>
+<?php
+  require 'header.php';
+          require ('mysqliConnect.php');
+	
+?>	
+	
 
 </head>
 <body>
 
-    <h1>My Posts</h1>
-
+    <h1>Class Posts</h1>
   <?php
 
-DEFINE ('DB_USER', 'isys489c_thompk');
-DEFINE ('DB_PASSWORD', 'q8K[A4LJDd&]');
-DEFINE ('DB_HOST', 'localhost');
-DEFINE ('DB_NAME', 'isys489c_brteam6');
 
-//Make Connection   @= hide errors                                    die will terminate function of the script
-$dbc = @mysqli_connect (DB_HOST, DB_USER, DB_PASSWORD, DB_NAME) OR die ('Could not connect to MySQL: ' . mysqli_connect_error());
-if (mysqli_connect_errno())
-  {
-  echo "Failed to connect to MySQL: " . mysqli_connect_error();
-  }
   
-  $result = mysqli_query($dbc, "SELECT events.eventid, events.eventname, events.publishdate, events.eventdesc, events.politicalpartyid, events.mediatypeid, events.newsoutletid, users.userid
-   FROM events JOIN users ON events.userid = users.userid");
+  $result = mysqli_query($dbc, "SELECT events.eventid, events.eventname, events.publishdate, events.eventdesc, events.politicalpartyid, events.mediatypeid, events.newsoutletid, classes.classid, classes.classname
+   FROM events 
+   JOIN users ON events.userid = users.userid  
+   join classes on users.universityid = classes.universityid
+   where ");
   
 
 
@@ -53,7 +50,8 @@ echo "<table border='1'>
 <th> political party id</th>
 <th> media type id</th>
 <th> news outlet id </th>
-<th> user id  </th>
+<th> course id   </th>
+<th> course name   </th>
 <th> click below to view event</th>
 </tr>";
 
@@ -68,13 +66,15 @@ echo "<table border='1'>
   echo "<td>" . $row['politicalpartyid'] . "</td>";
   echo "<td>" . $row['mediatypeid'] . "</td>";
   echo "<td>" . $row['newsoutletid'] . "</td>";
-  echo "<td>" . $row['userid'] . "</td>";
+  echo "<td>" . $row['classid'] . "</td>";
+  echo "<td>" . $row['classname'] . "</td>";
   echo "<td>" . "<a href=\"viewEvent.php?eid=".$row['eventid']."\" id='eventlist'>Click Here To View This Event</a>" . "</td>";
   echo "</tr>";
   }
 echo "</table>";
 mysqli_close($dbc);
 ?>
+
 
 </body>
 </html>
