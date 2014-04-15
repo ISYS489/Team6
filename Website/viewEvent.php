@@ -197,6 +197,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		  echo "User Name: " . $row['username'] . "<br>";
 		  echo "</td><td>";
 		  echo "<a href=\"".$row['url']."\" id='viewevent' target='_blank' ><INPUT Type='BUTTON' VALUE='View Event Website'></a></br>";
+		  //allow deactivation if in control
 		  if ($allowDeactivate){
 			echo '<form class="deactivate" id="deactivate_event" method="post" action="viewEvent.php?eid='.$event_id.'">
 				<input type="checkbox" name="deactivate_event" value="deactivate">Deactivate 
@@ -223,15 +224,17 @@ mysqli_close($dbc);
 ///Displays Ratings that match event ID
 require 'mysqliConnect.php';
 
-	$result = mysqli_query($dbc,"SELECT ratings.rating, ratings.comment, users.username from ratings JOIN users ON ratings.userid = users.userid
+	$result = mysqli_query($dbc,"SELECT ratings.ratingid, ratings.rating, ratings.comment, users.username from ratings JOIN users ON ratings.userid = users.userid
 	where ratings.eventid = $event_id");
 	
-	echo "<table align='center' border='1'>
+	echo '<form class="deactivate" id="deactivate_event" method="post" action="viewEvent.php?eid='.$event_id.'">';
+	echo '<table align="center" border="1">
 	<tr>
 	<th> Username </th>
 	<th> rating </th>
 	<th> comment </th>
-	</tr>";
+	<th><button type="submit" action="viewEvent.php?eid='.$event_id.'">Submit Change</button></th>
+	</tr>';
 	
 	
 	  while($row = mysqli_fetch_array($result))
@@ -240,12 +243,12 @@ require 'mysqliConnect.php';
 	  echo "<td>" . $row['username'] . "</td>";
 	  echo "<td>" . $row['rating'] . "</td>";
 	  echo "<td>" . $row['comment'] . "</td>";
+	  echo '<td><input type="checkbox" name="deactivate_rating" value="' . $row['rating']. '">Deactivate';
 	  echo "</tr>";
 	  }
 	
 	echo "</table>";
-	
-	
+	echo '</form></td>';
 
 $activeUser = false;
 

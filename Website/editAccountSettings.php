@@ -42,7 +42,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	 
 	 	$updatedInfo=true;
 		$mi = trim($_POST['middle_initial']);
-		echo $mi;
 		if ($updateString != ""){ ////if there is already a field entered, add a comma
 			$updateString= $updateString .", ";
 		}
