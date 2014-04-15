@@ -12,6 +12,9 @@
 	 
 	require 'mysqliConnect.php';
 	
+	//variable to test for displaying form to deactivate an event.
+	$allowDeactivate=false;
+	
 	$userRoles = array();
 	//check to see what role(s) user has. 1 is site admin; 2 is university admin; 3 is professor; 4 is student
 	if ($_SESSION['userid']){
@@ -21,7 +24,49 @@
 	    $result = mysqli_query($dbc, "SELECT RoleId FROM `users-roles` WHERE UserId = $userId");
 	    while ($row = mysqli_fetch_array($result)){
 	    	$userRoles[] = $row[0]; 
-	   	};
+	   	}
+	   	
+	   	
+		if (in_array(1, $userRoles)){ //if user is Site Admin (1), Allow deactivation of event
+			$allowDeactivate=true;
+		}else if (in_array(2, $userRoles)){//If user is University Admin (2), Allow Deactivation if event is in univeristy
+			
+			$userUniversityID = null;
+			$eventUniversityID = null;
+			$event_id = $_GET['eid'];
+			
+			$result = mysqli_query($dbc, "SELECT universityid FROM users WHERE UserId = $userId");
+	    	while ($row = mysqli_fetch_array($result)){
+	    		 $userUniversityID = $row['universityid'];
+	   		}	 
+	   		$result = mysqli_query($dbc, "SELECT u.universityid FROM events e JOIN users u ON e.userid=u.userid WHERE e.eventid = $event_id");
+	    	while ($row = mysqli_fetch_array($result)){
+	    		 $eventUniversityID = $row['universityid'];
+	   		}
+			
+			if ($eventUniversityID == $userUniversityID){
+				$allowDeactivate=true;
+			}	
+		}else if (in_array(3, $userRoles)){//If user is Professor (3), Allow Deactivation if event is in professor's course.
+			
+			$userClassArray = array();
+			$eventClassID = null;
+			$event_id = $_GET['eid'];
+			
+			$result = mysqli_query($dbc, "SELECT classid FROM `users-classes` WHERE UserId = $userId");
+	    	while ($row = mysqli_fetch_array($result)){
+	    		 $userClassArray[] = $row[0];
+	   		}
+			$result = mysqli_query($dbc, "SELECT uc.classid FROM events e JOIN `users-classes` uc ON uc.userid=e.userid  WHERE e.eventid = $event_id");
+	    	while ($row = mysqli_fetch_array($result)){
+	    		 $eventClassID = $row['classid'];
+	    		 if (in_array($eventClassID, $userClassArray)){
+					$allowDeactivate=true;
+				 }
+	   		}
+	   		
+		}  	
+	
 	}
 	require 'header.php';
 	
@@ -29,14 +74,7 @@
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	
 	$errors = array(); //Initialize an error array.
-	
-	//Check for a comment
-	if (empty($_POST['comment'])) {
-	$errors[] = 'You forgot to enter a comment.';
-	}else{
-	$ec = trim($_POST['comment']);
-	}
-	
+		
 	//Check for a comment
 	if (empty($_POST['comment'])) {
 	$errors[] = 'You forgot to enter a comment.';
@@ -159,7 +197,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		  echo "User Name: " . $row['username'] . "<br>";
 		  echo "</td><td>";
 		  echo "<a href=\"".$row['url']."\" id='viewevent' target='_blank' ><INPUT Type='BUTTON' VALUE='View Event Website'></a></br>";
-		  if (in_array(1, $userRoles) || in_array(2, $userRoles) || in_array(3, $userRoles)){
+		  if ($allowDeactivate){
 			echo '<form class="deactivate" id="deactivate_event" method="post" action="viewEvent.php?eid='.$event_id.'">
 				<input type="checkbox" name="deactivate_event" value="deactivate">Deactivate 
 				<button type="submit" action="viewEvent.php?eid='.$event_id.'">Submit Change</button>
