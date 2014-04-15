@@ -4,7 +4,7 @@
 //Class: ISYS489
 //Instructor: Amy Buse
 //Author: Cale Kuchnicki
-//Last Date Modified: 4/13/2014
+//Last Date Modified: 4/15/2014
 
 //start the session
 session_start();
@@ -27,6 +27,7 @@ session_start();
 require ('../mysqli_connect.php');
 $userRoles = array();
 
+// Check what roles a user has
 if ($_SESSION['userid']){
  	
 	$userId = $_SESSION['userid'];
@@ -36,6 +37,7 @@ if ($_SESSION['userid']){
 	}
 }
 
+//defualt order by criteria
 $orderBy = "u.lastname";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -57,8 +59,8 @@ echo '<form method="post" align="center">Sort by:
 <input type="submit" value="Sort">
 </form>';
 
-////////////For diplaying report of University Administrators.
-if (in_array(1, $userRoles)){
+////////////For diplaying report of University Administrators.//////////////////////////////////////////////////////////////////////////////////////////
+if (in_array(1, $userRoles)){//can be seen only by Site Admin (1)
 	
 	$userQuery = "
 		SELECT u.userid, u.firstname, u.middleinitial, u.lastname, u.email, uv.name, r.rolename, uc.classid, u.username FROM users u
@@ -66,12 +68,13 @@ if (in_array(1, $userRoles)){
 		LEFT JOIN `users-roles` ur ON u.userid = ur.userid
         LEFT JOIN roles r ON ur.roleid=r.roleid
         LEFT JOIN `users-classes` uc ON u.userid = uc.userid
-        WHERE ur.roleid=2 
-        ORDER BY $orderBy "; 
+        WHERE ur.roleid=2
+        ORDER BY $orderBy "; ////ur.roleid=2 signifies University Admin
 
 	// execute query 
 	$result = mysqli_query ($dbc, $userQuery);	
 	
+	//Display headings
 	echo "<h1>Univeristy Administrators</h1>";
 	echo "<table border='1' cellpadding='5' align='center'>";
 	echo "<tr bgcolor='9B1321'>
@@ -84,7 +87,7 @@ if (in_array(1, $userRoles)){
 			<th>Class</th>
 		</tr>";
 	
-		
+	//display resulting rows in table	
 	while($row = mysqli_fetch_array($result))
 	{
 		echo "<tr>
@@ -100,22 +103,25 @@ if (in_array(1, $userRoles)){
 	echo "</table> <br><br>";
 } 
 
-//////for Displaying report of Professors in a university
-if (in_array(1, $userRoles) || in_array(2, $userRoles)){
-	
+//////for Displaying report of Professors in a university///////////////////////////////////////////////////////////////////////////////////////////////
+if (in_array(1, $userRoles) || in_array(2, $userRoles) || in_array(3, $userRoles)){//Site Admin sees all, University admin can only see Professors in their 		
+																				   //University, and professors can only see themselves for reference to 
+																				   //classes they are teaching.
 	$whereStatement = null;
-	if (in_array(1, $userRoles)){
+	if (in_array(1, $userRoles)){ //Site Admin, see all Professors and University
 		$whereStatement = 'ur.roleid=3';
-	} else if (in_array(2, $userRoles)){
+	} else if (in_array(2, $userRoles)){//University Admin, see all Professors within their University
 	 	$userQuery = "SELECT universityid FROM users WHERE userid=" . $_SESSION['userid'];
 		$result = mysqli_query ($dbc, $userQuery);
 		while($row = mysqli_fetch_array($result)){
 			$userUniversity = $row['universityid'];
 		}
 		$whereStatement = 'ur.roleid=3 AND u.universityid=' . $userUniversity;
+	} else if (in_array(3, $userRoles)){//Professors, see themselves for reference as to which classes they are teaching.
+	 	$whereStatement = 'ur.roleid=3 AND u.userid=' . $_SESSION['userid'];
 	}
 
-	
+	//Query to append to with $whereStatement chosen above.
 	$userQuery = "
 		SELECT u.userid, u.firstname, u.middleinitial, u.lastname, u.email, uv.name, r.rolename, uc.classid, u.username FROM users u
 		LEFT JOIN universities uv ON u.universityid = uv.universityid
@@ -127,7 +133,8 @@ if (in_array(1, $userRoles) || in_array(2, $userRoles)){
         
 	// execute query 
 	$result = mysqli_query ($dbc, $userQuery);
-		
+	
+	//Display Table headings	
 	echo "<h1>Professors</h1>";
 	echo "<table border='1' cellpadding='5' align='center'>";
 	echo "<tr bgcolor='9B1321'>
@@ -140,7 +147,7 @@ if (in_array(1, $userRoles) || in_array(2, $userRoles)){
 			<th>Class</th>
 		</tr>";
 	
-		
+	//Display resulting query rows in table.	
 	while($row = mysqli_fetch_array($result))
 	{
 		  echo "<tr>
@@ -156,20 +163,20 @@ if (in_array(1, $userRoles) || in_array(2, $userRoles)){
 	echo "</table> <br><br>";
 } 
 
-//////for Displaying report of Students in a class
+//////for Displaying report of Students in a class///////////////////////////////////////////////////////////////////////////////////////////////////
 if (in_array(1, $userRoles) || in_array(2, $userRoles) || in_array(3, $userRoles)){
 	
 	$whereStatement = null;
-	if (in_array(1, $userRoles)){
+	if (in_array(1, $userRoles)){//Site Admin sees all classes
 		$whereStatement = 'ur.roleid=4';
-	} else if (in_array(2, $userRoles)){
+	} else if (in_array(2, $userRoles)){//University Admin sees all classes within his/her university
 	 	$userQuery = "SELECT universityid FROM users WHERE userid=" . $_SESSION['userid'];
 		$result = mysqli_query ($dbc, $userQuery);
 		while($row = mysqli_fetch_array($result)){
 			$userUniversity = $row['universityid'];
 		}
 		$whereStatement = 'ur.roleid=4 AND u.universityid=' . $userUniversity;
-	} else if (in_array(3, $userRoles)){
+	} else if (in_array(3, $userRoles)){//Professor sees all classes he/she is teaching.
 	 	$userQuery = "SELECT uc.classid FROM users u JOIN `users-classes` uc ON u.userid=uc.userid WHERE u.userid=" . $_SESSION['userid'];
 		$userClass = null;
 		$result = mysqli_query ($dbc, $userQuery);
@@ -180,7 +187,7 @@ if (in_array(1, $userRoles) || in_array(2, $userRoles) || in_array(3, $userRoles
 		$whereStatement = 'ur.roleid=4 AND' . $userClass;
 	}
 
-		
+	//Query to build upon with $whereStatment selection from above	
 	$userQuery = "
 		SELECT u.userid, u.firstname, u.middleinitial, u.lastname, u.email, uv.name, r.rolename, uc.classid, u.username FROM users u
 		LEFT JOIN universities uv ON u.universityid = uv.universityid
@@ -192,7 +199,8 @@ if (in_array(1, $userRoles) || in_array(2, $userRoles) || in_array(3, $userRoles
         
 	// execute query 
 	$result = mysqli_query ($dbc, $userQuery);
-		
+	
+	//Display Headings	
 	echo "<h1>Students</h1>";
 	echo "<table border='1' cellpadding='5' align='center'>";
 	echo "<tr bgcolor='9B1321'>
@@ -205,7 +213,7 @@ if (in_array(1, $userRoles) || in_array(2, $userRoles) || in_array(3, $userRoles
 			<th>Class</th>
 		</tr>";
 	
-		
+	//Display results for query as table rows	
 	while($row = mysqli_fetch_array($result))
 	{
 		  echo "<tr>
@@ -220,7 +228,8 @@ if (in_array(1, $userRoles) || in_array(2, $userRoles) || in_array(3, $userRoles
 	}
 	echo "</table> <br><br>";
 } 
-	
+
+//Close connection to DB	
 mysqli_close($dbc);
 
 
