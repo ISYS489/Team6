@@ -15,7 +15,7 @@ session_start();
 <head>
 	<?php require 'header.php'; ?>
 	
-	<h1>Welcome to the Rating Report Page</h1>
+	<h1>Welcome to the Class Report Page</h1>
 </head>
 
 <body>
@@ -25,21 +25,61 @@ session_start();
 
 <?php
 require ('../mysqli_connect.php');
+$userId = $_SESSION['userid'];
+if ($_SESSION['userid']){
+ 	
+	
+	$result = mysqli_query($dbc, "SELECT RoleId FROM `users-roles` WHERE UserId = $userId");
+	while ($row = mysqli_fetch_array($result)){
+		$userRoles[] = $row[0]; 
+	}
+}
 
 $orderBy = "c.classname";
 
+//Determines sort criteria by class name, university, or class id
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
  	if ($_POST['order_by'] == 'class_name'){ 
-		////////////For diplaying reports of all users.	////////////////////////////////////////////////////////////////////////////////////////////////////
 		$orderBy = "c.classname";
 	} else if ($_POST['order_by'] == 'university'){
-		////////////For diplaying reports of all users.	////////////////////////////////////////////////////////////////////////////////////////////////////
 		$orderBy = "uv.name";
 	} else if ($_POST['order_by'] == 'class_id') {
-		////////////For diplaying reports of all users.	////////////////////////////////////////////////////////////////////////////////////////////////////
 		$orderBy = "c.classid";
 	}
 }
+
+if (in_array(1, $userRoles)){
+	$classQuery = "SELECT c.classid, uv.name, c.classname, c.startdate, c.enddate, c.isactive
+			   	   FROM classes c
+			       JOIN universities uv ON c.universityid = uv.universityid
+                   ORDER BY $orderBy
+			      ";
+} else if (in_array(2, $userRoles)){
+ 	$userQuery = "SELECT universityid FROM users WHERE userid=" . $_SESSION['userid'];
+	$result = mysqli_query ($dbc, $userQuery);
+	while($row = mysqli_fetch_array($result)){
+		$userUniversity = $row['universityid'];
+	}
+	$whereStatement = 'uv.universityid=' . $userUniversity;
+ 	
+	$classQuery = "SELECT c.classid, uv.name, c.classname, c.startdate, c.enddate, c.isactive
+			   	   FROM classes c
+			       JOIN universities uv ON c.universityid = uv.universityid
+			       WHERE $whereStatement
+                   ORDER BY $orderBy
+			      ";
+} if (in_array(3, $userRoles)){
+	$classQuery = "SELECT c.classid, uv.name, c.classname, c.startdate, c.enddate, c.isactive
+			   	   FROM classes c
+			       JOIN universities uv ON c.universityid = uv.universityid
+			       JOIN `users-classes` uc ON  uc.classid=c.classid
+			       WHERE uc.userid=$userId
+                   ORDER BY $orderBy
+			      ";
+			      
+}
+
+
 
 echo '<form method="post" align="center">Sort by: 
 <input type="radio" name="order_by" value="class_name" >Class Name
@@ -48,11 +88,6 @@ echo '<form method="post" align="center">Sort by:
 <input type="submit" value="Sort">
 </form>';
 
-$classQuery = "SELECT c.classid, uv.name, c.classname, c.startdate, c.enddate, c.isactive
-			   FROM classes c
-			   JOIN universities uv ON c.universityid = uv.universityid
-               ORDER BY $orderBy
-			  "; //WHERE ur.roleid=2
 			  
 	/* execute multi query */
 $result = mysqli_query ($dbc, $classQuery);	
