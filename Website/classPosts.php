@@ -9,15 +9,19 @@
 
 //start the session & set logged in user's ID
 session_start();
-$userID = $_SESSION['userId'];
+$userID = $_SESSION['userid'];
 ?>
-
 
 <html>
 
 <head>
 
-    <?php include("header.php");?>
+<?php
+  require 'header.php';
+          require ('mysqliConnect.php');
+	
+?>	
+	
 
 </head>
 <body>
@@ -25,56 +29,61 @@ $userID = $_SESSION['userId'];
     <h1>Class Posts</h1>
   <?php
 
-DEFINE ('DB_USER', 'isys489c_thompk');
-DEFINE ('DB_PASSWORD', 'q8K[A4LJDd&]');
-DEFINE ('DB_HOST', 'localhost');
-DEFINE ('DB_NAME', 'isys489c_brteam6');
 
-//Make Connection   @= hide errors                                    die will terminate function of the script
-$dbc = @mysqli_connect (DB_HOST, DB_USER, DB_PASSWORD, DB_NAME) OR die ('Could not connect to MySQL: ' . mysqli_connect_error());
-if (mysqli_connect_errno())
-  {
-  echo "Failed to connect to MySQL: " . mysqli_connect_error();
-  }
   
-  $result = mysqli_query($dbc, "SELECT events.eventid, events.eventname, events.publishdate, events.eventdesc, events.politicalpartyid, events.mediatypeid, events.newsoutletid, classes.classid, classes.classname
-   FROM events  JOIN users ON events.userid = users.userid  join classes on users.universityid = classes.universityid");
   
+  $result = mysqli_query($dbc, "SELECT a.ClassId, a.ClassName, d.UserId, e.EventId, e.EventName, e.PublishDate, e.DateOfEvent, f.PoliticalParty, g.MediaType, h.NewsOutlet, i.Name
+  from classes as a
+  left outer join universities as b on a.UniversityId = b.UniversityId
+  left outer join `users-classes` as c on a.ClassId = c.ClassId
+  left outer join users as d on c.UserId = d.UserId
+  left outer join events as e on d.UserId = e.UserId
+  left outer join politicalparties as f on e.PoliticalPartyId = f.PoliticalPartyId
+  left outer join mediatypes as g on e.MediaTypeId = g.MediaTypeId
+  left outer join newsoutlets as h on e.NewsOutletId = h.NewsOutletId
+  left outer join names as i on e.NameId = i.NameId
+  where d.UserId = $userID");
 
 
 
 echo "<table border='1'>
 <tr>
-<th> event id</th>
+<th>class id</th>
+<th>class name</th>
+<th>User id</th>
+<th>event id</th>
 <th>event name</th>
 <th> publish date</th>
-<th> event description</th>
-<th> political party id</th>
-<th> media type id</th>
-<th> news outlet id </th>
-<th> course id   </th>
-<th> course name   </th>
-<th> click below to view event</th>
+<th> date of event/th>
+<th> political party</th>
+<th>media type</th>
+<th> news outlet</th>
+<th> name </th>
+<th> click here to view event</th>
 </tr>";
 
 
   while($row = mysqli_fetch_array($result))
   {
   echo "<tr>";
-  echo "<td>" . $row['eventid'] . "</td>";
-  echo "<td>" . $row['eventname'] . "</td>";
-  echo "<td>" . $row['publishdate'] . "</td>";
-  echo "<td>" . $row['eventdesc'] . "</td>";
-  echo "<td>" . $row['politicalpartyid'] . "</td>";
-  echo "<td>" . $row['mediatypeid'] . "</td>";
-  echo "<td>" . $row['newsoutletid'] . "</td>";
-  echo "<td>" . $row['classid'] . "</td>";
-  echo "<td>" . $row['classname'] . "</td>";
+  echo "<td>" . $row['ClassId'] . "</td>";
+  echo "<td>" . $row['ClassName'] . "</td>";
+    echo "<td>" . $row['UserId'] . "</td>";
+	  echo "<td>" . $row['EventId'] . "</td>";
+	    echo "<td>" . $row['EventName'] . "</td>";
+		  echo "<td>" . $row['PublishDate'] . "</td>";
+		    echo "<td>" . $row['DateOfEvet'] . "</td>";
+			  echo "<td>" . $row['PoliticalParty'] . "</td>";
+			    echo "<td>" . $row['MediaType'] . "</td>";
+				  echo "<td>" . $row['NewsOutlet'] . "</td>";
+				    echo "<td>" . $row['Name'] . "</td>";
   echo "<td>" . "<a href=\"viewEvent.php?eid=".$row['eventid']."\" id='eventlist'>Click Here To View This Event</a>" . "</td>";
   echo "</tr>";
   }
+  
+  
 echo "</table>";
-mysqli_close($dbc);
+
 ?>
 
 
