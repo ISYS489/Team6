@@ -76,13 +76,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		if ($updateString != ""){ ////if there is already a field entered, add a comma
 			$updateString= $updateString .", ";
 		}
-		//check to see if new user
-		require ('mysqliConnect.php');		
-		//make the query		
-		$uq = "UPDATE users u, `users-classes` uc  SET " . $updateString .  " WHERE u.UserId=uc.userid AND u.userid='$userID'";
-		$r = mysqli_query ($dbc, $uq); //run query
 		
-		$updateString= $updateString . "uc.classid='$ci'";	
+		//check to see if user is in default public class, 
+		require ('mysqliConnect.php');		
+				
+		$sq = "SELECT classid FROM `users-classes` WHERE userid='$userID'";
+		$r = mysqli_query ($dbc, $sq); //run query
+		while($row = mysqli_fetch_array($r)){
+  			 IF ($row['classid'] == 10001){
+				$updateString= $updateString . "u.isactive='true',  uc.classid='$ci'";
+			} else {
+				$updateString= $updateString . "uc.classid='$ci'";
+			}
+  		}
+			
 	}
 	
 	//Check for a  new password
@@ -176,7 +183,7 @@ $r = mysqli_query ($dbc, $userQuery); //run query
 while($row = mysqli_fetch_array($r))
   {
    
-	echo 'Current Course ID    : ' . $row['ClassId'] . '</br>
+	echo 'Change Course ID:</br>
 	<input type="text" placeholder="New Course ID" name="class_id" autofocus /><br></br>';
 	
 	echo 'First Name    : ' . $row['FirstName'] . '</br>
