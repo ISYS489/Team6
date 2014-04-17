@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		
 		$updatedInfo=true;
 		$fn = trim($_POST['first_name']);
-		$updateString= $updateString . "u.FirstName='$fn'";	
+		$updateString= $updateString . "FirstName='$fn'";	
 	}
 	
 	//Check for a new middle initial		
@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		if ($updateString != ""){ ////if there is already a field entered, add a comma
 			$updateString= $updateString .", ";
 		}
-		$updateString= $updateString . "u.MiddleInitial='$mi'";
+		$updateString= $updateString . "MiddleInitial='$mi'";
 	}
 	
 	//Check for a  new last name
@@ -55,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		if ($updateString != ""){ ////if there is already a field entered, add a comma
 			$updateString= $updateString .", ";
 		}
-		$updateString= $updateString . "u.LastName='$ln'";	
+		$updateString= $updateString . "LastName='$ln'";	
 	}
 
 	//Check for a  new email
@@ -65,31 +65,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		if ($updateString != ""){ ////if there is already a field entered, add a comma
 			$updateString= $updateString .", ";
 		}
-		$updateString= $updateString . "u.email='$em'";	
+		$updateString= $updateString . "email='$em'";	
 	}
 	
-	//Check for a new class ID
-	if (!empty($_POST['class_id'])) {
-	 	$updatedInfo=true;
-		$ci = trim($_POST['class_id']);
-		if ($updateString != ""){ ////if there is already a field entered, add a comma
-			$updateString= $updateString .", ";
-		}
-		
-		//check to see if user is in default public class, 
-		require ('mysqliConnect.php');		
-				
-		$sq = "SELECT classid FROM `users-classes` WHERE userid='$userID'";
-		$r = mysqli_query ($dbc, $sq); //run query
-		while($row = mysqli_fetch_array($r)){
-  			 IF ($row['classid'] == 10001){
-				$updateString= $updateString . "u.isactive='true',  uc.classid='$ci'";
-			} else {
-				$updateString= $updateString . "uc.classid='$ci'";
-			}
-  		}
-			
-	}
 	
 	//Check for a  new password
 	if (!empty($_POST['password'])&&!empty($_POST['repassword'])) {
@@ -101,12 +79,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			if ($updateString != ""){ ////if there is already a field entered, add a comma
 			$updateString= $updateString .", ";
 			}
-			$updateString= $updateString . "u.password='$pw'";
-		}
-		
-		
-		
-		
+			$updateString= $updateString . "password='$pw'";
+		}	
+	}
+	
+	$updateClassString = "";
+	//Check for a new class ID
+	if (!empty($_POST['class_id'])) {
+	 	echo"IMADEEDITISHERHEHREHHFSFDFSDFSFSF";
+	 	$updatedInfo=true;
+		$ci = trim($_POST['class_id']);
+			
+		//check to see if user is in default public class, 
+		require ('mysqliConnect.php');		
+				
+		$sq = "SELECT classid FROM `users-classes` WHERE userid='$userID'";
+		$r = mysqli_query ($dbc, $sq); //run query
+		while($row = mysqli_fetch_array($r)){
+  			IF ($row['classid'] == 10001){
+  			  	if ($updateString != ""){ ////if there is already a field entered, add a comma
+				$updateString= $updateString .", ";
+				}
+				$updateString= "isactive='true'";
+			} 
+			$updateClassString= "classid='$ci'";
+  		}	
 	}
 
 	//Check for a change
@@ -119,10 +116,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		
 		//make the query
 		
-		$uq = "UPDATE users u, `users-classes` uc  SET " . $updateString .  " WHERE u.UserId=uc.userid AND u.userid='$userID'";
+		$uq = "UPDATE users  SET " . $updateString .  " WHERE userid='$userID'";
 		$r = mysqli_query ($dbc, $uq); //run query
+		
+		$ucq = "UPDATE `users-classes`  SET " . $updateClassString .  " WHERE userid='$userID'";
+		$cr = mysqli_query ($dbc, $ucq); //run query
 	
-		if ($r) {//if it ran ok
+		if ($r or $t) {//if it ran ok
 		
 			//print message:
 			echo '<h1>Thank You!</h1>
