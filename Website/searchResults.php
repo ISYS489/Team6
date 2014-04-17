@@ -1,7 +1,16 @@
 <?php
+//File Name: searchResults.php
+//Purpose: This page displays results from the search page.
+//Class: ISYS489
+//Instructor: Amy Buse
+//Author: Kyle T., Cale Kuchnicki
+//Last Date Modified: 4/17/2014
+
+
+//start the session
 session_start();
 ?>
-//start the session
+
 
 <html>
 

@@ -4,7 +4,7 @@
 //Class: ISYS489
 //Instructor: Amy Buse
 //Author: Cale Kuchnicki
-//Last Date Modified: 4/5/2014
+//Last Date Modified: 4/17/2014
 
 
 //Used on addKeyword.php, createEvent.php, search.php
