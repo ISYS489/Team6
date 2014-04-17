@@ -31,34 +31,30 @@ session_start();
 
 <h2 align="center" >Search</h2>
 
-<?php
-	
-	//require ('keywordFunctions.php');
-	
-	//uses post variables 'media_type', 'name', 'political_party', 'news_outlet',  
-	//displayKeywords();
-?>
-
 <input align="center" type="text" placeholder="Event Name " name="eventname"  autofocus />
 <br></br>
 
 <input type="text" placeholder="Rating " name="rating" align="center" autofocus />
 <br></br>
 
-<input type="text" placeholder="Media Type " name="mediatype" align="center" autofocus />
-<br></br>
-
 <input type="text" placeholder="Course # " name="coursenumber" align="center" autofocus />
-<br></br>
-
-<input type="text" placeholder="Political Party" name="politicalparty" align="center" autofocus />
 <br></br>
 
 <input type="text" placeholder="University " name="university" align="center" autofocus />
 <br></br>
 
+<?php
+
+	require ('keywordFunctions.php');
+
+	//uses post variables 'media_type', 'name', 'political_party', 'news_outlet',  
+	displayKeywords();
+?>
+
 <button type="submit" align="center" >Search</button>
 <br></br>
+
+
 
 
 </form>

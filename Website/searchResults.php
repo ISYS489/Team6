@@ -19,7 +19,6 @@ require 'mysqliConnect.php';
 <h1>Search Results</h1>
 
 <?php
-
  
 $result = mysqli_query($dbc,"SELECT  DISTINCT e.EventId, e.EventName, date(e.PublishDate) AS PublishDate, e.DateOfEvent, p.PoliticalParty, nO.NewsOutlet, m.MediaType, n.Name, avg(a.rating) as rating, z.name, q.classid
 FROM events AS e
@@ -31,7 +30,7 @@ left outer join ratings as a on e.eventid = a.eventid
 left outer join users as g on e.userid = g.userid
 left outer join universities as z on g.UniversityId = z.UniversityId
 left outer join classes as q on g.universityid = q.universityid
-WHERE e.isvisible=true and e.eventname = '{$_POST['eventname']}' or a.rating = '{$_POST['rating']}' or m.MediaType = '{$_POST['mediatype']}' or p.PoliticalParty = '{$_POST['politicalparty']}' or z.Name = '{$_POST['university']}' or q.classid = '{$_POST['coursenumber']}'
+WHERE e.isvisible=true and e.eventname = '{$_POST['eventname']}' or a.rating = '{$_POST['rating']}' or m.MediaTypeId = '{$_POST['media_type']}' or p.PoliticalPartyId = '{$_POST['political_party']}' or z.Name = '{$_POST['university']}' or q.classid = '{$_POST['coursenumber']}' or n.nameid = '{$_POST['name']}' or nO.newsoutletid = '{$_POST['news_outlet']}'
 group by e.EventName");
 //where eventname = '{$_POST['search']}'");
 
@@ -89,4 +88,5 @@ mysqli_close($dbc);
 
 
 </body>
+<?php include("footer.php");?>
 </html> 

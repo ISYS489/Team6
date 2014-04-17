@@ -22,13 +22,13 @@ function displayKeywords(){
 	         	echo "Media Type: ";
 				echo "<select name='media_type'>";
 			} else if ($counter == 1) {
-			 	echo "Person of Interest: ";
+			 	echo "<br>Person of Interest: ";
 				echo "<select name='name'>";
 			} else if ($counter == 2){
-			 	echo "News Outlet: ";
+			 	echo "<br>News Outlet: ";
 				echo "<select name='news_outlet'>";
 			} else if ($counter == 3){
-			 	echo "Political Party: ";
+			 	echo "<br>Political Party: ";
 			 	echo "<select name='political_party'>";
 			} 
 			echo "<option value=''></option>"; //Create a default value
@@ -46,8 +46,6 @@ function displayKeywords(){
 	        }
 	    } while (mysqli_next_result($dbc));
 	}
-	
-	echo "</p>";
 }
 
 ?>
