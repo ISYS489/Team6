@@ -84,7 +84,7 @@ require ('mysqliConnect.php');
 
 
     <h1>Deactivate a User</h1>
-    <form id="deactivateUserForm" method="post">
+    <form id="deactivateUserForm" style="color:#ffff00" method="post">
         Select User to Deactivate:
         <br />
         <select name="UserId">
