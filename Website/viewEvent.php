@@ -247,9 +247,12 @@ require 'mysqliConnect.php';
 	<tr>
 	<th> Username </th>
 	<th> rating </th>
-	<th> comment </th>
-	<th><button type="submit" action="viewEvent.php?eid='.$event_id.'">Submit Change</button></th>
-	</tr>';
+	<th> comment </th>';
+	if (in_array(1, $userRoles) OR in_array(2, $userRoles) OR in_array(3, $userRoles))
+	{
+		echo '<th><button type="submit" action="viewEvent.php?eid='.$event_id.'">Submit Change</button></th>';
+	}
+	echo '</tr>';
 	
 	
 	  while($row = mysqli_fetch_array($result))
@@ -258,7 +261,10 @@ require 'mysqliConnect.php';
 	  echo "<td>" . $row['username'] . "</td>";
 	  echo "<td>" . $row['rating'] . "</td>";
 	  echo "<td>" . $row['comment'] . "</td>";
-	  echo '<td><input type="checkbox" name="deactivate_rating[]" value="' . $row['ratingid']. '">Deactivate';
+	  if (in_array(1, $userRoles) OR in_array(2, $userRoles) OR in_array(3, $userRoles))
+	  {
+	  	echo '<td><input type="checkbox" name="deactivate_rating[]" value="' . $row['ratingid']. '">Deactivate';
+	  }
 	  echo "</tr>";
 	  }
 	
