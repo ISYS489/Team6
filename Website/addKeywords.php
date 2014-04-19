@@ -11,6 +11,24 @@ session_start();
 $page_title = 'Add Keyword';
 
 include ('header.php');
+require ('mysqliConnect.php');
+
+if ($_SESSION['userid'])
+          {
+              $userId = $_SESSION['userid'];
+              $userRoles = array();
+$result = mysqli_query($dbc, "SELECT RoleId FROM `users-roles` WHERE UserId = $userId");
+while ($row = mysqli_fetch_array($result))
+              {
+                  $userRoles[] = $row[0];
+              }
+              if (!in_array(1, $userRoles) OR !in_array(2, $userRoles) OR !in_array(3, $userRoles))
+                  header("location: index.php");
+          }
+          else
+          {
+           header("location: index.php");
+          }
 
 //check for form submission:
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
