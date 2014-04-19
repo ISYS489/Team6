@@ -86,7 +86,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$updateClassString = "";
 	//Check for a new class ID
 	if (!empty($_POST['class_id'])) {
-	 	echo"IMADEEDITISHERHEHREHHFSFDFSDFSFSF";
 	 	$updatedInfo=true;
 		$ci = trim($_POST['class_id']);
 			
