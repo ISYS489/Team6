@@ -1,6 +1,5 @@
 <?php
 session_start();
-$userID = $_SESSION['userId'];
 ?>
 
 <!--
@@ -35,6 +34,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 	$errors = array(); //Initialize an error array.
 
+	//Assign UniversityId
+	$universityId = trim($_POST['UniversityId']);
+	
+	//Assign ClassId
+	$classId = trim($_POST['ClassId']);
+	
+	//Assign Role
+	$roleId = trim($_POST['RoleId']);
+	
 	//Check for a user name
 	if (empty($_POST['FirstName']))
     {
@@ -42,36 +50,38 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	}
     else
     {
-        $un = trim($_POST['FirstName']);
+        $firstName = trim($_POST['FirstName']);
     }
 	
     
-    //Check for university id
+    //Check for last name
     if (empty($_POST['LastName'])) {
         $errors[] = 'You forgot to enter a last name.';
     }else
     {
-    	$um = trim($_POST['LastName']);
+    	$lastName = trim($_POST['LastName']);
     }
     
 
-    //Check for a class name
+    //Check for a middle initial
     if (empty($_POST['MiddleInitial'])) {
         $errors[] = 'You forgot to enter a class name.';
     }else{
-        $uo = trim($_POST['MiddleInitial']);
+        $middleInitial = trim($_POST['MiddleInitial']);
     }
 
-    //Check for a class start date
+    //Check for username
     if (empty($_POST['Username'])) {
         $errors[] = 'You forgot to enter a username.';
     }else{
-        $up = trim($_POST['Username']);
+        $username = trim($_POST['Username']);
     }
+    
+    //Check for password
  if (empty($_POST['Password'])) {
         $errors[] = 'You forgot to enter a password.';
     }else{
-        $uq = trim($_POST['Password']);
+        $password = trim($_POST['Password']);
     }
 	
 
@@ -80,25 +90,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (empty($_POST['Email'])) {
         $errors[] = 'You forgot to enter an email.';
     }else{
-        $ur = trim($_POST['Email']);
-    }
-	
-		    if (empty($_POST['UniversityId'])) {
-        $errors[] = 'You forgot to enter a university id.';
-    }else{
-        $us = trim($_POST['UniversityId']);
-    }
-	
-	    if (empty($_POST['CreationDate'])) {
-        $errors[] = 'You forgot to enter a creation date.';
-    }else{
-        $ut = trim($_POST['CreationDate']);
+        $email = trim($_POST['Email']);
     }
 	
 		    if (empty($_POST['IsActive'])) {
         $errors[] = 'You forgot to mark user as active';
     }else{
-        $uu = trim($_POST['IsActive']);
+        $isActive = trim($_POST['IsActive']);
     }
 
 
@@ -111,13 +109,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	if (empty($errors)) { //if there are no errors
 
 		//make the query
-		$q = "INSERT INTO users (UserId, FirstName, LastName, MiddleInitial, Username, Password, Email, UniversityId, CreationDate, IsActive) VALUES ('$whatevers ++1', '$un', '$um', '$uo', '$up', '$uq', '$ur', '$us', '$ut', '$uu' )";
+		$q = "INSERT INTO users (FirstName, LastName, MiddleInitial, Username, Password, Email, UniversityId, IsActive) VALUES ('$firstName', '$lastName', '$middleInitial', '$username', '$password', '$email', '$universityid', '$isActive' )";
 		$r = @mysqli_query ($dbc, $q); //run query
 		if ($r) {//if it ran ok
-
-			//print message:
-			echo '<h1>Thank You!</h1>
-			<p>You have created a User.</p>';
+			$q = "SELECT UserId FROM users WHERE Username = '$un' LIMIT 1"
+			$r = @mysqli_query($dbc, $q);
+			while ($row = mysqli_fetch_row($result))
+				{
+                    			$userId = $row[0];
+                		}
+                	$q = "INSERT INTO `users-classes`(`ClassId`, `UserId`) VALUES ($userId,$classId)"
+			$r = @mysqli_query($dbc, $q);
+			if ($r)
+			{
+				$q = "INSERT INTO `users-roles`(`UserId`, `RoleId`) VALUES ($userId,$roleId)";
+				//print message:
+				echo '<h1>Thank You!</h1>
+				<p>You have created a User.</p>';
+			}
+			
 
 		}
 	
@@ -170,12 +180,55 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		</li>
 		
 <li>		  University Id:
-        <input type="text" name="UniversityId" value="<?php if(isset($_POST['UniversityId'])) echo $_POST['UniversityId']; ?>" />
+	<select name="UniversityId">
+	 	<?php
+
+            $result = mysqli_query($dbc,'SELECT UniversityId, Name FROM universities WHERE isActive = true');
+
+            while ($row=mysqli_fetch_array($result))
+            {
+                echo '<option value=' . htmlspecialchars($row['UniversityId']) . '>'
+                . htmlspecialchars($row['Name'])
+                . '</option>';
+            }
+        	?>
+	</select>
+        <!--<input type="text" name="UniversityId" value="<?php // if(isset($_POST['UniversityId'])) echo $_POST['UniversityId']; ?>" />-->
 		</li>
 		
-<li>		 Creation Date:
-        <input type="text" name="CreationDate" value="<?php if(isset($_POST['CreationDate'])) echo $_POST['CreationDate']; ?>" />
-		</li>
+		<li>
+		Class Id:
+	<select name = "ClassId">
+	<?php
+
+            $result = mysqli_query($dbc,'SELECT UniversityId, Name FROM classes WHERE isActive = true');
+
+            while ($row=mysqli_fetch_array($result))
+            {
+                echo '<option value=' . htmlspecialchars($row['ClassId']) . '>'
+                . htmlspecialchars($row['Name'])
+                . '</option>';
+            }
+        	?>
+	</select>
+	</li>
+	
+		User Type:
+	<select name = "UserType">
+	<?php
+
+            $result = mysqli_query($dbc,'SELECT RoleId, RoleName FROM classes WHERE isActive = true');
+
+            while ($row=mysqli_fetch_array($result))
+            {
+                echo '<option value=' . htmlspecialchars($row['RoleId']) . '>'
+                . htmlspecialchars($row['RoleName'])
+                . '</option>';
+            }
+        	?>
+	</select>
+	
+	<!--<input type="text" name="ClassId" value="<?php // if(isset($_POST['ClassId'])) echo $_POST['UniversityId']; ?> />-->
 		
 <li>		  Is this user active type 1 for yes and 0 for no:
         <input type="text" name="IsActive" value="<?php if(isset($_POST['IsActive'])) echo $_POST['IsActive']; ?>" />
