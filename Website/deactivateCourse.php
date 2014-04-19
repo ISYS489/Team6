@@ -27,7 +27,7 @@ require ('mysqliConnect.php');
               {
                   $userRoles[] = $row[0];
               }
-              if (!in_array(1, $userRoles))
+              if (!in_array(1, $userRoles) OR !in_array(2, $userRoles))
                   header("location: index.php");
           }
           else
