@@ -71,7 +71,7 @@ session_start();
             if (in_array(3, $userRoles))
             {
                 echo '<ul class ="Professor">
-<li><a href="addKeyword.php">View/Add Keywords</a></li>
+<li><a href="addKeywords.php">View/Add Keywords</a></li>
 <li><a href="createClass.php">Create Course </a></li>
 <li><a href="deactivateCourse.php">Deactivate Course </a></li>
 <li><a href="createUser.php">Create User</a></li>
@@ -87,7 +87,7 @@ session_start();
             if (in_array(2, $userRoles))
             {
                 echo '<ul class ="UniversityAdmin">
-<li><a href="addKeyword.php">View/Add Keywords</a></li>
+<li><a href="addKeywords.php">View/Add Keywords</a></li>
 <li><a href="createClass.php">Create Course </a></li>
 <li><a href="deactivateCourse.php">Deactivate Course </a></li>
 <li><a href="createUser.php">Create User</a></li>
@@ -102,7 +102,7 @@ session_start();
             if (in_array(1, $userRoles))
             {
                 echo '<ul class ="SiteAdmin">
-<li><a href="addKeyword.php">View/Add Keywords</a></li>
+<li><a href="addKeywords.php">View/Add Keywords</a></li>
 <li><a href="createClass.php">Create Course </a></li>
 <li><a href="deactivateCourse.php">Deactivate Course </a></li>
 <li><a href="createUser.php">Create User</a></li>
