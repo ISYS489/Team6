@@ -1,24 +1,39 @@
-body
+html
 {
-background-color:282164;
+
+background-image:url("/img/americanflag.jpg"); 
+background-repeat:no-repeat;
+
+background-position: right bottom fixed;
+opacity: 0.80;
 }
+
+.page{
+background-color:282164; 
+margin-top:10%;
+}
+
 
 form
 {
-    color: White;
+    color:#000000;
 }
 
 h1
 {
-color:white;
+color:#FFFF00;;
+text-shadow:5px 5px 5px black;
 text-align:center;
+
 }
 
 
 h2
 {
-color:yellow;
+color:#FFFF00;;
 }
+
+
 
 p
 {
@@ -29,16 +44,31 @@ font-family:"Times New Roman";
 font-size:20px;
 color:white;
 text-align:center;
+background-color:#500000; 
+opacity: 0.95;
 }
 
-table, th td
+table th
 {
-    color:White;
+    color:yellow;
     border-style: solid;
-    border-color:9B1321;
-    border-width: medium;
+    border-color:white;
+
+	border-width:1px;
 }
 
+
+ table td
+ {
+ 
+ 
+     color:white;
+    border-style: solid;
+    border-color:white;
+border-width:1px;
+ }
+ 
+ 
 .nav{
     border:1px solid #ccc;
     border-width:1px 0;
@@ -46,19 +76,50 @@ table, th td
     margin:0;
     padding:0;
     text-align:center;
+	color:FFFF00;
+
 }
 .nav li{
     display:inline;
+	text-shadow:5px 5px 5px black;
 }
 .nav a{
     display:inline-block;
     padding:10px;
+
 }
 .nav a:link, a:visited
 {
-color:yellow;
+color:red;
+text-shadow:5px 5px 5px black;
 }
 
+
+.nav2{
+    border:1px solid #ccc;
+    border-width:1px 0;
+    list-style:none;
+    margin:0;
+    padding:0;
+    text-align:center;
+	background-color:282164; 
+	color:FFFF00;
+
+}
+.nav2 li{
+display:inline-block;
+padding:10px;
+}
+.nav2 a{
+    display:inline-block;
+	padding:10px;
+
+}
+.nav2 a:link, a:visited
+{
+color:red;
+text-shadow:5px 5px 5px black;
+}
 
 .accountsettings{
   
@@ -74,7 +135,7 @@ color:yellow;
 }
 .accountsettings a:link, a:visited
 {
-color:yellow;
+color:#FFFF00;
 }
 
 
@@ -87,10 +148,10 @@ color:yellow;
 }
 .register a:link, a:visited
 {
-color:yellow;
+color:#FFFF00;
 
 }
-.terms {color:yellow;} 
+.terms {color:#FFFF00;} 
 
 
 .forgot a{ 
@@ -102,14 +163,206 @@ Color:white;
 }
 
 
-.pep a{ 
-    color:yellow;
-}
+
 
 .accountSettings a{
     color:white;
 }
 
+.eventlist {
+background-color:#500000; 
+margin-top:5%;
+margin-bottom:5%;
+height:65%;
+Width:90%;
+text-align:center;
+
+
+}
+
+
+
 .eventlist a{
-color:yellow;
+background-color:282164; 
+margin-top:2%;
+
+color:0066FF;
+text-decoration:underline;
+text-align:center;
+}
+.eventname {
+text-align:center;
+background-color:282164; 
+margin-top:10%;
+}
+
+ 
+.searches{
+background-color:282164; 
+text-align:center;
+background-color:282164; 
+margin-top:2%;
+
+}
+.pep{
+background-color:#500000; 
+text-align:center;
+background-color:282164;
+
+Width:90%; 
+
+}
+
+.pep a{ 
+    color:#FFFF00;
+	background-color:282164;
+}
+.about{
+background-color:282164; 
+text-align:center;
+background-color:282164; 
+}
+
+.login{
+background-color:282164; 
+text-align:center;
+background-color:282164; 
+}
+
+.login h2{
+text-align:center;
+background-color:282164; 
+color:#FFFF00;
+}
+
+.fergotpass{
+background-color:282164; 
+text-align:center;
+background-color:282164; 
+margin-bottom:12%;
+}
+
+.fergotuser{
+background-color:282164; 
+text-align:center;
+background-color:282164; 
+margin-bottom:12%;
+}
+.accounttoolscss{
+background-color:282164; 
+background-color:282164; 
+margin-bottom:12%;
+}
+.student li{
+
+	text-shadow:5px 5px 5px black;
+	border-style:solid;
+border-width:5px;
+border-color:9B1321;
+font-family:"Times New Roman";
+font-size:18px;
+color:white;
+margin-right:91%;
+width:30%;
+}
+.Professor li{
+
+	text-shadow:5px 5px 5px black;
+	border-style:solid;
+border-width:5px;
+border-color:9B1321;
+font-family:"Times New Roman";
+font-size:18px;
+color:white;
+margin-right:91%;
+width:30%;
+}
+
+.UniversityAdmin li{
+
+	text-shadow:5px 5px 5px black;
+	border-style:solid;
+border-width:5px;
+border-color:9B1321;
+font-family:"Times New Roman";
+font-size:18px;
+color:white;
+margin-right:91%;
+width:30%;
+}
+
+.SiteAdmin li{
+
+	text-shadow:5px 5px 5px black;
+	border-style:solid;
+border-width:5px;
+border-color:9B1321;
+font-family:"Times New Roman";
+font-size:18px;
+color:white;
+margin-right:91%;
+width:30%;
+}
+.myposts {
+
+background-color:282164; 
+margin-bottom:12%;
+margin-right:10%;
+text-align:center;
+}
+.searchlist {
+background-color:#500000; 
+height:35%;
+Width:80%;
+color:#FFFF00;
+margin-bottom:%;
+opacity: 1.0;
+text-align:center;
+}
+
+
+.classposts {
+
+background-color:282164; 
+margin-bottom:12%;
+margin-right:10%;
+text-align:center;
+}
+
+
+
+
+.searchlist a{
+background-color:282164; 
+margin-top:2%;
+color:white;
+text-decoration:underline;
+text-align:center;
+}
+
+
+.viewevent {
+background-color:#500000; 
+color:#FFFF00;
+opacity: 1.0;
+}
+
+
+.keywordtable {
+margin-right:42%;
+margin-left:42%;
+background-color:#500000; 
+opacity: 0.9;
+}
+
+.createclasstable {
+background-color:#500000; 
+height:35%;
+Width:80%;
+color:#FFFF00;
+margin-bottom:%;
+opacity: 1.0;
+text-align:center;
+
+
 }
