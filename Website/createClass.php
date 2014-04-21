@@ -1,14 +1,12 @@
-<!--
-File Name: createClass.php
-Purpose: Create a new class
-Class: ISYS489
-Instructor: Amy Buse
-Author: Kyle Gottfried
-Last Date Modified: 3/28/2014
---><?php
+<?php
+//File Name: createClass.php
+//Purpose: Create a new class
+//Class: ISYS489
+//Instructor: Amy Buse
+//Author: Kyle Gottfried
+//Last Date Modified: 3/28/2014
+
 session_start();
-
-
 ?>
 
 <?php # create a class
