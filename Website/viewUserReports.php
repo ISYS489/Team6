@@ -4,7 +4,7 @@
 //Class: ISYS489
 //Instructor: Amy Buse
 //Author: Cale Kuchnicki
-//Last Date Modified: 4/15/2014
+//Last Date Modified: 4/21/2014
 
 //start the session
 session_start();
@@ -52,11 +52,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 
 //Displays radio buttons for sort selection.
-echo '<form method="post" align="center">Sort by: 
+echo '<font color="yellow"><b><form method="post" align="center">Sort by: 
 <input type="radio" name="order_by" value="last_name" >Last Name
 <input type="radio" name="order_by" value="class" >Class ID
 <input type="radio" name="order_by" value="university" >University
-<input type="submit" value="Sort">
+<input type="submit" value="Sort"></b></font>
 </form>';
 
 ////////////For diplaying report of University Administrators.//////////////////////////////////////////////////////////////////////////////////////////
@@ -76,7 +76,7 @@ if (in_array(1, $userRoles)){//can be seen only by Site Admin (1)
 	
 	//Display headings
 	echo "<h1>Univeristy Administrators</h1>";
-	echo "<table border='1' cellpadding='5' align='center'>";
+	echo "<table border='1' cellpadding='5' align='center' bgcolor='282164'>";
 	echo "<tr bgcolor='9B1321'>
 		  	<th>User ID</th>
 			<th>Full Name</th>
@@ -136,7 +136,7 @@ if (in_array(1, $userRoles) || in_array(2, $userRoles) || in_array(3, $userRoles
 	
 	//Display Table headings	
 	echo "<h1>Professors</h1>";
-	echo "<table border='1' cellpadding='5' align='center'>";
+	echo "<table border='1' cellpadding='5' align='center' bgcolor='282164'>";
 	echo "<tr bgcolor='9B1321'>
 		  	<th>User ID</th>
 			<th>Full Name</th>
@@ -202,7 +202,7 @@ if (in_array(1, $userRoles) || in_array(2, $userRoles) || in_array(3, $userRoles
 	
 	//Display Headings	
 	echo "<h1>Students</h1>";
-	echo "<table border='1' cellpadding='5' align='center'>";
+	echo "<table border='1' cellpadding='5' align='center' bgcolor='282164'>";
 	echo "<tr bgcolor='9B1321'>
 		  	<th>User ID</th>
 			<th>Full Name</th>

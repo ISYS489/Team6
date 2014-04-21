@@ -181,7 +181,7 @@ $r = mysqli_query ($dbc, $userQuery); //run query
 while($row = mysqli_fetch_array($r))
   {
    
-	echo 'Change Course ID:</br>
+	echo '<font color="yellow">Change Course ID:</br>
 	<input type="text" placeholder="New Course ID" name="class_id" autofocus /><br></br>';
 	
 	echo 'First Name    : ' . $row['FirstName'] . '</br>
@@ -214,7 +214,7 @@ while($row = mysqli_fetch_array($r))
 	} else {
 		echo 'Inactive';
 	}
-	echo'</br>';
+	echo'</br></font>';
 
   }
 	

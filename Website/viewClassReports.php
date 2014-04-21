@@ -4,7 +4,7 @@
 //Class: ISYS489
 //Instructor: Amy Buse
 //Author: Cale Kuchnicki
-//Last Date Modified: 4/13/2014
+//Last Date Modified: 4/21/2014
 
 //start the session
 session_start();
@@ -81,17 +81,17 @@ if (in_array(1, $userRoles)){
 
 
 
-echo '<form method="post" align="center">Sort by: 
+echo '<font color="yellow"><form method="post" align="center">Sort by: 
 <input type="radio" name="order_by" value="class_name" >Class Name
 <input type="radio" name="order_by" value="university" >University
 <input type="radio" name="order_by" value="class_id" >Class ID
-<input type="submit" value="Sort">
+<input type="submit" value="Sort"></font>
 </form>';
 
 			  
 	/* execute multi query */
 $result = mysqli_query ($dbc, $classQuery);	
-	echo "<table border='1' cellpadding='5' align='center'>";
+	echo "<table border='1' cellpadding='5' align='center' bgcolor='282164'>";
 	echo "<tr bgcolor='9B1321'>
 		  	<th>Class ID</th>
 			<th>Class Name</th>
