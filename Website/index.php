@@ -1,16 +1,20 @@
 <?php
+//File Name: index.php
+//Purpose: Home page explaining site and navigation.
+//Class: ISYS489
+//Instructor: Amy Buse
+//Author: Cale Kuchnicki
+//Last Date Modified: 4/21/2014
+
+//starts the session
 session_start();
 ?>
 <html>
 
-<head>
-<!--header-->
-
-<?php include 'header.php'; ?>
-
-
-
-</head>
+<?php
+	//Display's header information
+	include 'header.php'; 
+?>
 
 <body>
 <h1>Welcome to team 6's Site</h1>
