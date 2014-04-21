@@ -2,16 +2,7 @@
 
 
 session_start();
-?>
 
-
-<html>
-
-<head>
-
-    <!--header -->
-<?php 	
-require 'header.php';
 require ('mysqliConnect.php');
 
 
@@ -34,8 +25,12 @@ require ('mysqliConnect.php');
           {
           	header("location: index.php");
           }
-		 ?>
- </head>
+          require 'header.php';
+        
+?>
+
+<html>
+
 <body>
 
     <?php
