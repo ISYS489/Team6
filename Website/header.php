@@ -2,11 +2,10 @@
 
 echo'
 
-<h1>
-	<!--image-->
-	<img align="center" src="/img/civ.png" alt="civility_image"></br>
-	Civility In US Politics
-</h1>
+	<center>
+	<img align="center" src="/img/civ3.png" alt="civility_image"></br>
+	<h1>Civility In US Politics</h1></center>
+
 
 
 <ul class ="nav">
