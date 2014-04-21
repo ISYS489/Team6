@@ -47,8 +47,10 @@ session_start();
 
 	require ('keywordFunctions.php');
 
+	echo "<font color='yellow'><b>";
 	//uses post variables 'media_type', 'name', 'political_party', 'news_outlet',  
 	displayKeywords();
+	echo "</b></font>";
 ?>
 
 <button type="submit" align="center" >Search</button>
