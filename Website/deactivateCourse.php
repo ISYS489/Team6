@@ -1,24 +1,15 @@
 <?php
-
+//File Name: deactivateCourse.php
+//Purpose: Deactivate an active course that you control.
+//Class: ISYS489
+//Instructor: Amy Buse
+//Author: Kyle Gottfried
+//Last Date Modified: 4/21/2014
 
 session_start();
-?>
-
-
-<html>
-
-<head>
-
-    <!--header -->
-<?php 	
-require 'header.php';
 require ('mysqliConnect.php');
 
-
-
-
-
-          if ($_SESSION['userid'])
+if ($_SESSION['userid'])
           {
               $userId = $_SESSION['userid'];
               $userRoles = array();
@@ -34,8 +25,14 @@ require ('mysqliConnect.php');
           {
           	header("location: index.php");
           }
-		 ?>
- </head>
+
+require 'header.php';
+
+         
+?>
+
+<html>
+
 <body>
 
     <?php
