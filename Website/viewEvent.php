@@ -197,7 +197,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	JOIN politicalparties pp 	ON e.politicalpartyid = pp.politicalpartyid
 	JOIN mediatypes       mt 	ON e.mediatypeid = mt.mediatypeid where e.eventid = $event_id");
 
-	echo "<table align='center'><tr><td>";
+	echo "<table align='center' bgcolor='282164'><tr><td>";
 
   	while($row = mysqli_fetch_array($result))
 	{
@@ -243,7 +243,7 @@ require 'mysqliConnect.php';
 	where r.eventid = $event_id AND r.isactive=true" );
 	
 	echo '<form class="deactivate" id="deactivate_event" method="post" action="viewEvent.php?eid='.$event_id.'">';
-	echo '<table align="center" border="1">
+	echo '<table align="center"  bgcolor="282164" border="1">
 	<tr>
 	<th> Username </th>
 	<th> rating </th>
@@ -288,7 +288,7 @@ if ($activeUser){
 	echo "
 	<br><br>
 	<form class='search' id='add_comment' method='post' action='viewEvent.php?eid=$event_id'>
-		<table align='center' border='1'>
+		<table align='center' bgcolor='282164' border='1'>
 			<tr>
 				<th> Submit </th>
 				<th> Rating </th>
