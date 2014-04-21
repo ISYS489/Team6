@@ -9,6 +9,7 @@
 //starts the session
 session_start();
 ?>
+<title>Civility In US Politics - BRTeam6</title>
 <html>
 
 <?php
