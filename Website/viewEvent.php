@@ -214,8 +214,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		  echo "<a href=\"".$row['url']."\" id='viewevent' target='_blank' ><INPUT Type='BUTTON' VALUE='View Event Website'></a></br>";
 		  //allow deactivation if in control
 		  if ($allowDeactivate){
-			echo '<form class="deactivate" id="deactivate_event" method="post" action="viewEvent.php?eid='.$event_id.'">
-				<input type="checkbox" name="deactivate_event" value="deactivate">Deactivate 
+			echo '<form id="deactivate_event" method="post" action="viewEvent.php?eid='.$event_id.'">
+				<input type="checkbox" name="deactivate_event" value="deactivate"><font color="white">Deactivate</font> 
 				<button type="submit" action="viewEvent.php?eid='.$event_id.'">Submit Change</button>
 		   	</form></td>';
 		  }
