@@ -112,13 +112,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$q = "INSERT INTO users (FirstName, LastName, MiddleInitial, Username, Password, Email, UniversityId, IsActive) VALUES ('$firstName', '$lastName', '$middleInitial', '$username', '$password', '$email', '$universityid', '$isActive' )";
 		$r = @mysqli_query ($dbc, $q); //run query
 		if ($r) {//if it ran ok
-			$q = "SELECT UserId FROM users WHERE Username = '$un' LIMIT 1"
+			$q = "SELECT UserId FROM users WHERE Username = '$un' LIMIT 1";
 			$r = @mysqli_query($dbc, $q);
 			while ($row = mysqli_fetch_row($result))
 				{
                     			$userId = $row[0];
                 		}
-                	$q = "INSERT INTO `users-classes`(`ClassId`, `UserId`) VALUES ($userId,$classId)"
+                	$q = "INSERT INTO `users-classes`(`ClassId`, `UserId`) VALUES ($userId,$classId)";
 			$r = @mysqli_query($dbc, $q);
 			if ($r)
 			{
@@ -179,7 +179,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <input type="text" name="Email" value="<?php if(isset($_POST['Email'])) echo $_POST['Email']; ?>" />
 		</li>
 		
-<li>		  University Id:
+<li>		  University:
 	<select name="UniversityId">
 	 	<?php
 
@@ -197,16 +197,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		</li>
 		
 		<li>
-		Class Id:
+		Class:
 	<select name = "ClassId">
 	<?php
 
-            $result = mysqli_query($dbc,'SELECT UniversityId, Name FROM classes WHERE isActive = true');
+            $result = mysqli_query($dbc,'SELECT UniversityId, ClassName FROM classes WHERE isActive = true');
 
             while ($row=mysqli_fetch_array($result))
             {
                 echo '<option value=' . htmlspecialchars($row['ClassId']) . '>'
-                . htmlspecialchars($row['Name'])
+                . htmlspecialchars($row['ClassName'])
                 . '</option>';
             }
         	?>
@@ -217,7 +217,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	<select name = "UserType">
 	<?php
 
-            $result = mysqli_query($dbc,'SELECT RoleId, RoleName FROM classes WHERE isActive = true');
+            $result = mysqli_query($dbc,'SELECT RoleId, RoleName FROM roles');
 
             while ($row=mysqli_fetch_array($result))
             {
