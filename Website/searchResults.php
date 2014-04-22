@@ -54,6 +54,9 @@ if (!empty($_POST['name'])){
 if (!empty($_POST['news_outlet'])){
 	$searchString = $searchString . " and nO.newsoutletid = '{$_POST['news_outlet']}'";	
 }
+if (!empty($_POST['user_id'])){
+	$searchString = $searchString . " and g.userid = '{$_POST['user_id']}'";	
+}
 
  
 $result = mysqli_query($dbc,"SELECT  DISTINCT e.EventId, e.EventName, date(e.PublishDate) AS PublishDate, e.DateOfEvent, p.PoliticalParty, nO.NewsOutlet, m.MediaType, n.Name, avg(a.rating) as rating, z.name, q.classid
