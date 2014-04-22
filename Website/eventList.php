@@ -58,6 +58,7 @@ echo "<table border='1' class='eventlist' align='center'>
 <th>Event Name</th>
 <th> Publish Date</th>
 <th> Date of Event</th>
+<th> Person of Interest</th>
 <th> Political Party</th>
 <th> Media Type</th>
 <th> News Outlet</th>
@@ -74,6 +75,7 @@ echo "<table border='1' class='eventlist' align='center'>
   echo "<td>" . $row['EventName'] . "</td>";
   echo "<td>" . $row['PublishDate'] . "</td>";
   echo "<td>" . $row['DateOfEvent'] . "</td>";
+  echo "<td>" . $row['Name'] . "</td>";
   echo "<td>" . $row['PoliticalParty'] . "</td>";
   echo "<td>" . $row['MediaType'] . "</td>";
   echo "<td>" . $row['NewsOutlet'] . "</td>";
