@@ -21,9 +21,11 @@ session_start();
 </head>
 
 <body>
+<center>
 <p>
-<h2>Account Information</h2>
-	<font color="white">
+<h2 >Account Information</h2>
+
+	<font color="white" >
 		<?php require ('mysqliConnect.php');
 		
 			$userID = $_SESSION['userid'];
@@ -53,6 +55,7 @@ session_start();
 		?>
 	</font>
 </p>
+</center>
 
 
 <ul class ="accountSettings">

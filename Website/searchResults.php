@@ -72,7 +72,7 @@ group by e.EventName");
 
 
 echo "<table border='1' class='searchlist' align='center'>
-<tr>
+<tr bgcolor='9B1321' >
 <th>Event Name</th>
 <th> Publish Date</th>
 <th> Date of Event</th>

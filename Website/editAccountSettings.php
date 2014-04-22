@@ -153,7 +153,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 ?>
 
 
-<h1>Edit Account</h1>
+
 </head>
 
 
@@ -162,13 +162,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
 
-<p>
+
 <h1>Edit Your Account Information</h1>
 
 <!-- needs to be changed -->
 
 <form class ="search" id="search" method="post" action="editAccountSettings.php">
-
+<p>
 <?php require ('mysqliConnect.php');
 
 

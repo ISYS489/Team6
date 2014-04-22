@@ -1,6 +1,6 @@
 html
 {
-
+background-color:282164;
 background-image:url("/img/americanflag.jpg"); 
 background-repeat:no-repeat;
 
@@ -9,7 +9,7 @@ opacity: 0.80;
 }
 
 .page{
-background-color:282164; 
+ 
 margin-top:10%;
 }
 
@@ -40,11 +40,16 @@ p
 border-style:solid;
 border-width:5px;
 border-color:9B1321;
+margin-left: auto;
+margin-right: auto;
+padding-right:15px;
+text-align:center;
+padding-left:15px;
 font-family:"Times New Roman";
 font-size:20px;
 color:white;
-text-align:center;
 background-color:#500000; 
+width:700;
 opacity: 0.95;
 }
 
@@ -102,7 +107,7 @@ text-shadow:5px 5px 5px black;
     margin:0;
     padding:0;
     text-align:center;
-	background-color:282164; 
+ 
 	color:FFFF00;
 
 }
@@ -123,7 +128,6 @@ text-shadow:5px 5px 5px black;
 
 .accountsettings{
   
-
     text-align:right;
 }
 .accountsettings li{
@@ -167,10 +171,11 @@ Color:white;
 
 .accountSettings a{
     color:white;
+    
 }
 
 .eventlist {
-background-color:#500000; 
+background-color:#282164; 
 margin-top:5%;
 margin-bottom:5%;
 height:65%;
@@ -205,9 +210,8 @@ margin-top:2%;
 
 }
 .pep{
-background-color:#500000; 
+
 text-align:center;
-background-color:282164;
 
 Width:90%; 
 
@@ -251,6 +255,9 @@ margin-bottom:12%;
 .accounttoolscss{
 background-color:282164; 
 background-color:282164; 
+width:750;
+margin-left: auto;
+margin-right: auto;
 margin-bottom:12%;
 }
 .student li{
@@ -311,7 +318,7 @@ margin-right:10%;
 text-align:center;
 }
 .searchlist {
-background-color:#500000; 
+background-color:#282164; 
 height:35%;
 Width:80%;
 color:#FFFF00;
