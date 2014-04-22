@@ -41,7 +41,7 @@ session_start();
     <br/><br/>
     
     <!--Select element that contains available courses to choose from-->
-    <form id="courseSelectionForm" method="get">
+    <form id="courseSelectionForm" method="get" align='center'>
     <select name="ClassId">
         <!-- student&professor -->
         <?php
@@ -142,8 +142,8 @@ session_start();
     </select>
     <button type="submit">Grab Ratings for this Course</button>
     </form>
-    
-    <table>
+    <p>
+    <table align='center'>
         <tr>
             <th>Event Name</th>
             <th>Comment</th>
@@ -207,4 +207,5 @@ session_start();
             
             
             </table>
+            </p>
 </body>
