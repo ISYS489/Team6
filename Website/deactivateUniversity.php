@@ -108,8 +108,8 @@ session_start();
 
 
     <h1>Deactivate a University</h1>
-    <form id="deactivateUniversityForm" method="post">
-        Select University to Deactivate:
+    <form id="deactivateUniversityForm" method="post" align="center">
+        <font color='gold'> Select University to Deactivate: </font>
         <br />
         <select name="universityId">
             <?php
@@ -126,7 +126,7 @@ session_start();
             mysqli_close($dbc);
             ?>
         </select>
-        <br />
+        <br /></br>
         <button type="submit" onclick="window.confirm('Are you sure you want to deactivate this University?')">Deactivate University</button>
     </form>
 </body>
