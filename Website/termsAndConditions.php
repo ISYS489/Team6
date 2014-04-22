@@ -45,7 +45,7 @@ session_start();
     
     if ($usernameCount != 0)
     {
-        echo "The username you entered is not unique, plese click the back button and enter a unique username";
+        echo "The username you entered is not unique, please click the back button and enter a unique username";
     }
     else 
     {
