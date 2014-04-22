@@ -128,5 +128,5 @@ mysqli_close($dbc);
 
 
 </body>
-<?php include("footer.php");?>
+
 </html> 
