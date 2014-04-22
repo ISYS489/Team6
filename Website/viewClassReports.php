@@ -119,8 +119,7 @@ $result = mysqli_query ($dbc, $classQuery);
 						$course=$row['classid'];
 			  echo '</td>
 					<td><form id="viewClassPosts" method="post" action="searchResults.php">
-						<input type="checkbox" name="coursenumber" value="'. $row['classid'] . '">
-						<button type="submit" >Submit Change</button>
+							<button type="submit"  name="coursenumber" value="'. $row['classid'] . '">View Class Events</button>
 		   				</form>
 					</td>
 				</tr>';
