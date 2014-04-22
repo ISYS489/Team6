@@ -61,8 +61,8 @@ echo "<table border='1' class='eventlist' align='center'>
 <th> Political Party</th>
 <th> Media Type</th>
 <th> News Outlet</th>
-<th>rating</th>
-<th>University</th>
+<th> Rating</th>
+<th> University</th>
 <th> click below to view event </th>
 </tr>";
 
