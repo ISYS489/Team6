@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$classId = trim($_POST['ClassId']);
 	
 	//Assign Role
-	$roleId = trim($_POST['RoleId']);
+	$roleId = trim($_POST['UserType']);
 	
 	//Check for a user name
 	if (empty($_POST['FirstName']))
@@ -109,23 +109,29 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	if (empty($errors)) { //if there are no errors
 
 		//make the query
-		$q = "INSERT INTO users (FirstName, LastName, MiddleInitial, Username, Password, Email, UniversityId, IsActive) VALUES ('$firstName', '$lastName', '$middleInitial', '$username', '$password', '$email', '$universityid', '$isActive' )";
+		$q = "INSERT INTO users (FirstName, LastName, MiddleInitial, Username, Password, Email, UniversityId, IsActive) VALUES ('$firstName', '$lastName', '$middleInitial', '$username', '$password', '$email', '$universityId', '$isActive' )";
 		$r = @mysqli_query ($dbc, $q); //run query
 		if ($r) {//if it ran ok
-			$q = "SELECT UserId FROM users WHERE Username = '$un' LIMIT 1";
+			$q = "SELECT UserId FROM users WHERE Username = '$username' LIMIT 1";
 			$r = @mysqli_query($dbc, $q);
-			while ($row = mysqli_fetch_row($result))
+			$userId = 0;
+			while ($row = mysqli_fetch_row($r))
 				{
                     			$userId = $row[0];
-                		}
-                	$q = "INSERT INTO `users-classes`(`ClassId`, `UserId`) VALUES ($userId,$classId)";
+                }
+				echo "UserID=$userId";
+                	$q = "INSERT INTO `users-classes`(`ClassId`, `UserId`) VALUES ($classId,$userId)";
 			$r = @mysqli_query($dbc, $q);
 			if ($r)
 			{
 				$q = "INSERT INTO `users-roles`(`UserId`, `RoleId`) VALUES ($userId,$roleId)";
+				$r = @mysqli_query($dbc, $q);
+				if ($r)
+				{
 				//print message:
 				echo '<h1>Thank You!</h1>
 				<p>You have created a User.</p>';
+				}
 			}
 			
 
@@ -201,7 +207,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	<select name = "ClassId">
 	<?php
 
-            $result = mysqli_query($dbc,'SELECT UniversityId, ClassName FROM classes WHERE isActive = true');
+            $result = mysqli_query($dbc,'SELECT ClassId, ClassName FROM classes WHERE isActive = true');
 
             while ($row=mysqli_fetch_array($result))
             {
