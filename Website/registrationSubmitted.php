@@ -36,8 +36,8 @@ $uN = htmlspecialchars($_POST['username']);
 $p = htmlspecialchars($_POST['password']);
 $e = htmlspecialchars($_POST['email']);
 $cN = -1;
-if (!empty($_POST['coursenumber']))
-    $cN = htmlspecialchars($_POST['coursenumber']);
+if (!empty($_POST['classnumber']))
+    $cN = htmlspecialchars($_POST['classnumber']);
 $universityId = 0;
 $isActive = 1;
 
