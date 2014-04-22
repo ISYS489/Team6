@@ -211,6 +211,7 @@ if (in_array(1, $userRoles) || in_array(2, $userRoles) || in_array(3, $userRoles
 			<th>University</th>
 			<th>Role</th>
 			<th>Class</th>
+			<th>View Student Events</th>
 		</tr>";
 	
 	//Display results for query as table rows	
@@ -224,6 +225,9 @@ if (in_array(1, $userRoles) || in_array(2, $userRoles) || in_array(3, $userRoles
 					<td>" . $row['name'] . "</td>
 					<td>" . $row['rolename'] . "</td>
 					<td>" . $row['classid'] . "</td>
+					<td><form id='viewStudentPosts' method='post' action='searchResults.php'>
+							<button type='submit'  name='user_id' value='". $row['userid'] . "'>Student's Events</button>
+		   				</form></td>
 				</tr>";
 	}
 	echo "</table> <br><br>";
