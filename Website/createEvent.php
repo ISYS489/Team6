@@ -130,8 +130,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <p>
 	   Event Name: <input type="text" size="100" maxlength="50" name="event_name" value="<?php if(isset($_POST['event_name'])) echo $_POST['event_name']; ?>" /></br>
 Event Description: <input type="text" size="100" maxlength="1000" rows="5" name="event_description" value="<?php if(isset($_POST['event_description'])) echo $_POST['event_description'];?>"/></br>
-        Event URL: <input type="text" size="100" maxlength="1000" name="URL" value="<?php if(isset($_POST['URL'])) echo $_POST['URL']; ?>" /></br>
-        Date of Occurance: <input type="date" name="Date" value="<?php if(isset($_POST['Date'])) echo $_POST['Date']; ?>" /></br>
+        Event URL: <input type="text" size="100" maxlength="1000" name="URL" value="<?php if(isset($_POST['URL'])) echo $_POST['URL']; ?>" /></br></br>
+        Date of Occurance: <input type="date" name="Date" value="<?php if(isset($_POST['Date'])) echo $_POST['Date']; ?>" /></br></br>
 
 <?php require ('mysqliConnect.php');
 	  require ('keywordFunctions.php');

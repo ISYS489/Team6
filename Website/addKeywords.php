@@ -4,13 +4,13 @@
 //Class: ISYS489
 //Instructor: Amy Buse
 //Author: Cale Kuchnicki
-//Last Date Modified: 3/30/2014
+//Last Date Modified: 4/21/2014
 
 //performs INSERT query to add a record to the university table
 session_start();
 $page_title = 'Add Keyword';
 
-include ('header.php');
+
 require ('mysqliConnect.php');
 
 if ($_SESSION['userid'])
@@ -22,13 +22,17 @@ while ($row = mysqli_fetch_array($result))
               {
                   $userRoles[] = $row[0];
               }
-              if (!in_array(1, $userRoles) OR !in_array(2, $userRoles) OR !in_array(3, $userRoles))
-                  header("location: index.php");
+              if (in_array(1, $userRoles) OR in_array(2, $userRoles) OR in_array(3, $userRoles)){
+				
+			  }else{
+                  header("location: index.php");}
           }
           else
           {
            header("location: index.php");
           }
+          
+include ('header.php');
 
 //check for form submission:
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {

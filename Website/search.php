@@ -25,11 +25,12 @@ session_start();
 
 <h1>The Search Page</h1>
 
-<p align="center">
+
 <form class ="search" align="center" id="search" method="post" action="searchResults.php">
 
+<p align="center">
 
-<h2 align="center" >Search</h2>
+<font color="yellow">Please complete one or more fields.<br></font>
 
 <input align="center" type="text" placeholder="Event Name " name="eventname"  autofocus />
 <br></br>
@@ -57,10 +58,10 @@ session_start();
 <br></br>
 
 
-
+</p>
 
 </form>
-</p>
+
 
 </body>
 </html> 

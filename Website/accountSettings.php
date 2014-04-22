@@ -17,14 +17,13 @@ session_start();
 
 <?php require 'header.php'; ?>
 
-<h1>Account Settings</h1>
+<h1>Account Information</h1>
 </head>
 
 <body>
 <center>
-<p>
-<h2 >Account Information</h2>
 
+<p>
 	<font color="white" >
 		<?php require ('mysqliConnect.php');
 		
@@ -37,9 +36,7 @@ session_start();
 			  {
 			  	//echo 'Active Course #: ' . $row['FirstName'] . '</br>';
 				//echo 'University: ' . $row['FirstName'] . '</br>';
-				echo 'First Name    : ' . $row['FirstName'] . '</br>';
-				echo 'Middle Initial: ' . $row['MiddleInitial'] . '</br>';
-				echo 'Last Name     : ' . $row['LastName'] . '</br>';
+				echo 'Name    : ' . $row['FirstName'] . ' ' . $row['MiddleInitial'] . '. ' . $row['LastName'] . '</br>';
 				echo 'Email Address : ' . $row['Email'] . '</br>';
 				echo 'Date Created  : ' . $row['CreationDate'] . '</br>';
 				echo 'Activity Status: ';
@@ -59,10 +56,7 @@ session_start();
 
 
 <ul class ="accountSettings">
-<h2>Edit Account Settings</h2>
-<ul class ="editaccountsettings">
-<li><a href="editAccountSettings.php">Edit Account Settings</a></li>
-</ul>
+<a href="editAccountSettings.php"><h2>Edit Account Information</h2></a>
 </ul>
 
 </body>

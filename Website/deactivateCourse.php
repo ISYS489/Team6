@@ -18,8 +18,9 @@ if ($_SESSION['userid'])
               {
                   $userRoles[] = $row[0];
               }
-              if (!in_array(1, $userRoles) OR !in_array(2, $userRoles))
-                  header("location: index.php");
+              if (in_array(1, $userRoles) OR in_array(2, $userRoles)){
+				//allow user to be here
+				}else{ header("location: index.php");}
           }
           else
           {

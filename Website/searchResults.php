@@ -65,9 +65,10 @@ LEFT OUTER JOIN mediatypes AS m ON e.MediaTypeId = m.MediaTypeId
 left outer join ratings as a on e.eventid = a.eventid
 left outer join users as g on e.userid = g.userid
 left outer join universities as z on g.UniversityId = z.UniversityId
-left outer join classes as q on g.universityid = q.universityid
+left outer join `users-classes` as f on g.userId = f.userId
+left outer join classes as q on f.classid = q.classid
 WHERE e.isvisible=true  $searchString    
-group by e.EventName");
+group by e.EventName"); 
 //where eventname = '{$_POST['search']}'");
 
 

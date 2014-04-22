@@ -22,11 +22,11 @@ session_start();
 
 <p>
 
-<ul class ='accounttools'>
-<li><a href='viewUserReports.php'>View User Reports</a></li><br>
-<li><a href='viewRatingReports.php'>View Rating Reports</a></li><br>
-<li><a href='viewClassReports.php'>View Course Reports</a></li><br>
-</ul>
+<br>
+<a href='viewUserReports.php'>View User Report</a><br><br>
+<a href='viewRatingReports.php'>View Rating Report</a><br><br>
+<a href='viewClassReports.php'>View Class Report</a><br><br>
+<br>
 
 
 

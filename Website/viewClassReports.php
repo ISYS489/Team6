@@ -99,6 +99,7 @@ $result = mysqli_query ($dbc, $classQuery);
 			<th>Start Date</th>
 			<th>End Date</th>
 			<th>Status</th>
+			<th>Student Events</th>
 		</tr>";
 	
 		
@@ -114,8 +115,15 @@ $result = mysqli_query ($dbc, $classQuery);
 								echo "Active";
 							} else {
 								echo "Inactive";
-							} "</td>
-				</tr>";
+							} 
+						$course=$row['classid'];
+			  echo '</td>
+					<td><form id="viewClassPosts" method="post" action="searchResults.php">
+						<input type="checkbox" name="coursenumber" value="'. $row['classid'] . '">
+						<button type="submit" >Submit Change</button>
+		   				</form>
+					</td>
+				</tr>';
 	}
 	echo "</table> <br><br>";
 	
