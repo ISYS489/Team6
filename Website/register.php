@@ -1,5 +1,5 @@
 <?php
-//File Name: createUniversity.php
+//File Name: register.php
 //Purpose: Page is where users register to use the site.
 //Class: ISYS489
 //Instructor: Amy Buse
