@@ -82,10 +82,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	
 	//Check login for userid
 	if (empty($_SESSION['userid'])) {
-	$errors[] = 'You are not logged in.';
+		$errors[] = 'You are not logged in.';
 	}else{
-	$uid = trim($_SESSION['userid']);
+		//Check for valid user
+		require ('mysqliConnect.php');
+		//make the query
+		$q = "SELECT isactive FROM users WHERE userid=" . $_SESSION['userid'];
+		$r = mysqli_query ($dbc, $q);
+		
+		while ($row = mysqli_fetch_array($r)) {
+			if ($row['isactive']){
+				$uid = trim($_SESSION['userid']);
+			} else {
+				$errors[] = 'Sorry, You do not have this priviledge as you are inactive.</br>
+							         Contact the Administrator and';
+			}		           
+		} 
+		 
 	}
+	
+	//Check for valid user
 	
 	
 	if (empty($errors)) { //if there are no errors
@@ -116,9 +132,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		<p>The following error(s) occurred:<br />';
 		foreach ($errors as $msg) { //print each
 		echo " - $msg<br />\n";
-	}
+		}
 
-	echo '</p><p>Please try again.</p><p><br /></p>';
+	echo '</br>Please try again.</p>';
 	
 	}
 }
