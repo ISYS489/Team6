@@ -3,7 +3,7 @@
 echo'
 
 	<center>
-	<img align="center" src="/img/civ3.png" alt="civility_image"></br>
+	<img align="center" src="/img/civalScholarsLogo.png" alt="civility_image"></br>
 	<h1>Civility In US Politics</h1></center>
 
 
