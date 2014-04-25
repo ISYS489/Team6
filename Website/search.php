@@ -35,20 +35,27 @@ session_start();
 <input align="center" type="text" placeholder="Event Name " name="eventname"  autofocus />
 <br></br>
 
-<input type="text" placeholder="Rating " name="rating" align="center" autofocus />
+<input type="number" placeholder="Rating " min="0" max"5" name="rating" align="center" autofocus />
 <br></br>
 
-<input type="text" placeholder="Course # " name="coursenumber" align="center" autofocus />
+<input type="number" placeholder="Course # " name="coursenumber" align="center" autofocus />
 <br></br>
 
 <input type="text" placeholder="University " name="university" align="center" autofocus />
 <br></br>
 
+<font color='yellow'>
+Year Range Beginning: <input type="number" name="StartYear" min="1750" max="2050" placeholder="Any">
+
+Ending: <input type="number" name="EndYear" min="1750" max="2050" placeholder="Any">
+<br></br>
+  
+
 <?php
 
 	require ('keywordFunctions.php');
 
-	echo "<font color='yellow'><b>";
+	
 	//uses post variables 'media_type', 'name', 'political_party', 'news_outlet',  
 	displayKeywords();
 	echo "</b></font>";

@@ -18,7 +18,7 @@ session_start();
 <!--header-->
 
 <?php require 'header.php';
-require 'mysqliConnect.php';
+require '../mysqli_connect.php';
 ?>
 </head>
 
@@ -57,6 +57,12 @@ if (!empty($_POST['news_outlet'])){
 if (!empty($_POST['user_id'])){
 	$searchString = $searchString . " and g.userid = '{$_POST['user_id']}'";	
 }
+if (!empty($_POST['StartYear']) AND !empty($_POST['EndYear'] )){
+ 	if ($_POST['StartYear'] < $_POST['EndYear']){
+		$searchString = $searchString . " AND year(e.DateOfEvent) > '{$_POST['StartYear']}' AND year(e.DateOfEvent) < '{$_POST['EndYear']}'";		
+	}	
+}
+
 
  
 $result = mysqli_query($dbc,"SELECT  DISTINCT e.EventId, e.EventName, date(e.PublishDate) AS PublishDate, e.DateOfEvent, p.PoliticalParty, nO.NewsOutlet, m.MediaType, n.Name, avg(a.rating) as rating, z.name, q.classid
