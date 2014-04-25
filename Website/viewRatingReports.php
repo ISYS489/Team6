@@ -148,6 +148,7 @@ session_start();
             <th>Event Name</th>
             <th>Comment</th>
             <th>Rating</th>
+            <th>Date</th>
             <?php /* If the user is a Proffesor, University Administrator or Site Admin delete row needs to exist. */
             if (in_array(1, $userRoles) OR in_array(2, $userRoles) OR in_array(3, $userRoles))
             {
@@ -162,7 +163,7 @@ session_start();
                 $classId = $_GET['ClassId'];
                 if (in_array(4, $userRoles))
                 {
-                    $query = "SELECT e.EventName, r.Comment, r.Rating
+                    $query = "SELECT e.EventName, r.Comment, r.Rating r.RatingDate
                     FROM `ratings` AS r
                     LEFT OUTER JOIN `events` AS e ON r.EventId = e.EventId
                     LEFT OUTER JOIN `users-classes` AS uC ON r.UserId = uC.UserId
@@ -177,13 +178,14 @@ session_start();
                           echo "<td>" . $row['EventName'] . "</td>";
                           echo "<td>" . $row['Comment'] . "</td>";
                           echo "<td>" . $row['Rating'] . "</td>";
+                          echo "<td>" . $row['RatingDate'] . "</td>";
                       
                           echo "</tr>";
                     }
                 }
                 else
                 {
-                    $query = "SELECT e.EventName, r.Comment, r.Rating
+                    $query = "SELECT e.EventName, r.Comment, r.Rating, r.RatingDate
                     FROM `ratings` AS r
                     LEFT OUTER JOIN `events` AS e ON r.EventId = e.EventId
                     LEFT OUTER JOIN `users-classes` AS uC ON r.UserId = uC.UserId
@@ -197,6 +199,7 @@ session_start();
                           echo "<td>" . $row['EventName'] . "</td>";
                           echo "<td>" . $row['Comment'] . "</td>";
                           echo "<td>" . $row['Rating'] . "</td>";
+                          echo "<td>" . $row['RatingDate'] . "</td>";
                       
                           echo "</tr>";
                     }
