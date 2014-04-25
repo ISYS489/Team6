@@ -17,29 +17,19 @@ session_start();
 <head>
 
     <?php require 'header.php';
-require 'mysqliConnect.php';
+require '../mysqli_connect.php';
 ?>
 
 
 </head>
 <body>
-
+<div class="slideDown">
     <h1>Event List</h1>
 <?php
 
-//DEFINE ('DB_USER', 'isys489c_thompk');
-//DEFINE ('DB_PASSWORD', 'q8K[A4LJDd&]');
-//DEFINE ('DB_HOST', 'localhost');
-//DEFINE ('DB_NAME', 'isys489c_brteam6');
 
-////Make Connection   @= hide errors                                    die will terminate function of the script
-//$dbc = @mysqli_connect (DB_HOST, DB_USER, DB_PASSWORD, DB_NAME) OR die ('Could not connect to MySQL: ' . mysqli_connect_error());
-//if (mysqli_connect_errno())
-//  {
-//  echo "Failed to connect to MySQL: " . mysqli_connect_error();
-//  }
 
-$result = mysqli_query($dbc,"SELECT e.EventName, e.EventId, e.userid, date(e.PublishDate) AS PublishDate, e.DateOfEvent, p.PoliticalParty, nO.NewsOutlet, m.MediaType, n.Name, avg(z.rating) as rating, x.name
+$result = mysqli_query($dbc,"SELECT e.EventName, e.EventId, e.userid, date(e.PublishDate) AS PublishDate, e.DateOfEvent, p.PoliticalParty, nO.NewsOutlet, m.MediaType, n.Name, truncate(avg(z.rating), 1) as rating, x.name
 FROM events AS e
 LEFT OUTER JOIN politicalparties AS p ON e.PoliticalPartyId = p.PoliticalPartyId
 LEFT OUTER JOIN newsoutlets AS nO ON e.NewsOutletId = nO.NewsOutletId
@@ -53,7 +43,8 @@ group by e.EventName");
 
 
 
-echo "<table border='1' class='eventlist' align='center'>
+echo "<div id='resize'>
+<table border='1' class='eventlist' align='center'>
 <tr bgcolor='9B1321' >
 <th>Event Name</th>
 <th> Publish Date</th>
@@ -65,7 +56,8 @@ echo "<table border='1' class='eventlist' align='center'>
 <th> Rating</th>
 <th> University</th>
 <th> click below to view event </th>
-</tr>";
+</tr>
+</div>";
 
 
   while($row = mysqli_fetch_array($result))
@@ -96,4 +88,5 @@ mysqli_close($dbc);
 
 ?>
 </body>
+</div>
 </html>
