@@ -35,7 +35,7 @@ session_start();
 <input align="center" type="text" placeholder="Event Name " name="eventname"  autofocus />
 <br></br>
 
-<input type="number" placeholder="Rating " min="0" max"5" name="rating" align="center" autofocus />
+Average Rating: <input type="number" placeholder="Rating " min="0" max="5" name="rating" align="center" autofocus />
 <br></br>
 
 <input type="number" placeholder="Course # " name="coursenumber" align="center" autofocus />
