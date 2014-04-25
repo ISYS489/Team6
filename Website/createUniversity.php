@@ -74,7 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	//Check for a university end date
 	if (empty($_POST['end_date']))
     {
-		$errors[] = 'You forgot to enter a end date.';
+		
     }
     else if (isValidDateTimeString($_POST['end_date']) && strtotime($_POST['start_date']) < strtotime($_POST['end_date']))
     {
@@ -82,7 +82,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	}
     else
     {
-    	$errors[] = 'Please enter a valid End Date. Make sure the year is earlier than 2038.';
+    	$errors[] = 'Please enter a valid End Date. Make sure the year is earlier than 2038
+		as per <a href="http://en.wikipedia.org/wiki/Year_2038_problem#Solutions"> the 2038 probem </a> <br> and after the the start date';
     }
     
 
@@ -120,7 +121,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 ?>
 <h1>Create University</h1>
 <form action="createUniversity.php" method="post">
-
+<div class="bounce">
     <p>
         University Name:
         <input type="text" name="university_name" value="<?php if(isset($_POST['university_name'])) echo $_POST['university_name']; ?>" />
@@ -131,7 +132,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         End Date:
         <input type="text" name="end_date" placeholder="YYYY/MM/DD" value="<?php if(isset($_POST['end_date'])) echo $_POST['end_date']; ?>" />
     </p>
-
+	</div>
+<div class="button">
     <input type="submit" name="submit" value="Create University" />
+	</div>
     <br />
 </form>
