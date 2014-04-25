@@ -23,7 +23,7 @@ require 'mysqliConnect.php';
 </head>
 
 
-
+<div class="slideUp">
 <h1>Search Results</h1>
 
 <?php
@@ -31,7 +31,7 @@ require 'mysqliConnect.php';
 $searchString = null;
 
 if (!empty($_POST['eventname'])){
-	$searchString = " and e.eventname = '{$_POST['eventname']}'";	
+	$searchString = " and e.eventname like '%{$_POST['eventname']}%'";	
 }
 if (!empty($_POST['rating'])){
 	$searchString = $searchString . " and a.rating = '{$_POST['rating']}'";	
@@ -75,7 +75,8 @@ group by e.EventName");
 //where eventname = '{$_POST['search']}'");
 
 
-echo "<table border='1' class='searchlist' align='center'>
+echo "<div id='searchlistresize'>
+<table border='1' class='searchlist' align='center'>
 <tr bgcolor='9B1321' >
 <th>Event Name</th>
 <th> Publish Date</th>
@@ -88,7 +89,8 @@ echo "<table border='1' class='searchlist' align='center'>
 <th>University</th>
 <th>Course Number</th>
 <th> click below to view event </th>
-</tr>";
+</tr>
+</div>";
 
 
   while($row = mysqli_fetch_array($result))
@@ -128,5 +130,5 @@ mysqli_close($dbc);
 
 
 </body>
-
+</div>
 </html> 

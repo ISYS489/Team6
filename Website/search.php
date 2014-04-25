@@ -22,7 +22,7 @@ session_start();
 </head>
 
 <body>
-
+<div class="hatch">
 <h1>The Search Page</h1>
 
 
@@ -62,6 +62,6 @@ session_start();
 
 </form>
 
-
+</div>
 </body>
 </html> 
