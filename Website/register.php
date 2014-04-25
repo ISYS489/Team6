@@ -25,7 +25,7 @@ session_start();
     return re.test(email);
 }
     function validatePassword(password) {
-    var re = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,8}$/;
+    var re = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,12}$/;
     return re.test(password);
     }
 function validateForm()
@@ -67,7 +67,7 @@ function validateForm()
     }
     if (validatePassword(x) == false)
     {
-        alert("Your password must be at least 4 characters, no more than 8 characters, and must include at least one upper case letter, one lower case letter, and one numeric digit.");
+        alert("Your password must be at least 8 characters, no more than 12 characters, and must include at least one upper case letter, one lower case letter, and one numeric digit.");
         return false;
     }
     var x=document.forms["registerForm"]["password2"].value;
