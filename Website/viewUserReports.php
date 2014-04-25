@@ -52,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 
 //Displays radio buttons for sort selection.
-echo '<font color="yellow"><b><form method="post" align="center">Sort by: 
+echo '<font color="yellow"><b><form id="reportsform" method="post" align="center">Sort by: 
 <input type="radio" name="order_by" value="last_name" >Last Name
 <input type="radio" name="order_by" value="class" >Class ID
 <input type="radio" name="order_by" value="university" >University
@@ -184,15 +184,16 @@ if (in_array(1, $userRoles) || in_array(2, $userRoles) || in_array(3, $userRoles
 			$userClass = ' uc.classid=' . $row['classid'];
 			
 		}
-		$whereStatement = 'ur.roleid=4 AND' . $userClass;
+		$whereStatement = 'ur.roleid=4 AND ' . $userClass;
 	}
 
 	//Query to build upon with $whereStatment selection from above	
 	$userQuery = "
-		SELECT u.userid, u.firstname, u.middleinitial, u.lastname, u.email, uv.name, r.rolename, uc.classid, u.username FROM users u
+		SELECT u.userid, u.firstname, u.middleinitial, u.lastname, u.email, uv.name, r.rolename, uc.classid, u.username 
+		FROM users u
 		LEFT JOIN universities uv ON u.universityid = uv.universityid
 		LEFT JOIN `users-roles` ur ON u.userid = ur.userid
-        LEFT JOIN roles r ON ur.roleid=r.roleid
+        LEFT JOIN roles r ON ur.roleid = r.roleid
         LEFT JOIN `users-classes` uc ON u.userid = uc.userid
         WHERE $whereStatement
         ORDER BY $orderBy ";
