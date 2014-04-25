@@ -239,15 +239,16 @@ mysqli_close($dbc);
 ///Displays Ratings that match event ID
 require 'mysqliConnect.php';
 
-	$result = mysqli_query($dbc,"SELECT r.ratingid, r.rating, r.comment, u.username from ratings r JOIN users u ON r.userid = u.userid
+	$result = mysqli_query($dbc,"SELECT r.ratingid, r.rating, r.comment, date(r.ratingdate) as ratingdate, u.username from ratings r JOIN users u ON r.userid = u.userid
 	where r.eventid = $event_id AND r.isactive=true" );
 	
 	echo '<form class="deactivate" id="deactivate_event" method="post" action="viewEvent.php?eid='.$event_id.'">';
 	echo '<table align="center"  bgcolor="282164" border="1">
 	<tr>
 	<th> Username </th>
-	<th> rating </th>
-	<th> comment </th>';
+	<th> Rating </th>
+	<th> Comment </th>
+	<th> Date </th>';
 	if (in_array(1, $userRoles) OR in_array(2, $userRoles) OR in_array(3, $userRoles))
 	{
 		echo '<th><button type="submit" action="viewEvent.php?eid='.$event_id.'">Submit Change</button></th>';
@@ -261,6 +262,8 @@ require 'mysqliConnect.php';
 	  echo "<td>" . $row['username'] . "</td>";
 	  echo "<td>" . $row['rating'] . "</td>";
 	  echo "<td>" . $row['comment'] . "</td>";
+	  echo "<td>" . $row['ratingdate'] . "</td>";
+                      
 	  if (in_array(1, $userRoles) OR in_array(2, $userRoles) OR in_array(3, $userRoles))
 	  {
 	  	echo '<td><input type="checkbox" name="deactivate_rating[]" value="' . $row['ratingid']. '">Deactivate';
@@ -296,7 +299,14 @@ if ($activeUser){
 			</tr>
 			<tr>
 				<th> <button type='submit' action='viewEvent.php?eid='$event_id'>Submit Rating</button> </th>
-				<th> <input type='text' placeholder='Rating' name='rating' autofocus /><br></br> </th>
+				<th> 	<select name='rating'>
+							<option value='0'>0
+							<option value='1'>1
+							<option value='2'>2
+							<option value='3'>3
+							<option value='4'>4
+							<option value='5'>5
+						</select> </th>
 				<th> <input type='text' placeholder='Comment' name='comment' autofocus /><br></br> </th>
 			</tr>
 		</table>
@@ -312,3 +322,4 @@ mysqli_close($dbc);
 
 </body>
 </html>
+
