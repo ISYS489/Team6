@@ -7,9 +7,9 @@
 //Last Date Modified: 4/17/2014
 
 
-//Used on addKeyword.php, createEvent.php, search.php
+//Used on addKeywords.php, createEvent.php, search.php
 function displayKeywords(){
- 	require ('mysqliConnect.php');
+ 	require ('../mysqli_connect.php');
 		/* multi query statement */
 	$keywordQuery = "SELECT MediaTypeId, MediaType FROM mediatypes;SELECT NameId, Name From names;SELECT NewsOutletId, NewsOutlet FROM newsoutlets;SELECT PoliticalPartyId, PoliticalParty FROM politicalparties";
 	

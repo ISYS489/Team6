@@ -11,7 +11,7 @@ session_start();
 $page_title = 'Add Keyword';
 
 
-require ('mysqliConnect.php');
+require ('../mysqli_connect.php');
 
 if ($_SESSION['userid'])
           {
@@ -151,8 +151,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	}
 }
 
+
+
+
 echo '<h1>Add Keyword</h1> 
-		<p>Current Keywords: </br>';
+
+<div class="bigEntrance">		
+<p>Current Keywords: </br>';
 
 require ('keywordFunctions.php');
 
@@ -169,8 +174,10 @@ displayKeywords();
 	Political Party: <input type="text" name="political_party" value="<?php if(isset($_POST['political_party'])) echo $_POST['political_party']; ?>" /></br>
 	
 	News Outlet: <input type="text" name="news_outlet" value="<?php if(isset($_POST['news_outlet'])) echo $_POST['news_outlet']; ?>" /></p>
-	
-    <input type="submit" name="submit" value="Add Keyword(s)"/>
+	<div class="button">
+    <input align = "center" type="submit" name="submit" value="Add Keyword(s)"/>
+	</div>
 	<br></br>
 </form>
 
+</div>
