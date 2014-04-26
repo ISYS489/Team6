@@ -48,13 +48,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	}
 }
 
-if (in_array(1, $userRoles)){
-	$classQuery = "SELECT c.classid, uv.name, c.classname, c.startdate, c.enddate, c.isactive
+///If site admin
+if (in_array(1, $userRoles)){//show all courses
+	$classQuery = "SELECT u.firstname, u.middleinitial, u.lastname, u.email, c.classid, uv.name, c.classname, c.startdate, c.enddate, c.isactive
 			   	   FROM classes c
 			       JOIN universities uv ON c.universityid = uv.universityid
+			       JOIN `users-classes` uc ON  uc.classid = c.classid
+			       JOIN  users u ON  u.userid = uc.userid
+			       JOIN `users-roles` ur ON  ur.userid = u.userid
+			       WHERE ur.roleid = 3
                    ORDER BY $orderBy
 			      ";
-} else if (in_array(2, $userRoles)){
+//If univeristy admin			      
+} else if (in_array(2, $userRoles)){//show all courses in my university
  	$userQuery = "SELECT universityid FROM users WHERE userid=" . $_SESSION['userid'];
 	$result = mysqli_query ($dbc, $userQuery);
 	while($row = mysqli_fetch_array($result)){
@@ -62,31 +68,35 @@ if (in_array(1, $userRoles)){
 	}
 	$whereStatement = 'uv.universityid=' . $userUniversity;
  	
-	$classQuery = "SELECT c.classid, uv.name, c.classname, c.startdate, c.enddate, c.isactive
+	$classQuery = "SELECT u.firstname, u.middleinitial, u.lastname, u.email, c.classid, uv.name, c.classname, c.startdate, c.enddate, c.isactive
 			   	   FROM classes c
 			       JOIN universities uv ON c.universityid = uv.universityid
-			       WHERE $whereStatement
+			       JOIN `users-classes` uc ON  uc.classid = c.classid
+			       JOIN  users u ON  u.userid = uc.userid
+			       JOIN `users-roles` ur ON  ur.userid = u.userid
+			       WHERE ur.roleid = 3 AND $whereStatement
                    ORDER BY $orderBy
 			      ";
-} if (in_array(3, $userRoles)){
-	$classQuery = "SELECT c.classid, uv.name, c.classname, c.startdate, c.enddate, c.isactive
+//if I am a professor			      
+} if (in_array(3, $userRoles)){//show all courses where I am a professor
+	$classQuery = "SELECT u.firstname, u.middleinitial, u.lastname, u.email, c.classid, uv.name, c.classname, c.startdate, c.enddate, c.isactive
 			   	   FROM classes c
 			       JOIN universities uv ON c.universityid = uv.universityid
-			       JOIN `users-classes` uc ON  uc.classid=c.classid
-			       WHERE uc.userid=$userId
-                   ORDER BY $orderBy
-			      ";
+			       JOIN `users-classes` uc ON  uc.classid = c.classid
+			       JOIN  users u ON  u.userid = uc.userid
+			       JOIN `users-roles` ur ON  ur.userid = u.userid
+			       WHERE ur.roleid = 3 AND uc.userid = $userId
+                   ORDER BY $orderBy";
 			      
 }
 
 
-
-echo '<font color="yellow"><form method="post" align="center">Sort by: 
+echo '<center><font color="yellow"><form id="reportsform" method="post" align="center">Sort by: 
 <input type="radio" name="order_by" value="class_name" >Class Name
 <input type="radio" name="order_by" value="university" >University
 <input type="radio" name="order_by" value="class_id" >Class ID
 <input type="submit" value="Sort"></font>
-</form>';
+</form></center>';
 
 			  
 	/* execute multi query */
@@ -96,6 +106,8 @@ $result = mysqli_query ($dbc, $classQuery);
 		  	<th>Class ID</th>
 			<th>Class Name</th>
 			<th>University</th>
+			<th>Professor</th>
+			<th>Email</th>
 			<th>Start Date</th>
 			<th>End Date</th>
 			<th>Status</th>
@@ -109,6 +121,8 @@ $result = mysqli_query ($dbc, $classQuery);
 		  			<td align='center'>" . $row['classid'] . "</td>
 					<td>" . $row['classname'] . "</td>
 					<td>" . $row['name'] . "</td>
+					<td>" . $row['lastname'] . ", ".$row['firstname'] . $row['middleinitial'] .".</td>
+					<td>" . $row['email'] . "</td>
 					<td>" . $row['startdate'] . "</td>
 					<td>" . $row['enddate'] . "</td>
 					<td>"; if ($row['isactive']){
@@ -116,7 +130,6 @@ $result = mysqli_query ($dbc, $classQuery);
 							} else {
 								echo "Inactive";
 							} 
-						$course=$row['classid'];
 			  echo '</td>
 					<td><form id="viewClassPosts" method="post" action="searchResults.php">
 							<button type="submit"  name="coursenumber" value="'. $row['classid'] . '">View Class Events</button>
