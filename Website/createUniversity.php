@@ -23,7 +23,7 @@ function isValidDateTimeString($str_dt) {//This will tell you whether or not a v
 $page_title = 'CreateUniversity';
 
 include ('header.php');
-require ('mysqliConnect.php');
+require ('../mysqli_connect.php');
 if ($_SESSION['userid'])
 {
     $userId = $_SESSION['userid'];

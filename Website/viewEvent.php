@@ -10,7 +10,7 @@
 	//start the session & set logged in user's ID
 	session_start();
 	 
-	require 'mysqliConnect.php';
+	require '../mysqli_connect.php';
 	
 	//variable to test for displaying form to deactivate an event.
 	$allowDeactivate=false;

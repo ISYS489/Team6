@@ -85,7 +85,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$errors[] = 'You are not logged in.';
 	}else{
 		//Check for valid user
-		require ('mysqliConnect.php');
+		require ('../mysqli_connect.php');
 		//make the query
 		$q = "SELECT isactive FROM users WHERE userid=" . $_SESSION['userid'];
 		$r = mysqli_query ($dbc, $q);

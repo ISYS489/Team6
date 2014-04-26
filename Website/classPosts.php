@@ -18,7 +18,7 @@ $userID = $_SESSION['userid'];
 
 <?php
   require 'header.php';
-          require ('mysqliConnect.php');
+          require ('../mysqli_connect.php');
 	
 ?>	
 	

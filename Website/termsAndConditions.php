@@ -33,7 +33,7 @@ session_start();
 
     <?php
     require 'header.php';
-    require 'mysqliConnect.php';
+    require '../mysqli_connect.php';
     
     //Check if username is Unique
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
