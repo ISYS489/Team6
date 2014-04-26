@@ -52,12 +52,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 
 //Displays radio buttons for sort selection.
-echo '<font color="yellow"><b><form id="reportsform" method="post" align="center">Sort by: 
+echo '<center><font color="yellow"><b><form id="reportsform" method="post" align="center">Sort by: 
 <input type="radio" name="order_by" value="last_name" >Last Name
 <input type="radio" name="order_by" value="class" >Class ID
 <input type="radio" name="order_by" value="university" >University
 <input type="submit" value="Sort"></b></font>
-</form>';
+</form></center>';
 
 ////////////For diplaying report of University Administrators.//////////////////////////////////////////////////////////////////////////////////////////
 if (in_array(1, $userRoles)){//can be seen only by Site Admin (1)
