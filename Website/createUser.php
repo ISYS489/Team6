@@ -158,7 +158,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 ?>
 <h1>Create User</h1>
 <form id="createuser" action="createUser.php" method="post">
-
+<div class="slideExpandUp">`
     <p>
        <ul>
 <li>	   First Name:
@@ -218,7 +218,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         	?>
 	</select>
 	</li>
-	
+	<li>
 		User Type:
 	<select name = "UserType">
 	<?php
@@ -232,6 +232,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 . '</option>';
             }
         	?>
+			</li>
 	</select>
 	
 	<!--<input type="text" name="ClassId" value="<?php // if(isset($_POST['ClassId'])) echo $_POST['UniversityId']; ?> />-->
@@ -245,4 +246,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <input type="submit" name="submit" value="Create User" />
     <br />
 	</p>
+	</div>
 </form>

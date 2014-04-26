@@ -27,7 +27,7 @@ $userID = $_SESSION['userid'];
 <body>
 
     <h1>Class Posts</h1>
-	<div class="myposts">
+	<div class="pulldown">
   <?php
 
 

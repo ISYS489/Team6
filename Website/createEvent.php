@@ -139,7 +139,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	}
 }
 ?>
+<div class="bounce">
 <h1>Create Event</h1>
+
 
 <form action="createEvent.php" method="post">
 
@@ -163,3 +165,4 @@ mysqli_close($dbc);
 <input type="submit" name="submit" value="Create Event"/>
 <br></br>
 </form>
+</div>
