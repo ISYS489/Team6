@@ -27,7 +27,7 @@ $whatevers = $_GET['userid'];
 $page_title = 'CreateUser';
 
 include ('header.php');
-require 'mysqliConnect.php';
+require '../mysqli_connect.php';
 
 //check for form submission:
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
