@@ -20,7 +20,7 @@ session_start();
     <!--header-->
 
     <?php require 'header.php';
-          require ('mysqliConnect.php');
+          require ('../mysqli_connect.php');
           //Authorization check
           if ($_SESSION['userid'])
           {

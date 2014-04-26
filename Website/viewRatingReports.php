@@ -16,7 +16,7 @@ session_start();
 <!-- navigation bar -->
 <?php
     include("header.php");
-    require("mysqliConnect.php");
+    require("../mysqli_connect.php");
     $userId = 0;
     //Authorization check
     if ($_SESSION['userid'])

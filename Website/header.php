@@ -1,6 +1,6 @@
 <?php 
 	
-require ('mysqliConnect.php');
+require ('../mysqli_connect.php');
  error_reporting(E_ERROR | E_PARSE);
 echo'
 
