@@ -184,7 +184,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
   <?php
 	///Display event information
-	require 'mysqliConnect.php';
+	require '../mysqli_connect.php';
   
   	$event_id = $_GET['eid'];
   	
@@ -237,7 +237,7 @@ mysqli_close($dbc);
 
 <?php
 ///Displays Ratings that match event ID
-require 'mysqliConnect.php';
+require '../mysqli_connect.php';
 
 	$result = mysqli_query($dbc,"SELECT r.ratingid, r.rating, r.comment, date(r.ratingdate) as ratingdate, u.username from ratings r JOIN users u ON r.userid = u.userid
 	where r.eventid = $event_id AND r.isactive=true" );

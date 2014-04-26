@@ -151,7 +151,7 @@ Event Description: <input type="text" size="100" maxlength="1000" rows="5" name=
         Event URL: <input type="text" size="100" maxlength="1000" name="URL" value="<?php if(isset($_POST['URL'])) echo $_POST['URL']; ?>" /></br></br>
         Date of Occurance: <input type="date" name="Date" value="<?php if(isset($_POST['Date'])) echo $_POST['Date']; ?>" /></br></br>
 
-<?php require ('mysqliConnect.php');
+<?php require ('../mysqli_connect.php');
 	  require ('keywordFunctions.php');
 	  
 	
