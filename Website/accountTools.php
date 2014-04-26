@@ -47,12 +47,7 @@ session_start();
     <p>
         <h1>Welcome to Your Account Tools</h1>
 
-        <!--link to account settings page-->
-        <ul class="accountSettings">
-            <li>
-                <a href="accountSettings.php">Account Settings</a>
-            </li>
-        </ul>
+
 
         <ul class="accounttools">
             <!-- student -->
@@ -60,7 +55,8 @@ session_start();
             if (in_array(4, $userRoles))
             {
                 echo '<ul class ="Student">
-<li><a href="myPosts.php">my posts</a></li>
+<li><a href="myPosts.php">my event posts</a></li>
+<li><a href="viewRatingReports.php">my ratings</a></li>
 <li><a href="classPosts.php">class posts</a></li>
 </ul>';
             }
@@ -116,6 +112,13 @@ session_start();
             ?>
 
 
+        </ul>
+		
+		        <!--link to account settings page-->
+        <ul class="accountSettings">
+            <li>
+                <a href="accountSettings.php">Account Settings</a>
+            </li>
         </ul>
     </p>
 
