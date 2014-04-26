@@ -1,7 +1,15 @@
 <?php
+//File Name: forgotPassword.php
+//Purpose: emails password to user.
+//Class: ISYS489
+//Instructor: Amy Buse
+//Author: Kyle Thompson
+//Last Date Modified: 3/28/2014
+
+//start the session
 session_start();
 ?>
-//start the session
+
 
 <html>
 
@@ -9,7 +17,7 @@ session_start();
 <head>
 
 <?php require 'header.php'; 
-require 'mysqliConnect.php';
+require '../mysqli_connect.php';
 ?>
 
 
@@ -19,13 +27,15 @@ require 'mysqliConnect.php';
 <h1>Forgot Password</h1>
 </head>
 
+
 <body>
 <h2></h2>
+<div class="fergotpass">
 <p>
 <form name="forgot" method="post" action="<?php $_SERVER['PHP_SELF'];?>">
-<p><label for="username">Username:</label>
+<label color = "#FFFF00" for="username">Username:</label>
 <input name="username" type="text" value="" />
-</p>
+
 <input type="submit" name="submit" value="submit"/>
 <input type="reset" name="reset" value="reset"/>
 </form>
@@ -79,6 +89,6 @@ else
 
 
 </p>
-
+</div>
 </body>
 </html> 

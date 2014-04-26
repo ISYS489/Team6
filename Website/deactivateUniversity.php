@@ -18,7 +18,7 @@ session_start();
     <!--header -->
 
     <?php require 'header.php';
-          require ('mysqliConnect.php');
+          require ('../mysqli_connect.php');
           if ($_SESSION['userid'])
           {
               $userId = $_SESSION['userid'];
@@ -108,6 +108,7 @@ session_start();
 
 
     <h1>Deactivate a University</h1>
+	<div class="pulse">
     <form id="deactivateUniversityForm" method="post" align="center">
         <font color='gold'> Select University to Deactivate: </font>
         <br />
@@ -129,5 +130,6 @@ session_start();
         <br /></br>
         <button type="submit" onclick="window.confirm('Are you sure you want to deactivate this University?')">Deactivate University</button>
     </form>
+	</div>
 </body>
 </html>

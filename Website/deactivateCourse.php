@@ -7,7 +7,7 @@
 //Last Date Modified: 4/21/2014
 
 session_start();
-require ('mysqliConnect.php');
+require ('../mysqli_connect.php');
 
 if ($_SESSION['userid'])
           {
@@ -82,7 +82,8 @@ require 'header.php';
 
     <h1>Deactivate a Course</h1>
     <form id="deactivateCourseForm" method="post">
-        Select Course to Deactivate:
+	<div class="stretchRight">
+          <font color='gold'> Select Course to Deactivate:</font>
         <br />
         <select name="ClassId">
             <?php
@@ -101,9 +102,10 @@ require 'header.php';
         </select>
         <br />
         <button type="submit" onclick="window.confirm('Are you sure you want to deactivate this Course?')">Deactivate Course</button>
+		</div>
     </form>
 </body>
 </html>
 		 
-          
+
           

@@ -1,9 +1,14 @@
 <?php
-
+//File Name: deactivateUser.php
+//Purpose: Home page explaining site and navigation.
+//Class: ISYS489
+//Instructor: Amy Buse
+//Author: Cale Kuchnicki
+//Last Date Modified: 4/21/2014
 
 session_start();
 
-require ('mysqliConnect.php');
+require ('../mysqli_connect.php');
 
 
 
@@ -79,6 +84,7 @@ require ('mysqliConnect.php');
 
 
     <h1>Deactivate a User</h1>
+	<div class="slideExpandDown">
     <form id="deactivateUserForm" style="color:#ffff00" method="post">
         Select User to Deactivate:
         <br />
@@ -100,6 +106,7 @@ require ('mysqliConnect.php');
         <br />
         <button type="submit" onclick="window.confirm('Are you sure you want to deactivate this User?')">Deactivate User</button>
     </form>
+	</div>
 </body>
 </html>
 		 

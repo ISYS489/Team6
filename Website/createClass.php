@@ -15,7 +15,7 @@ session_start();
 $page_title = 'CreateClass';
 
 include 'header.php';
-require 'mysqliConnect.php';
+require '../mysqli_connect.php';
 
 if ($_SESSION['userid'])
 {
@@ -101,9 +101,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 ?>
+
+
 <h1>Create Class</h1>
 <form action="createClass.php" method="post">
-
+<div class="stretchLeft">
     <p>
         University:
         <select name="university">
@@ -142,4 +144,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <input type="submit" name="submit" value="Create Class" />
         <br />
     </p>
+	</div>
 </form>

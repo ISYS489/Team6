@@ -1,4 +1,10 @@
 <?php
+//File Name: pep.php
+//Purpose: Links to PEP website.
+//Class: ISYS489
+//Instructor: Amy Buse
+//Author: Cale Kuchnicki
+//Last Date Modified: 4/21/2014
 
 //start the session
 session_start();
@@ -33,10 +39,19 @@ session_start();
 				</td>
 			</tr>
 		</table>
+		<div class="animation">
+		<img src="/img/eagle.jpg" alt="flyingeagle"/>
+		</div>
 	</p>
 	
 	
 	
+
+
+
+
+
+
 	
 </body>
 

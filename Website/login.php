@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	
 	//Need two helper files
 	require ('loginFunctions.php');
-	require ('mysqliConnect.php');
+	require ('../mysqli_connect.php');
 	
 	//check login
 	list ($check, $data) = check_login($dbc, $_POST['username'], $_POST['password']);

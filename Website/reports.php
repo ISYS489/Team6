@@ -19,7 +19,8 @@ session_start();
 </head>
 
 <body>
-
+<div class="expandOpen">
+<div id="reportsdiv">
 <p>
 
 <br>
@@ -34,7 +35,7 @@ session_start();
 
 
 </p>
-
-
+</div>
+</div>
 </body>
 </html> 

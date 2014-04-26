@@ -108,7 +108,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	//Check for a change
 	if(updatedInfo) {
 		//connect to the DB
-		require ('mysqliConnect.php');
+		require ('../mysqli_connect.php');
 		
 		
 		
@@ -169,7 +169,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <form class ="search" id="search" method="post" action="editAccountSettings.php">
 <p>
-<?php require ('mysqliConnect.php');
+<?php require ('../mysqli_connect.php');
 
 
 

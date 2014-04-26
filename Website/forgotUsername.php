@@ -1,7 +1,15 @@
 <?php
+//File Name: forgotUsername.php
+//Purpose: emails username to user.
+//Class: ISYS489
+//Instructor: Amy Buse
+//Author: Kyle Thompson
+//Last Date Modified: 3/28/2014
+
+//start the session
 session_start();
 ?>
-//start the session
+
 
 <html>
 
@@ -10,19 +18,20 @@ session_start();
 <!--header-->
 
 <?php require 'header.php'; 
-require 'mysqliConnect.php';
+require '../mysqli_connect.php';
 ?>
 
 <h1>Forgot Username</h1>
 </head>
 
 <body>
-<h2></h2>
+<div class="fergotuser">
 <p>
+
 <form name="forgot" method="post" action="<?php $_SERVER['PHP_SELF'];?>">
-<p><label for="email">Email:</label>
+<label for="email">Email:</label>
 <input name="email" type="text" value="" />
-</p>
+
 <input type="submit" name="submit" value="submit"/>
 <input type="reset" name="reset" value="reset"/>
 </form>
@@ -75,6 +84,6 @@ else
 
 
 </p>
-
+</div>
 </body>
 </html> 

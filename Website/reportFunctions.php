@@ -9,7 +9,7 @@
 
 //Used on reports.php
 function displayReports(){
- 	require ('mysqliConnect.php');
+ 	require ('../mysqli_connect.php');
 		/* multi query statement */
 	$keywordQuery = "SELECT MediaTypeId, MediaType FROM mediatypes;SELECT NameId, Name From names;SELECT NewsOutletId, NewsOutlet FROM newsoutlets;SELECT PoliticalPartyId, PoliticalParty FROM politicalparties";
 	

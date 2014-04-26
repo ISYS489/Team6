@@ -7,7 +7,7 @@ Instructor: Amy Buse
 Author: Kyle Gottfried
 Last Date Modified: 3/28/2014 
 */
-require('mysqliConnect.php');
+require('../mysqli_connect.php');
 
 function IsUserAuthorized($userId, $authorizedUserRoles) //int, int Array
 {

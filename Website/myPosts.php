@@ -20,7 +20,7 @@ $userID = $_SESSION['userid'];
 
 <?php
   require 'header.php';
-          require ('mysqliConnect.php');
+          require ('../mysqli_connect.php');
 	
 ?>	
 	
@@ -30,7 +30,7 @@ $userID = $_SESSION['userid'];
 <body>
 
     <h1>My Posts</h1>
-
+<div class="pullup">
 <?php
 
   
@@ -40,10 +40,10 @@ $userID = $_SESSION['userid'];
    where events.userid = $userID");
   
 
-echo $userID;
+
 
 echo "<table border='1'>
-<tr>
+<tr bgcolor='9B1321' >
 <th> event id</th>
 <th>event name</th>
 <th> publish date</th>
@@ -75,6 +75,6 @@ echo "</table>";
 
 
 ?>
-
+</div>
 </body>
 </html>

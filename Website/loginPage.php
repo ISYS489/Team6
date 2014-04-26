@@ -31,7 +31,7 @@ session_start();
 
 </head>
 <body>
-
+<div class="fadeIn">
 <!--display login form-->
 <h1>Login Or Register</h1>
 <form class ="login" id="login-register" method="post" action="login.php">
@@ -60,6 +60,6 @@ session_start();
 
 
 
-
+</div>
 </body>
 </html> 
