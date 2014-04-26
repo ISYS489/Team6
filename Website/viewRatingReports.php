@@ -39,7 +39,7 @@ session_start();
 <body>
     <h1>Ratings</h1>
     <br/><br/>
-    
+    <center>
     <!--Select element that contains available courses to choose from-->
     <form id="courseSelectionForm" method="get" align='center'>
     <select name="ClassId">
@@ -140,11 +140,14 @@ session_start();
         }
         ?>        
     </select>
-    <button type="submit">Grab Ratings for this Course</button>
+    
+    	<button type="submit">Grab Ratings for this Course</button>
+    </center>
     </form>
-    <p>
-    <table align='center'>
-        <tr>
+    
+    <table align='center' bgcolor='282164'>
+        <tr bgcolor='9B1321'>
+        	<th>Rater Name</th>
             <th>Event Name</th>
             <th>Comment</th>
             <th>Rating</th>
@@ -163,7 +166,7 @@ session_start();
                 $classId = $_GET['ClassId'];
                 if (in_array(4, $userRoles))
                 {
-                    $query = "SELECT e.EventName, r.Comment, r.Rating r.RatingDate
+                    $query = "SELECT u.FirstName, u.MiddleInitial, u.LastName, e.EventName, e.EventId, r.Comment, r.Rating, r.RatingDate
                     FROM `ratings` AS r
                     LEFT OUTER JOIN `events` AS e ON r.EventId = e.EventId
                     LEFT OUTER JOIN `users-classes` AS uC ON r.UserId = uC.UserId
@@ -174,8 +177,8 @@ session_start();
                     while($row = mysqli_fetch_array($result))
                     {
                           echo "<tr>";
-                      
-                          echo "<td>" . $row['EventName'] . "</td>";
+                          echo "<td>" . $row['FirstName'] ." ". $row['MiddleInitial'] ." ". $row['LastName'] ."</td>";
+                          echo "<td>" . "<a href=\"viewEvent.php?eid=".$row['EventId']."\" id='eventlist' >" . $row['EventName'] . "</a></td>";
                           echo "<td>" . $row['Comment'] . "</td>";
                           echo "<td>" . $row['Rating'] . "</td>";
                           echo "<td>" . $row['RatingDate'] . "</td>";
@@ -185,18 +188,19 @@ session_start();
                 }
                 else
                 {
-                    $query = "SELECT e.EventName, r.Comment, r.Rating, r.RatingDate
+                    $query = "SELECT u.FirstName, u.MiddleInitial, u.LastName, e.EventName, e.EventId, r.Comment, r.Rating, r.RatingDate
                     FROM `ratings` AS r
                     LEFT OUTER JOIN `events` AS e ON r.EventId = e.EventId
                     LEFT OUTER JOIN `users-classes` AS uC ON r.UserId = uC.UserId
+                    LEFT OUTER JOIN `users` AS u On uC.UserId = u.UserId
                     WHERE uC.ClassId = $classId";
                     $result = mysqli_query($dbc, $query);
                 
                     while($row = mysqli_fetch_array($result))
                     {
                           echo "<tr>";
-                      
-                          echo "<td>" . $row['EventName'] . "</td>";
+                      	  echo "<td>" . $row['FirstName'] ." ". $row['MiddleInitial'] ." ". $row['LastName'] ."</td>";
+                          echo "<td>" . "<a href=\"viewEvent.php?eid=".$row['EventId']."\" id='eventlist' >" . $row['EventName'] . "</a></td>";
                           echo "<td>" . $row['Comment'] . "</td>";
                           echo "<td>" . $row['Rating'] . "</td>";
                           echo "<td>" . $row['RatingDate'] . "</td>";
@@ -210,5 +214,5 @@ session_start();
             
             
             </table>
-            </p>
+            
 </body>
