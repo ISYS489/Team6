@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	
 	if (empty($errors)) { //if there are no errors
 		//connect to the DB
-		require ('mysqliConnect.php');
+		require ('../mysqli_connect.php');
 		
 		
 		//Check for a name

@@ -106,7 +106,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	
 	if (empty($errors)) { //if there are no errors
 		//connect to the DB
-		require ('mysqliConnect.php');
+		require ('../mysqli_connect.php');
 		
 		//make the query
 		$q = "INSERT INTO events (eventname, eventdesc, politicalpartyid, mediatypeid, newsoutletid, nameid, url, publishdate, userid, dateofevent) VALUES ('$en','$ed','$pp','$mt','$no','$n','$url','$pd','$uid','$edate')";

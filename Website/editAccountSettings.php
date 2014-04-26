@@ -90,7 +90,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$ci = trim($_POST['class_id']);
 			
 		//check to see if user is in default public class, 
-		require ('mysqliConnect.php');		
+		require ('../mysqli_connect.php');		
 				
 		$sq = "SELECT classid FROM `users-classes` WHERE userid='$userID'";
 		$r = mysqli_query ($dbc, $sq); //run query

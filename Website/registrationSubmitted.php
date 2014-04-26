@@ -17,7 +17,7 @@ session_start();
 <head>
 <!--header-->
 <?php require 'header.php';
-require 'mysqliConnect.php';
+require '../mysqli_connect.php';
 ?>
 <h1>Registration Submitted</h1>
 </head>
