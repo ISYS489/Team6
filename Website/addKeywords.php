@@ -165,7 +165,7 @@ displayKeywords();
 
 ?>
 </p>
-<form action="addKeyword.php" method="post">
+<form action="addKeywords.php" method="post">
 
 	<p>Name of Person of Interest: <input type="text" name="name" value="<?php if(isset($_POST['name'])) echo $_POST['name']; ?>" /></br>
 	
