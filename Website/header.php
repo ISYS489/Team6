@@ -1,4 +1,11 @@
-<?php 
+<?php
+
+//File Name: deactivateUser.php
+//Purpose: Header for all pages
+//Class: ISYS489
+//Instructor: Amy Buse
+//Author: Cale Kuchnicki
+//Last Date Modified: 4/25/2014
 	
 require ('../mysqli_connect.php');
  error_reporting(E_ERROR | E_PARSE);
