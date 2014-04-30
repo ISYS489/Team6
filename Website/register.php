@@ -20,11 +20,13 @@ session_start();
     
     <!--Validate all information before sending data to the termsAndConditions.php page-->
     <script type="text/javascript">
-    function validateEmail(email) { 
+    function validateEmail(email) {
+    //Check that the email is an actual email
     var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(email);
 }
     function validatePassword(password) {
+    //Check that the password passes complexity requirements.
     var re = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,12}$/;
     return re.test(password);
     }
