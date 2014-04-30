@@ -29,6 +29,7 @@ require '../mysqli_connect.php';
 if ($_SERVER['REQUEST_METHOD'] == 'POST')
 {
 
+//Populate PHP variables with the registation variables stored in POST
 $fN = htmlspecialchars($_POST['firstname']);
 $lN = htmlspecialchars($_POST['lastname']);
 $mI = htmlspecialchars($_POST['middleinitial']);
