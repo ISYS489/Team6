@@ -4,7 +4,7 @@
 //Class: ISYS489
 //Instructor: Amy Buse
 //Author: Kyle Gottfried
-//Last Date Modified: 3/28/2014
+//Last Date Modified: 4/30/2014
 
 //start the session
 session_start();
@@ -19,6 +19,8 @@ session_start();
 
     <?php require 'header.php';
           require ('../mysqli_connect.php');
+          
+          //Authorization check
           if ($_SESSION['userid'])
           {
               $userId = $_SESSION['userid'];
@@ -115,8 +117,10 @@ session_start();
         <select name="universityId">
             <?php
 
+            //Retreive all Active Universties
             $result = mysqli_query($dbc,'SELECT UniversityId, Name FROM universities WHERE isActive = true');
 
+            //Fill select field with the Universities retreived with $result
             while ($row=mysqli_fetch_array($result))
             {
                 echo '<option value=' . htmlspecialchars($row['UniversityId']) . '>'
