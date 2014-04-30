@@ -8,7 +8,7 @@ Purpose: Create a new university
 Class: ISYS489
 Instructor: Amy Buse
 Author: Kyle Gottfried
-Last Date Modified: 3/28/2014
+Last Date Modified: 4/30/2014
 -->
 
 <?php # create a university
