@@ -22,8 +22,11 @@ function isValidDateTimeString($str_dt) {//This will tell you whether or not a v
 
 $page_title = 'CreateUniversity';
 
+//Import required files
 include ('header.php');
 require ('../mysqli_connect.php');
+
+//Check if user is authorized to view this page
 if ($_SESSION['userid'])
 {
     $userId = $_SESSION['userid'];
@@ -111,7 +114,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 		echo '<h1>Error!</h1>
 		<p>The following error(s) occurred:<br />';
-		foreach ($errors as $msg) { //print each
+		foreach ($errors as $msg) { //print each Error
 			echo " - $msg<br />\n";
 		}
 		echo '</p><p>Please try again.</p><p><br /></p>';
@@ -120,6 +123,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 ?>
 <h1>Create University</h1>
+<!--The Create Universiy Form, includes stickyform PHP code.-->
 <form action="createUniversity.php" method="post">
 <div class="bounce">
     <p>
