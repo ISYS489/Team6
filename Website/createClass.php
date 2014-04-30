@@ -4,7 +4,7 @@
 //Class: ISYS489
 //Instructor: Amy Buse
 //Author: Kyle Gottfried
-//Last Date Modified: 3/28/2014
+//Last Date Modified: 4/30/2014
 
 session_start();
 ?>
@@ -17,6 +17,7 @@ $page_title = 'CreateClass';
 include 'header.php';
 require '../mysqli_connect.php';
 
+//Check that the end user has permissions necessary to access this page
 if ($_SESSION['userid'])
 {
     $userId = $_SESSION['userid'];
@@ -104,6 +105,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
 <h1>Create Class</h1>
+<!---The Create Class form, some fields are filled programically by PHP-->
 <form action="createClass.php" method="post">
 <div class="stretchLeft">
     <p>
