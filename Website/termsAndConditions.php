@@ -4,7 +4,7 @@
 //Class: ISYS489
 //Instructor: Amy Buse
 //Author: Kyle Gottfried
-//Last Date Modified: 3/28/2014
+//Last Date Modified: 4/30/2014
 
 //start the session
 session_start();
@@ -49,6 +49,7 @@ session_start();
     }
     else 
     {
+        //Echo terms and conditions page, includes a hidden form that stores all of the data the user entered on the registration page. This form will be passed to the registrationSubmitted.php page
     echo '
     <h2>Please read the terms and conditions before submitting your registration </h2>
     <p>
@@ -62,7 +63,7 @@ session_start();
         <br />
         <input type="checkbox" name="disagree" value="disagree" />
         I do not agree
-
+        
         <input type="hidden" placeholder="First Name" name="firstname" value="'; echo $_POST['firstname']; echo '" autofocus="" />';
 
         echo '<input type="hidden" placeholder="Last Name" name="lastname" value="';  echo $_POST['lastname']; echo '" autofocus="" />';
