@@ -4,7 +4,7 @@
 //Class: ISYS489
 //Instructor: Amy Buse
 //Author: Kyle Gottfried
-//Last Date Modified: 3/28/2014
+//Last Date Modified: 4/30/2014
 
 
 //start the session & set logged in user's ID
@@ -16,9 +16,11 @@ session_start();
 
 <head>
 
-    <?php require 'header.php';
-require '../mysqli_connect.php';
-?>
+    <?php 
+        //Import required files
+        require 'header.php';
+        require '../mysqli_connect.php';
+    ?>
 
 
 </head>
@@ -28,7 +30,7 @@ require '../mysqli_connect.php';
 <?php
 
 
-
+//Retreive list of events from MySQL Server
 $result = mysqli_query($dbc,"SELECT e.EventName, e.EventId, e.userid, date(e.PublishDate) AS PublishDate, e.DateOfEvent, p.PoliticalParty, nO.NewsOutlet, m.MediaType, n.Name, truncate(avg(z.rating), 1) as rating, x.name
 FROM events AS e
 LEFT OUTER JOIN politicalparties AS p ON e.PoliticalPartyId = p.PoliticalPartyId
@@ -42,7 +44,7 @@ where e.isVisible=true
 group by e.EventName");
 
 
-
+//Create table headings
 echo "<div id='resize'>
 <table border='1' class='eventlist' align='center'>
 <tr bgcolor='9B1321' >
@@ -59,7 +61,7 @@ echo "<div id='resize'>
 </tr>
 </div>";
 
-
+//Populate table with records from database
   while($row = mysqli_fetch_array($result))
   
   {
