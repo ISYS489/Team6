@@ -24,8 +24,12 @@ session_start();
 
 
 <?php
+//DB connection file
 require ('../mysqli_connect.php');
+
+//get users id from session variable
 $userId = $_SESSION['userid'];
+//get role of user
 if ($_SESSION['userid']){
  	
 	
@@ -34,7 +38,6 @@ if ($_SESSION['userid']){
 		$userRoles[] = $row[0]; 
 	}
 }
-
 $orderBy = "c.classname";
 
 //Determines sort criteria by class name, university, or class id
@@ -90,7 +93,7 @@ if (in_array(1, $userRoles)){//show all courses
 			      
 }
 
-
+//display sorting form
 echo '<center><font color="yellow"><form id="reportsform" method="post" align="center">Sort by: 
 <input type="radio" name="order_by" value="class_name" >Class Name
 <input type="radio" name="order_by" value="university" >University
@@ -114,7 +117,7 @@ $result = mysqli_query ($dbc, $classQuery);
 			<th>Student Events</th>
 		</tr>";
 	
-		
+		//display query rows
 	while($row = mysqli_fetch_array($result))
 	{
 		  echo "<tr>
@@ -139,6 +142,7 @@ $result = mysqli_query ($dbc, $classQuery);
 	}
 	echo "</table> <br><br>";
 	
+//close DB connection	
 mysqli_close($dbc);
 
 
