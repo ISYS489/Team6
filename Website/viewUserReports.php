@@ -13,7 +13,11 @@ session_start();
 <html>
 
 <head>
-	<?php require 'header.php'; ?>
+	
+	<?php    
+		//displays header file
+		require 'header.php'; 
+	?>
 	
 	<h1>Welcome to the User Report Page</h1>
 </head>
@@ -24,6 +28,7 @@ session_start();
 
 
 <?php
+//DB connection file
 require ('../mysqli_connect.php');
 $userRoles = array();
 
@@ -108,7 +113,7 @@ if (in_array(1, $userRoles) || in_array(2, $userRoles) || in_array(3, $userRoles
 																				   //University, and professors can only see themselves for reference to 
 																				   //classes they are teaching.
 	$whereStatement = null;
-	if (in_array(1, $userRoles)){ //Site Admin, see all Professors and University
+	if (in_array(1, $userRoles)){ //Site Admin, see all Professors and University admin
 		$whereStatement = 'ur.roleid=3';
 	} else if (in_array(2, $userRoles)){//University Admin, see all Professors within their University
 	 	$userQuery = "SELECT universityid FROM users WHERE userid=" . $_SESSION['userid'];
