@@ -17,8 +17,11 @@ session_start();
 <head>
 <!--header-->
 
-<?php require 'header.php';
-require '../mysqli_connect.php';
+
+<?php 
+	//include header file
+	require 'header.php';
+	require '../mysqli_connect.php';
 ?>
 </head>
 
@@ -28,8 +31,10 @@ require '../mysqli_connect.php';
 
 <?php
 
+//initialize search string variable
 $searchString = null;
 
+//check for searchable items
 if (!empty($_POST['eventname'])){
 	$searchString = " and e.eventname like '%{$_POST['eventname']}%'";	
 }
@@ -64,7 +69,7 @@ if (!empty($_POST['StartYear']) AND !empty($_POST['EndYear'] )){
 }
 
 
- 
+//event query 
 $result = mysqli_query($dbc,"SELECT  DISTINCT e.EventId, e.EventName, date(e.PublishDate) AS PublishDate, e.DateOfEvent, p.PoliticalParty, nO.NewsOutlet, m.MediaType, n.Name, round(avg(a.rating)) as rating, z.name, q.classid
 FROM events AS e
 LEFT OUTER JOIN politicalparties AS p ON e.PoliticalPartyId = p.PoliticalPartyId
@@ -78,9 +83,8 @@ left outer join `users-classes` as f on g.userId = f.userId
 left outer join classes as q on f.classid = q.classid
 WHERE e.isvisible=true  $searchString    
 group by e.EventName"); 
-//where eventname = '{$_POST['search']}'");
 
-
+//display event table
 echo "<div id='searchlistresize'>
 <table border='1' class='searchlist' align='center'>
 <tr bgcolor='9B1321' >
@@ -98,7 +102,7 @@ echo "<div id='searchlistresize'>
 </tr>
 </div>";
 
-
+	// display event rows
   while($row = mysqli_fetch_array($result))
   
   {
@@ -127,7 +131,7 @@ mysqli_close($dbc);
 
 <body>
 
-
+<!--display button to search again-->
 <form class ="searchresults" id="searchresults" method="post" action="search.php">
 <button type="submit" >Search Again</button>
 </form>
