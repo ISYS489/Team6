@@ -161,6 +161,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	
 			echo '<h1>Error!</h1>
 			<p>The following error(s) occurred:<br />';
+			
+			//display error messages
 			foreach ($errors as $msg) { //print each
 			echo " - $msg<br />\n";
 			}
@@ -212,7 +214,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		  echo "User Name: " . $row['username'] . "<br>";
 		  echo "</td><td>";
 		  echo "<a href=\"".$row['url']."\" id='viewevent' target='_blank' ><INPUT Type='BUTTON' VALUE='View Event Website'></a></br>";
-		  //allow deactivation if in control
+		  //allow deactivation if in control of the event
 		  if ($allowDeactivate){
 			echo '<form id="deactivate_event" method="post" action="viewEvent.php?eid='.$event_id.'">
 				<input type="checkbox" name="deactivate_event" value="deactivate"><font color="white">Deactivate</font> 
@@ -249,6 +251,8 @@ require '../mysqli_connect.php';
 	<th> Rating </th>
 	<th> Comment </th>
 	<th> Date </th>';
+	
+	//display button to deactivate ratings if in control of event
 	if (in_array(1, $userRoles) OR in_array(2, $userRoles) OR in_array(3, $userRoles))
 	{
 		echo '<th><button type="submit" action="viewEvent.php?eid='.$event_id.'">Submit Change</button></th>';
@@ -264,6 +268,7 @@ require '../mysqli_connect.php';
 	  echo "<td>" . $row['comment'] . "</td>";
 	  echo "<td>" . $row['ratingdate'] . "</td>";
                       
+          //display checkbox option to deactivate ratings if in control of event
 	  if (in_array(1, $userRoles) OR in_array(2, $userRoles) OR in_array(3, $userRoles))
 	  {
 	  	echo '<td><input type="checkbox" name="deactivate_rating[]" value="' . $row['ratingid']. '">Deactivate';
