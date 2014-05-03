@@ -15,8 +15,11 @@ session_start();
 
 
 <head>
-
-<?php include("header.php");?>
+	
+	<?php 
+		//include file for header information
+		include("header.php");
+	?>
 
 
 </head>
@@ -25,17 +28,17 @@ session_start();
 <div class="hatch">
 <h1>The Search Page</h1>
 
-
+<!--display form for entering search criteria-->
 <form class ="search" align="center" id="search" method="post" action="searchResults.php">
 
-<p align="center">
+	<p align="center">
 
-<font color="yellow">Please complete one or more fields.<br><br></font>
+	<font color="yellow">Please complete one or more fields.<br><br></font>
 
-Event Name: <input align="center" type="text" name="eventname"  autofocus />
-<br></br>
+	Event Name: <input align="center" type="text" name="eventname"  autofocus />
+	<br></br>
 
-Average Rating: <select name="rating">
+	Average Rating: <select name="rating">
 					<option value="">
 					<option value="0">0
 					<option value="1">1
@@ -44,11 +47,12 @@ Average Rating: <select name="rating">
 					<option value="4">4
 					<option value="5">5
 				</select>
-<br></br>
+	<br></br>
 
-University: <select name="university">
+	University: <select name="university">
 				<option value="">
 				<?php 
+					//include drop down menu for univeristy
 					include("../mysqli_connect");
 					$query = "SELECT name FROM universities";
 					$result = mysqli_query($dbc, $query);
@@ -68,6 +72,7 @@ Ending: <select name="EndYear"><option value="2050">2050</option><option value="
   
 
 <?php
+	//displaying keywords drop downs
 	require ('keywordFunctions.php');
 	
 	//uses post variables 'media_type', 'name', 'political_party', 'news_outlet',  
