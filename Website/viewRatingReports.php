@@ -15,9 +15,12 @@ session_start();
 <head>
 <!-- navigation bar -->
 <?php
+    
+    
     include("header.php");
     require("../mysqli_connect.php");
     $userId = 0;
+    
     //Authorization check
     if ($_SESSION['userid'])
     {
@@ -36,15 +39,19 @@ session_start();
 ?>
 
 </head>
+
 <body>
     <h1>Ratings</h1>
-    <br/><br/>
+        <br/><br/>
     <center>
+    
     <!--Select element that contains available courses to choose from-->
     <form id="courseSelectionForm" method="get" align='center'>
     <select name="ClassId">
+    
         <!-- student&professor -->
         <?php
+        
         if (in_array(4, $userRoles) OR in_array(3, $userRoles))
         {
             $query = "SELECT `classes`.ClassId, `classes`.ClassName
@@ -122,6 +129,8 @@ session_start();
             WHERE IsActive = true";
             $result = mysqli_query($dbc, $query);
             
+            //select all classes to output
+            
             while($row = mysqli_fetch_array($result))
             {
                 if ($_GET['ClassId'] != $row['ClassId'])
@@ -140,11 +149,12 @@ session_start();
         }
         ?>        
     </select>
-    
+        <!--submit grab-->
     	<button type="submit">Grab Ratings for this Course</button>
     </center>
     </form>
     
+    <!--display rating catefory headings-->
     <table align='center' bgcolor='282164'>
         <tr bgcolor='9B1321'>
         	<th>Rater Name</th>
@@ -166,6 +176,7 @@ session_start();
                 $classId = $_GET['ClassId'];
                 if (in_array(4, $userRoles))
                 {
+                    //select ratings that match userid and classid.
                     $query = "SELECT u.FirstName, u.MiddleInitial, u.LastName, e.EventName, e.EventId, r.Comment, r.Rating, r.RatingDate
                     FROM `ratings` AS r
                     LEFT OUTER JOIN `events` AS e ON r.EventId = e.EventId
@@ -188,6 +199,7 @@ session_start();
                 }
                 else
                 {
+                    //select ratings for specific class
                     $query = "SELECT u.FirstName, u.MiddleInitial, u.LastName, e.EventName, e.EventId, r.Comment, r.Rating, r.RatingDate
                     FROM `ratings` AS r
                     LEFT OUTER JOIN `events` AS e ON r.EventId = e.EventId
