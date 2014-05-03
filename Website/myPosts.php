@@ -19,7 +19,8 @@ $userID = $_SESSION['userid'];
 
 
 <?php
-  require 'header.php';
+	// header page info and DB connection files
+	  require 'header.php';
           require ('../mysqli_connect.php');
 	
 ?>	
@@ -34,7 +35,7 @@ $userID = $_SESSION['userid'];
 <?php
 
   
-  
+  //select statement
   $result = mysqli_query($dbc, "SELECT events.eventid, events.eventname, events.publishdate, events.eventdesc, events.politicalpartyid, events.mediatypeid, events.newsoutletid, users.userid
    FROM events JOIN users ON events.userid = users.userid
    where events.userid = $userID");
@@ -42,20 +43,20 @@ $userID = $_SESSION['userid'];
 
 
 
-echo "<table border='1'>
-<tr bgcolor='9B1321' >
-<th> event id</th>
-<th>event name</th>
-<th> publish date</th>
-<th> event description</th>
-<th> political party id</th>
-<th> media type id</th>
-<th> news outlet id </th>
-<th> user id  </th>
-<th> click below to view event</th>
-</tr>";
+	echo "<table border='1'>
+	<tr bgcolor='9B1321' >
+	<th> event id</th>
+	<th>event name</th>
+	<th> publish date</th>
+	<th> event description</th>
+	<th> political party id</th>
+	<th> media type id</th>
+	<th> news outlet id </th>
+	<th> user id  </th>
+	<th> click below to view event</th>
+	</tr>";
 
-
+   //show table results
   while($row = mysqli_fetch_array($result))
   {
   echo "<tr>";
