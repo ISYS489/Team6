@@ -15,7 +15,7 @@ session_start();
 
 
 <head>
-<!--header-->
+
 
 <?php 
 	//use header and DB connection files
@@ -43,43 +43,40 @@ session_start();
 <?php
 if(isset($_POST['submit']))
 {
-
-
-$email = $_POST['email'];
-$sql="SELECT Email, username FROM `users` WHERE `email` ='$email'";
-$query = mysqli_query($dbc, $sql);
-
+	
+	$email = $_POST['email'];
+	$sql="SELECT Email, username FROM `users` WHERE `email` ='$email'";
+	$query = mysqli_query($dbc, $sql);
+	
+	//terminate if query did not run corrrectly
+	if(!$query) 
+	    {
+	    die(mysqli_error());
+	    }
+	    
+	//email credentials to user    
+	if(isset($_POST['submit']))
+    	{
+		$row = mysqli_fetch_array($query);
+		$email=$row['Email'];
+		$u = $row['username'];
+		$subject="team 6 - Username is displayed below";
+		$header="From: brteam6.isys489.com";
+		$message= $u;
+		$note="An Email Containing the username has been sent to your email";
+		mail($email, $subject, $message, $header);  
 		
 		
-if(!$query) 
-    {
-    die(mysqli_error());
-    }
-    
-if(isset($_POST['submit']))
-    {
-$row = mysqli_fetch_array($query);
-$email=$row['Email'];
-$u = $row['username'];
-$subject="team 6 - Username is displayed below";
-$header="From: brteam6.isys489.com";
-$message= $u;
-$note="An Email Containing the username has been sent to your email";
-mail($email, $subject, $message, $header);  
-
-
-echo "<table border='1'>
-<tr>
-<th>Message</th>
-</tr>";
-
-echo "<tr>"; 
-echo "<td>" . $note . "</td>";
-    }
-else 
-    {
-    echo("no such email in the system. please try again.");
-    }
+		echo "<table border='1'>
+		<tr>
+		<th>Message</th>
+		</tr>";
+		
+		echo "<tr>"; 
+		echo "<td>" . $note . "</td>";
+	} else {
+	    echo("no such email in the system. please try again.");
+	}
 } 	
 
 ?>
