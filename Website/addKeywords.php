@@ -11,8 +11,10 @@ session_start();
 $page_title = 'Add Keyword';
 
 
+//Import SQL connection code
 require ('../mysqli_connect.php');
 
+//Check that user is authorized to view page, redirect to index if not authorized
 if ($_SESSION['userid'])
           {
               $userId = $_SESSION['userid'];
@@ -32,7 +34,8 @@ while ($row = mysqli_fetch_array($result))
            header("location: index.php");
           }
           
-include ('header.php');
+        //Import Header document  
+	include ('header.php');
 
 //check for form submission:
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -165,6 +168,7 @@ displayKeywords();
 
 ?>
 </p>
+<!--Display stick form-->
 <form action="addKeywords.php" method="post">
 
 	<p>Name of Person of Interest: <input type="text" name="name" value="<?php if(isset($_POST['name'])) echo $_POST['name']; ?>" /></br>
