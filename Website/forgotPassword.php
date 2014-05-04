@@ -16,8 +16,9 @@ session_start();
 
 <head>
 
-<?php require 'header.php'; 
-require '../mysqli_connect.php';
+<?php 
+	require 'header.php'; 
+	require '../mysqli_connect.php';
 ?>
 
 
@@ -32,6 +33,8 @@ require '../mysqli_connect.php';
 <h2></h2>
 <div class="fergotpass">
 <p>
+
+<!--display user form-->
 <form name="forgot" method="post" action="<?php $_SERVER['PHP_SELF'];?>">
 <label color = "#FFFF00" for="username">Username:</label>
 <input name="username" type="text" value="" />
@@ -53,7 +56,7 @@ $sql="SELECT Email, Password FROM `users` WHERE `username` ='$username'";
 $query = mysqli_query($dbc, $sql);
 
 		
-		
+// kill query if it didn't run		
 if(!$query) 
     {
     die(mysqli_error());
