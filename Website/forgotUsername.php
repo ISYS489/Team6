@@ -17,8 +17,10 @@ session_start();
 <head>
 <!--header-->
 
-<?php require 'header.php'; 
-require '../mysqli_connect.php';
+<?php 
+	//use header and DB connection files
+	require 'header.php'; 
+	require '../mysqli_connect.php';
 ?>
 
 <h1>Forgot Username</h1>
@@ -28,6 +30,7 @@ require '../mysqli_connect.php';
 <div class="fergotuser">
 <p>
 
+<!--display form to input username-->
 <form name="forgot" method="post" action="<?php $_SERVER['PHP_SELF'];?>">
 <label for="email">Email:</label>
 <input name="email" type="text" value="" />
