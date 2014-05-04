@@ -1,6 +1,6 @@
 <?php
 
-//File Name: deactivateUser.php
+//File Name: header.php
 //Purpose: Header for all pages
 //Class: ISYS489
 //Instructor: Amy Buse
@@ -21,6 +21,7 @@ echo'
 <nav>
  
 <?php
+//displays navigation bar
 echo '
 <ul>
 <li><a href="index.php">Home</a></li>
@@ -49,7 +50,7 @@ echo '
           }
 		  
 		  
-  
+ //defines and displays student navigation
  if  (in_array(4, $userRoles))
             {	
 	
@@ -67,7 +68,8 @@ echo '
 
 
             }
-    
+
+ //defines and displays professor navigation    
 elseif  (in_array(3, $userRoles))
             {
 
@@ -87,6 +89,7 @@ elseif  (in_array(3, $userRoles))
           
 			}
 			
+ //defines and displays univeristy admin navigation			
 elseif (in_array(2, $userRoles))
             {
 
@@ -108,11 +111,11 @@ elseif (in_array(2, $userRoles))
 		}
             
 
-
+ //defines and displays site admin navigation
  elseif (in_array(1, $userRoles))
        {
     
-
+	
 	echo '<li><a href="createEvent.php">Create Event</a></li>';
 	echo '<li><a href="logout.php">Log Out</a></li>';
 	echo '<li><a href="accountTools.php">Account Tools</a>
@@ -133,6 +136,7 @@ elseif (in_array(2, $userRoles))
 
 }
 
+//displays login/register option if not logged in.
 else{
 
 echo '<li><a href="login.php">Login/Register</a></li>';
