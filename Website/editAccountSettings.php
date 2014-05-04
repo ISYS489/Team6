@@ -165,7 +165,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <h1>Edit Your Account Information</h1>
 
-<!-- needs to be changed -->
+<!-- display account info form -->
 
 <form class ="search" id="search" method="post" action="editAccountSettings.php">
 <p>
