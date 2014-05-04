@@ -3,7 +3,7 @@
 //Purpose: Contains functions needed for login.
 //Class: ISYS489
 //Instructor: Amy Buse
-//Author: Cale Kuchnick
+//Author: Cale Kuchnicki
 //Last Date Modified: 3/30/2014
 //this page defines two funtions used by the login/logout process
 
@@ -26,6 +26,7 @@ function redirect_user ($page = 'index.php'){
 	
 }
 
+//checks for valid login and returns true/false, and mySQL row containing username and first name or errors
 function check_login($dbc, $username = '', $password = ''){
 	
 	$errors = array(); //creates error array
