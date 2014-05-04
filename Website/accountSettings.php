@@ -25,13 +25,18 @@ session_start();
 
 <p>
 	<font color="white" >
-		<?php require ('../mysqli_connect.php');
+		<?php
+		
+		//Import SQL connection code
+		require ('../mysqli_connect.php');
 		
 			$userID = $_SESSION['userid'];
 			
+			//Retreive information on user.
 			$userQuery = "SELECT * FROM users WHERE userid='$userID'";
 			$r = @mysqli_query ($dbc, $userQuery); //run query
 			
+			//Echo user information to website
 			while($row = mysqli_fetch_array($r))
 			  {
 			  	//echo 'Active Course #: ' . $row['FirstName'] . '</br>';
