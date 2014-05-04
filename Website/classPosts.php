@@ -4,7 +4,7 @@
 //Class: ISYS489
 //Instructor: Amy Buse
 //Author: Kyle Thompson
-//Last Date Modified: 3/28/2014
+//Last Date Modified: 5/3/2014
 
 
 //start the session & set logged in user's ID
@@ -17,8 +17,10 @@ $userID = $_SESSION['userid'];
 <head>
 
 <?php
-  require 'header.php';
-          require ('../mysqli_connect.php');
+	//Import Header
+  	require 'header.php';
+  	//Import SQL Connection code
+  	require ('../mysqli_connect.php');
 	
 ?>	
 	
@@ -30,13 +32,14 @@ $userID = $_SESSION['userid'];
 	<div class="pulldown">
   <?php
 
-
+//Retrieve classId based off of userId
 $result = mysqli_query($dbc, "SELECT uc.classid FROM users u left outer join `users-classes` as uc on uc.userId = u.userId WHERE u.userid=" . $userID);
 while($row = mysqli_fetch_array($result))
   {
    $classID = $row['classid'];
   }
 
+//Retrieve Events and their details as posted by the class's users. 
 $query = "SELECT DISTINCT e.EventId, e.EventName, uc.ClassId, c.ClassName, u.UserId, u.username, e.PublishDate, e.DateOfEvent, pp.PoliticalParty, mt.MediaType, no.NewsOutlet, n.Name
   from events as e
   left outer join users as u on u.UserId = e.UserId
@@ -51,7 +54,8 @@ $query = "SELECT DISTINCT e.EventId, e.EventName, uc.ClassId, c.ClassName, u.Use
   
   $result = mysqli_query($dbc, $query);
    
-		
+
+//Create the table headings		
 echo "<table border='1'>
 <tr bgcolor='9B1321' >
 <th>Class ID</th>
@@ -68,7 +72,7 @@ echo "<table border='1'>
 <th> click here to view event</th>
 </tr>";
 
-
+//Populate table records using content from $result
   while($row = mysqli_fetch_array($result))
   {
   echo "<tr>";
