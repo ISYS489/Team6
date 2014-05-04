@@ -20,17 +20,17 @@ function displayKeywords(){
 	        /* begin corresponding select */
 	        if ($counter == 0) {
 	         	echo "Media Type: ";
-				echo "<select name='media_type'>";
-			} else if ($counter == 1) {
-			 	echo "<br>Person of Interest: ";
-				echo "<select name='name'>";
-			} else if ($counter == 2){
-			 	echo "<br>News Outlet: ";
-				echo "<select name='news_outlet'>";
-			} else if ($counter == 3){
-			 	echo "<br>Political Party: ";
-			 	echo "<select name='political_party'>";
-			} 
+			echo "<select name='media_type'>";
+		} else if ($counter == 1) {
+		 	echo "<br>Person of Interest: ";
+			echo "<select name='name'>";
+		} else if ($counter == 2){
+		 	echo "<br>News Outlet: ";
+			echo "<select name='news_outlet'>";
+		} else if ($counter == 3){
+		 	echo "<br>Political Party: ";
+		 	echo "<select name='political_party'>";
+		} 
 			echo "<option value=''></option>"; //Create a default value
 	        /* input corresponding values */
 	        if ($result = mysqli_store_result($dbc)) {
