@@ -8,11 +8,12 @@ Purpose: Create a new user
 Class: ISYS489
 Instructor: Amy Buse
 Author: Kyle Thompson
-Last Date Modified: 3/28/2014
+Last Date Modified: 5/3/2014
 -->
 
 <?php # create a user
 
+//Get userId
 $whatevers = $_GET['userid'];
 
 
