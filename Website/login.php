@@ -1,4 +1,4 @@
-<?php # login_session.php
+<?php # login.php
 //File Name: login.php
 //Purpose: This page uses loginFunctions.php and loginPage.php to log in a user.
 //Class: ISYS489
@@ -17,6 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	//check login
 	list ($check, $data) = check_login($dbc, $_POST['username'], $_POST['password']);
 	
+	//if validation check was successful
 	if ($check) {
 		
 		//set session data:
