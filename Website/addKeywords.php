@@ -4,7 +4,7 @@
 //Class: ISYS489
 //Instructor: Amy Buse
 //Author: Cale Kuchnicki
-//Last Date Modified: 4/21/2014
+//Last Date Modified: 5/3/2014
 
 //performs INSERT query to add a record to the university table
 session_start();
