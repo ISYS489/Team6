@@ -4,7 +4,7 @@
 //Class: ISYS489
 //Instructor: Amy Buse
 //Author: Cale Kuchnicki
-//Last Date Modified: 4/21/2014
+//Last Date Modified: 5/3/2014
 
 session_start();
 
@@ -13,7 +13,7 @@ require ('../mysqli_connect.php');
 
 
 
-
+	  //Authorization check, redirect user to index if not authorized
           if ($_SESSION['userid'])
           {
               $userId = $_SESSION['userid'];
@@ -49,7 +49,7 @@ require ('../mysqli_connect.php');
             $UserIds = $_POST['UserId'];
 
             
-
+	    //Set the user as inactive
             $command = @mysqli_query($dbc, "UPDATE `users` SET `IsActive`=false WHERE `UserId`='$UserIds';"); //run query
 
 
@@ -60,6 +60,7 @@ require ('../mysqli_connect.php');
 
 
             if ($command) {//if it ran ok
+                //Get username of user that was just deactivated
                 $userDeactivated;
                 $result = @mysqli_query($dbc, "SELECT Username FROM users WHERE UserId = '$UserIds'");
                 while ($row = mysqli_fetch_row($result)) {
@@ -90,7 +91,7 @@ require ('../mysqli_connect.php');
         <br />
         <select name="UserId">
             <?php
-
+	    //Retrieve active users
             $result = mysqli_query($dbc,'SELECT UserId, Username FROM users WHERE isActive = true');
 
             while ($row=mysqli_fetch_array($result))
@@ -104,6 +105,7 @@ require ('../mysqli_connect.php');
             ?>
         </select>
         <br />
+        <!--Submit button, check that the user actually wants to deactivate the user-->
         <button type="submit" onclick="window.confirm('Are you sure you want to deactivate this User?')">Deactivate User</button>
     </form>
 	</div>
