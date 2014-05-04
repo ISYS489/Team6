@@ -4,11 +4,13 @@
 //Class: ISYS489
 //Instructor: Amy Buse
 //Author: Kyle Gottfried
-//Last Date Modified: 4/21/2014
+//Last Date Modified: 5/3/2014
 
 session_start();
+//Import required SQL connection code.
 require ('../mysqli_connect.php');
 
+//Check that user is authorized to view this page, if not redirect to index
 if ($_SESSION['userid'])
           {
               $userId = $_SESSION['userid'];
@@ -87,7 +89,7 @@ require 'header.php';
         <br />
         <select name="ClassId">
             <?php
-
+	    //Retreive all active classes not including the default public class.
             $result = mysqli_query($dbc,'SELECT ClassId, ClassName FROM classes WHERE isActive = true AND ClassId <> 10001');
 
             while ($row=mysqli_fetch_array($result))
