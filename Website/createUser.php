@@ -112,6 +112,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$q = "INSERT INTO users (FirstName, LastName, MiddleInitial, Username, Password, Email, UniversityId, IsActive) VALUES ('$firstName', '$lastName', '$middleInitial', '$username', '$password', '$email', '$universityId', '$isActive' )";
 		$r = @mysqli_query ($dbc, $q); //run query
 		if ($r) {//if it ran ok
+			//Get UserId
 			$q = "SELECT UserId FROM users WHERE Username = '$username' LIMIT 1";
 			$r = @mysqli_query($dbc, $q);
 			$userId = 0;
@@ -120,6 +121,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     			$userId = $row[0];
                 }
 				echo "UserID=$userId";
+			//Insert user into users-classes
                 	$q = "INSERT INTO `users-classes`(`ClassId`, `UserId`) VALUES ($classId,$userId)";
 			$r = @mysqli_query($dbc, $q);
 			if ($r)
@@ -142,6 +144,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 	else {
 
+		//Display all if any errors.
 		echo '<h1>Error!</h1>
 		<p>The following error(s) occurred:<br />';
 		foreach ($errors as $msg) { //print each
@@ -188,7 +191,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <li>		  University:
 	<select name="UniversityId">
 	 	<?php
-
+	    //Fetch and display all valid Universities
             $result = mysqli_query($dbc,'SELECT UniversityId, Name FROM universities WHERE isActive = true');
 
             while ($row=mysqli_fetch_array($result))
@@ -206,7 +209,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		Class:
 	<select name = "ClassId">
 	<?php
-
+	    //Fetch and display all active classes
             $result = mysqli_query($dbc,'SELECT ClassId, ClassName FROM classes WHERE isActive = true');
 
             while ($row=mysqli_fetch_array($result))
@@ -222,7 +225,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		User Type:
 	<select name = "UserType">
 	<?php
-
+	    //Select and display all roles
             $result = mysqli_query($dbc,'SELECT RoleId, RoleName FROM roles');
 
             while ($row=mysqli_fetch_array($result))
