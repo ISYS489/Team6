@@ -4,7 +4,7 @@
 //Class: ISYS489
 //Instructor: Amy Buse
 //Author: Kyle Thompson
-//Last Date Modified: 3/28/2014
+//Last Date Modified: 5/3/2014
 
 //start the session
 session_start();
@@ -42,10 +42,12 @@ require '../mysqli_connect.php';
 
 
 <?php
+//If form was submitted, try sending email.
 if(isset($_POST['submit']))
 {
 
 
+//Retreive email and password from database
 $username = $_POST['username'];
 $sql="SELECT Email, Password FROM `users` WHERE `username` ='$username'";
 $query = mysqli_query($dbc, $sql);
@@ -59,6 +61,7 @@ if(!$query)
     
 if(isset($_POST['submit']))
     {
+    	//Send email
 $row = mysqli_fetch_array($query);
 $email=$row['Email'];
 $p = $row['Password'];
